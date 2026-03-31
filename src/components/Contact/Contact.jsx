@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionWrapper from '../ui/SectionWrapper';
 import Button from '../ui/Button';
-import { submitForm } from '../../utils/formspree';
 import './Contact.css';
 
 const fieldVariants = {
@@ -15,21 +14,8 @@ const fieldVariants = {
 };
 
 export default function Contact() {
-  const [status, setStatus] = useState('idle');
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setStatus('submitting');
-
-    try {
-      await submitForm(new FormData(e.target));
-      setStatus('success');
-    } catch {
-      setStatus('error');
-    }
-  }
-
-  const isSubmitting = status === 'submitting';
+  const [state, handleSubmit] = useForm('xwvwbekw');
+  const isSubmitting = state.submitting;
 
   return (
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
@@ -48,7 +34,7 @@ export default function Contact() {
 
         <div className="contact__form-wrapper">
           <AnimatePresence mode="wait">
-            {status === 'success' ? (
+            {state.succeeded ? (
               <motion.div
                 key="success"
                 className="contact__success"
@@ -83,7 +69,7 @@ export default function Contact() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {status === 'error' && (
+                {state.errors && state.errors.length > 0 && (
                   <div className="contact__error" role="alert">
                     Something went wrong. Please try again or email{' '}
                     <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>{' '}
@@ -111,6 +97,7 @@ export default function Contact() {
                     minLength={2}
                     disabled={isSubmitting}
                   />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </motion.div>
 
                 <motion.div
@@ -132,6 +119,7 @@ export default function Contact() {
                     required
                     disabled={isSubmitting}
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </motion.div>
 
                 <motion.div
@@ -154,6 +142,7 @@ export default function Contact() {
                     rows={5}
                     disabled={isSubmitting}
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </motion.div>
 
                 {/* Honeypot */}
