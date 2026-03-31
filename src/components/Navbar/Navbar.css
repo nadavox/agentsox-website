@@ -34,6 +34,28 @@
 
 .navbar__ox {
   color: var(--color-accent);
+  transition: text-shadow 0.3s ease-out;
+}
+
+.navbar__wordmark:hover .navbar__ox {
+  text-shadow: 0 0 8px color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__wordmark:hover .navbar__ox {
+    text-shadow: none;
+  }
+}
+
+/* Scroll progress indicator */
+.navbar__scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.1s linear;
+  pointer-events: none;
 }
 
 .navbar__links {

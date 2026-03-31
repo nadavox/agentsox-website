@@ -82,6 +82,28 @@
   font-size: 0.75rem;
   font-family: var(--font-body);
   width: fit-content;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    color-mix(in srgb, var(--color-accent) 12%, transparent) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 300% 100%;
+  animation: footer-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes footer-shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__badge {
+    animation: none;
+    background: none;
+  }
 }
 
 .footer__bottom {

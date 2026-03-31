@@ -43,6 +43,20 @@
   margin-bottom: var(--space-md);
 }
 
+.services__card-icon svg {
+  transition: transform 0.3s ease-out;
+}
+
+.services__card:hover .services__card-icon svg {
+  transform: scale(1.12) rotate(3deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services__card:hover .services__card-icon svg {
+    transform: none;
+  }
+}
+
 .services__card-title {
   font-family: var(--font-heading);
   font-size: clamp(1.1rem, 2vw, 1.35rem);
