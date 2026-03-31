@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { useTheme } from './hooks/useTheme';
@@ -14,6 +14,17 @@ const Contact = lazy(() => import('./components/Contact'));
 
 function AppContent() {
   const { hasChosen } = useTheme();
+
+  useEffect(() => {
+    if (hasChosen && window.location.hash) {
+      const id = window.location.hash.slice(1);
+      // Small delay to let lazy sections render
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  }, [hasChosen]);
 
   return (
     <>
