@@ -1,0 +1,9 @@
+.section-wrapper {
+  padding: 6rem 1.5rem;
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
