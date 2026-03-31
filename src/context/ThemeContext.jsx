@@ -51,6 +51,13 @@ export function ThemeProvider({ children }) {
     setState((prev) => ({ ...prev, hasChosen: true }));
   }, []);
 
+  // Auto-skip chooser when arriving via hash link (e.g. /#contact)
+  useEffect(() => {
+    if (!state.hasChosen && window.location.hash) {
+      setState((prev) => ({ ...prev, hasChosen: true }));
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <ThemeContext.Provider
       value={{

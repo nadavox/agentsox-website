@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0A0A0F"/>
+  <!-- Subtle gradient background -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0A0A0F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- OX Logo -->
+  <g transform="translate(420, 180) scale(4)">
+    <path d="M5.5 16c0-4 2.5-7 6-7s6 3 6 7-2.5 7-6 7-6-3-6-7zm3.2 0c0 2.5 1.2 4.2 2.8 4.2s2.8-1.7 2.8-4.2-1.2-4.2-2.8-4.2-2.8 1.7-2.8 4.2z" fill="#3B82F6"/>
+    <path d="M18 9h3.5l2.5 4.5L26.5 9H30l-4.5 7L30 23h-3.5l-2.5-4.5L21.5 23H18l4.5-7L18 9z" fill="#3B82F6"/>
+  </g>
+  <!-- Company name -->
+  <text x="600" y="480" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="48" fill="#EEEEF0">Agents<tspan fill="#3B82F6">OX</tspan></text>
+  <!-- Tagline -->
+  <text x="600" y="530" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="24" fill="#A0A0B0">AI Agents That Run Your Business</text>
+</svg>

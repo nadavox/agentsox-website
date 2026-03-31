@@ -10,10 +10,10 @@ export default function SectionWrapper({ id, children, className, background }) 
     >
       <motion.div
         className="section-inner"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         {children}
       </motion.div>

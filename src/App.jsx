@@ -12,6 +12,38 @@ const Products = lazy(() => import('./components/Products'));
 const About = lazy(() => import('./components/About'));
 const Contact = lazy(() => import('./components/Contact'));
 
+function SectionSkeleton() {
+  return (
+    <div style={{
+      padding: '4rem 1.5rem',
+      maxWidth: 1200,
+      margin: '0 auto',
+    }}>
+      <div style={{
+        height: 12,
+        width: 100,
+        background: 'var(--color-border-subtle)',
+        borderRadius: 4,
+        marginBottom: 16,
+      }} />
+      <div style={{
+        height: 32,
+        width: '60%',
+        background: 'var(--color-border-subtle)',
+        borderRadius: 6,
+        marginBottom: 12,
+      }} />
+      <div style={{
+        height: 16,
+        width: '40%',
+        background: 'var(--color-border-subtle)',
+        borderRadius: 4,
+        opacity: 0.5,
+      }} />
+    </div>
+  );
+}
+
 function AppContent() {
   const { hasChosen } = useTheme();
 
@@ -33,10 +65,10 @@ function AppContent() {
       <Navbar />
       <main id="main-content">
         <Hero />
-        <Suspense><Services /></Suspense>
-        <Suspense><Products /></Suspense>
-        <Suspense><About /></Suspense>
-        <Suspense><Contact /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Services /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Products /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><About /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Contact /></Suspense>
       </main>
       <Footer />
     </>
