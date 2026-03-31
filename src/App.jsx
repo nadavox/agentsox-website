@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { useTheme } from './hooks/useTheme';
@@ -12,6 +12,8 @@ const Services = lazy(() => import('./components/Services'));
 const Products = lazy(() => import('./components/Products'));
 const About = lazy(() => import('./components/About'));
 const Contact = lazy(() => import('./components/Contact'));
+const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'));
 
 function SectionSkeleton() {
   return (
@@ -47,6 +49,13 @@ function SectionSkeleton() {
 
 function AppContent() {
   const { hasChosen } = useTheme();
+  const [path, setPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const onPop = () => setPath(window.location.pathname);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   useEffect(() => {
     let timer;
@@ -60,6 +69,22 @@ function AppContent() {
     }
     return () => clearTimeout(timer);
   }, [hasChosen]);
+
+  if (path === '/privacy') {
+    return (
+      <Suspense fallback={<SectionSkeleton />}>
+        <PrivacyPolicy />
+      </Suspense>
+    );
+  }
+
+  if (path === '/terms') {
+    return (
+      <Suspense fallback={<SectionSkeleton />}>
+        <TermsOfService />
+      </Suspense>
+    );
+  }
 
   return (
     <>

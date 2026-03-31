@@ -4,7 +4,8 @@ import './Footer.css';
 
 const QUICK_LINKS = [
   ...NAV_LINKS,
-  { label: 'Privacy Policy', href: '/privacy.html' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
 ];
 
 export default function Footer() {

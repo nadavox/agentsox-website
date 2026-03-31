@@ -1,0 +1,104 @@
+import LegalPage from './LegalPage';
+
+export default function PrivacyPolicy() {
+  return (
+    <LegalPage title="Privacy Policy" lastUpdated="March 6, 2026">
+      <h2>1. Who We Are</h2>
+      <p>AgentsOX (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) is a business operated by Nadav Oxenberg, based in Israel. We provide automated business operations services — including scheduling, booking, and communication management — through messaging platforms and our website.</p>
+      <ul>
+        <li><strong>Business name:</strong> AgentsOX</li>
+        <li><strong>Website:</strong> <a href="https://agentsox.com">agentsox.com</a></li>
+        <li><strong>Contact email:</strong> <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a></li>
+      </ul>
+
+      <h2>2. Information We Collect</h2>
+      <p>We collect the following information when you interact with our services:</p>
+      <ul>
+        <li><strong>Messages:</strong> Content you send to us via WhatsApp, Telegram, or email, including text, images, and attachments.</li>
+        <li><strong>Contact information:</strong> Your phone number, name, and email address as provided by the messaging platform or by you directly.</li>
+        <li><strong>Usage data:</strong> Timestamps, message delivery status, and interaction logs necessary for service operation.</li>
+        <li><strong>Website data:</strong> Standard web server logs (IP address, browser type, pages visited). We do not use cookies for tracking.</li>
+      </ul>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Provide and operate our automated business services (scheduling, booking, communication management).</li>
+        <li>Respond to your messages, requests, and inquiries.</li>
+        <li>Improve our services, diagnose issues, and maintain security.</li>
+        <li>Comply with applicable legal obligations.</li>
+      </ul>
+      <p>We do <strong>not</strong> use your information for advertising, profiling, or selling to third parties.</p>
+
+      <h2>4. Automated Processing &amp; AI Disclosure</h2>
+      <p>Our services use artificial intelligence (AI) and large language models (LLMs) to process your messages and generate responses. This means:</p>
+      <ul>
+        <li>Your message content is sent to AI service providers (via OpenRouter) for processing.</li>
+        <li>We do <strong>not</strong> share your name, phone number, or other personal identifiers with AI providers — only the message content necessary to generate a response.</li>
+        <li>AI-generated responses are automated. A human operator may review conversations for quality and safety purposes.</li>
+      </ul>
+
+      <h2>5. WhatsApp Messaging</h2>
+      <p>If you communicate with us via WhatsApp:</p>
+      <ul>
+        <li>We use the official <strong>WhatsApp Cloud API</strong> provided by Meta to send and receive messages.</li>
+        <li>By sending us a message on WhatsApp, you consent to receiving automated replies from our business.</li>
+        <li>You can <strong>opt out</strong> at any time by sending &ldquo;STOP&rdquo; or by blocking our number. We will cease messaging you promptly.</li>
+        <li>Information obtained from WhatsApp about you is used <strong>only</strong> to support our messaging conversation with you, as required by <a href="https://www.whatsapp.com/legal/business-policy">WhatsApp Business Policy</a>.</li>
+        <li>Messages are encrypted in transit using the Signal protocol as provided by WhatsApp.</li>
+      </ul>
+
+      <h2>6. Third-Party Services</h2>
+      <p>We use the following third-party services to operate. Each has its own privacy policy:</p>
+      <ul>
+        <li><strong>Meta / WhatsApp Cloud API:</strong> Message delivery. <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp Privacy Policy</a>.</li>
+        <li><strong>Telegram Bot API:</strong> Message delivery. <a href="https://telegram.org/privacy">Telegram Privacy Policy</a>.</li>
+        <li><strong>OpenRouter:</strong> AI/LLM processing for generating responses. Message content only (no personal identifiers).</li>
+        <li><strong>Google Workspace:</strong> Calendar and email functionality.</li>
+        <li><strong>Cloudflare:</strong> Website hosting and DNS. <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>.</li>
+        <li><strong>Zoho Mail:</strong> Business email hosting. <a href="https://www.zoho.com/privacy.html">Zoho Privacy Policy</a>.</li>
+      </ul>
+
+      <h2>7. Data Retention</h2>
+      <ul>
+        <li>Message data and interaction logs are retained for up to <strong>90 days</strong> for service operation and debugging.</li>
+        <li>After 90 days, message content is deleted. Basic contact records may be retained longer for service continuity.</li>
+        <li>You may request immediate deletion of your data at any time by contacting us.</li>
+      </ul>
+
+      <h2>8. Data Security</h2>
+      <p>We implement industry-standard security measures to protect your data, including:</p>
+      <ul>
+        <li>Encrypted connections (TLS/SSL) for all data in transit.</li>
+        <li>Access controls and authentication on all systems.</li>
+        <li>Secure, hardened server infrastructure with regular security updates.</li>
+        <li>Encrypted backups stored in isolated, off-site storage.</li>
+      </ul>
+      <p>No method of electronic transmission or storage is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
+
+      <h2>9. Your Rights</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+        <li><strong>Deletion:</strong> Request that we delete your personal data.</li>
+        <li><strong>Opt out:</strong> Stop receiving messages by sending &ldquo;STOP&rdquo; on WhatsApp or Telegram, or by unsubscribing from email.</li>
+        <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
+        <li><strong>Complaint:</strong> Contact us with any privacy concerns.</li>
+      </ul>
+      <p>To exercise any of these rights, email us at <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>. We will respond within 30 days.</p>
+
+      <h2>10. Children&rsquo;s Privacy</h2>
+      <p>Our services are not directed at individuals under the age of 16. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will delete it.</p>
+
+      <h2>11. Changes to This Policy</h2>
+      <p>We may update this privacy policy from time to time. The &ldquo;Last updated&rdquo; date at the top of this page reflects the most recent revision. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+
+      <h2>12. Contact Us</h2>
+      <p>For any privacy-related questions, concerns, or data requests:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a></li>
+        <li><strong>Website:</strong> <a href="https://agentsox.com">agentsox.com</a></li>
+      </ul>
+    </LegalPage>
+  );
+}
