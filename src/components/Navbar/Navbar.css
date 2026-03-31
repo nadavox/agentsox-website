@@ -6,7 +6,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border-subtle);
-  transition: padding 0.3s;
+  transition: padding 0.3s ease-out;
   padding: 1.5rem 0;
 }
 

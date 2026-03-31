@@ -46,6 +46,18 @@
   min-width: 150px;
   box-shadow: var(--shadow-md);
   z-index: 200;
+  animation: theme-dropdown-in 0.2s ease-out;
+}
+
+@keyframes theme-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .theme-switcher__aesthetics {
