@@ -13,9 +13,38 @@ const fieldVariants = {
   }),
 };
 
+const MAX_SUBMISSIONS = 2;
+const STORAGE_KEY = 'agentsox-contact-count';
+
+function getSubmissionCount() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const now = Date.now();
+    // Reset after 24 hours
+    if (data.ts && now - data.ts > 24 * 60 * 60 * 1000) return 0;
+    return data.count || 0;
+  } catch { return 0; }
+}
+
+function incrementSubmissionCount() {
+  const count = getSubmissionCount() + 1;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ count, ts: Date.now() }));
+  return count;
+}
+
 export default function Contact() {
   const [state, handleSubmit] = useForm('xwvwbekw');
   const isSubmitting = state.submitting;
+  const isRateLimited = getSubmissionCount() >= MAX_SUBMISSIONS;
+
+  function onSubmit(e) {
+    if (isRateLimited) {
+      e.preventDefault();
+      return;
+    }
+    incrementSubmissionCount();
+    handleSubmit(e);
+  }
 
   return (
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
@@ -34,7 +63,19 @@ export default function Contact() {
 
         <div className="contact__form-wrapper">
           <AnimatePresence mode="wait">
-            {state.succeeded ? (
+            {isRateLimited && !state.succeeded ? (
+              <motion.div
+                key="limited"
+                className="contact__success"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+              >
+                <p className="contact__success-text">
+                  You&apos;ve already sent a message. We&apos;ll get back to you soon!
+                </p>
+              </motion.div>
+            ) : state.succeeded ? (
               <motion.div
                 key="success"
                 className="contact__success"
@@ -64,7 +105,7 @@ export default function Contact() {
               <motion.form
                 key="form"
                 className="contact__form"
-                onSubmit={handleSubmit}
+                onSubmit={onSubmit}
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
