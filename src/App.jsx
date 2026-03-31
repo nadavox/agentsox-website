@@ -6,6 +6,7 @@ import ThemeChooser from './components/ThemeChooser/ThemeChooser';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 
 const Services = lazy(() => import('./components/Services'));
 const Products = lazy(() => import('./components/Products'));
@@ -48,14 +49,16 @@ function AppContent() {
   const { hasChosen } = useTheme();
 
   useEffect(() => {
+    let timer;
     if (hasChosen && window.location.hash) {
       const id = window.location.hash.slice(1);
       // Small delay to let lazy sections render
-      setTimeout(() => {
+      timer = setTimeout(() => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }, 500);
     }
+    return () => clearTimeout(timer);
   }, [hasChosen]);
 
   return (
@@ -78,7 +81,9 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <ErrorBoundary>
+        <AppContent />
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }

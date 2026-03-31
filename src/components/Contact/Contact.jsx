@@ -28,7 +28,7 @@ function getSubmissionCount() {
 
 function incrementSubmissionCount() {
   const count = getSubmissionCount() + 1;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ count, ts: Date.now() }));
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ count, ts: Date.now() })); } catch { /* localStorage unavailable */ }
   return count;
 }
 

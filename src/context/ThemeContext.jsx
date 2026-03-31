@@ -32,7 +32,7 @@ export function ThemeProvider({ children }) {
   // Apply theme on mount and every change
   useEffect(() => {
     applyTheme(state.aesthetic, state.mode);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch { /* localStorage unavailable */ }
   }, [state]);
 
   const setAesthetic = useCallback((aesthetic) => {

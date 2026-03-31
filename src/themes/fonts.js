@@ -17,13 +17,18 @@ export const FONT_CONFIG = {
 };
 
 export function loadFonts(aesthetic) {
+  const config = FONT_CONFIG[aesthetic] || FONT_CONFIG.sleek;
   const id = 'theme-fonts';
-  let link = document.getElementById(id);
-  if (!link) {
-    link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
+  try {
+    let link = document.getElementById(id);
+    if (!link) {
+      link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    }
+    link.href = config.url;
+  } catch {
+    // Font loading failed — CSS fallback fonts will be used
   }
-  link.href = FONT_CONFIG[aesthetic].url;
 }
