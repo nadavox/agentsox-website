@@ -16,6 +16,7 @@
   z-index: 0;
   pointer-events: none;
   filter: blur(80px);
+  will-change: transform;
 }
 
 .hero__blob {

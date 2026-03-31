@@ -20,6 +20,7 @@
     radial-gradient(ellipse at 50% 80%, rgba(217, 119, 64, 0.06) 0%, transparent 50%);
   animation: chooser-gradient-shift 8s ease-in-out infinite alternate;
   pointer-events: none;
+  will-change: opacity;
 }
 
 @keyframes chooser-gradient-shift {
