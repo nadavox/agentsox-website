@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import SectionWrapper from './ui/SectionWrapper';
-import Button from './ui/Button';
+import SectionWrapper from '../ui/SectionWrapper';
+import Button from '../ui/Button';
 import './Products.css';
 
 const cardVariants = {

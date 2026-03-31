@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import SectionWrapper from './ui/SectionWrapper';
+import SectionWrapper from '../ui/SectionWrapper';
 import './Services.css';
 
 const services = [
