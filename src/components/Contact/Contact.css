@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  padding-top: var(--space-sm);
 }
 
 .contact__heading {
@@ -19,7 +20,7 @@
   color: var(--color-text-secondary);
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-lg);
 }
 
 .contact__email {
@@ -37,7 +38,7 @@
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .contact__field {

@@ -37,7 +37,7 @@
   color: var(--color-accent);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .products__name {
@@ -47,7 +47,7 @@
   letter-spacing: -0.01em;
   line-height: 1.15;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .products__description {
