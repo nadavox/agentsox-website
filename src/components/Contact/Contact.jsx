@@ -69,13 +69,7 @@ export default function Contact() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {state.errors && state.errors.length > 0 && (
-                  <div className="contact__error" role="alert">
-                    Something went wrong. Please try again or email{' '}
-                    <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>{' '}
-                    directly.
-                  </div>
-                )}
+                <ValidationError errors={state.errors} className="contact__error" />
 
                 <motion.div
                   className="contact__field"
