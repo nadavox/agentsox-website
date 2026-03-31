@@ -107,28 +107,49 @@ export default function Navbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            ref={drawerRef}
-            id="navbar-drawer"
-            className="navbar__drawer"
-            role="dialog"
-            aria-label="Navigation menu"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.25 }}
-          >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="navbar__drawer-link"
-                onClick={(e) => handleLinkClick(e, link.href)}
+          <>
+            <motion.div
+              className="navbar__overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              ref={drawerRef}
+              id="navbar-drawer"
+              className="navbar__drawer"
+              role="dialog"
+              aria-label="Navigation menu"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.25 }}
+            >
+              <button
+                className="navbar__drawer-close"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
               >
-                {link.label}
-              </a>
-            ))}
-          </motion.div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="navbar__drawer-link"
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
