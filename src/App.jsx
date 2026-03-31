@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ui/ErrorBoundary';
+import BackToTop from './components/ui/BackToTop';
 
 const Services = lazy(() => import('./components/Services'));
 const Products = lazy(() => import('./components/Products'));
@@ -110,6 +111,7 @@ function AppContent() {
         <Suspense fallback={<SectionSkeleton />}><Contact /></Suspense>
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

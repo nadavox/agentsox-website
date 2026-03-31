@@ -61,16 +61,26 @@
 }
 
 .legal-page__back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-top: 3rem;
   color: var(--color-text-muted);
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  min-height: 44px;
 }
 
 .legal-page__back:hover {
   color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.legal-page__back:active {
+  transform: scale(0.97);
 }
 
 @media (max-width: 768px) {

@@ -41,6 +41,11 @@
   box-shadow: var(--shadow-md);
 }
 
+.services__card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 .services__card:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;

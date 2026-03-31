@@ -26,6 +26,11 @@
   box-shadow: var(--shadow-sm);
 }
 
+.btn--primary:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
 /* Secondary */
 .btn--secondary {
   background: var(--color-bg-tertiary);
@@ -48,6 +53,14 @@
 .btn--ghost:hover {
   background: var(--color-accent-subtle);
   border-color: var(--color-accent);
+}
+
+.btn--ghost:active {
+  transform: translateY(1px);
+}
+
+.btn--secondary:active {
+  transform: translateY(1px);
 }
 
 /* Disabled */

@@ -87,6 +87,11 @@
   color: var(--color-text-primary);
 }
 
+.theme-switcher__option:active {
+  background: var(--color-accent-subtle);
+  transform: scale(0.97);
+}
+
 .theme-switcher__option.active {
   background: var(--color-accent-subtle);
   color: var(--color-accent);

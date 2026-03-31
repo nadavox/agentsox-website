@@ -65,6 +65,13 @@ export default function ThemeChooser() {
     return () => timersRef.current.forEach(clearTimeout);
   }, []);
 
+  // Lock body scroll while chooser is visible
+  useEffect(() => {
+    if (hasChosen) return;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, [hasChosen]);
+
   const handleSelect = useCallback(
     (key) => {
       if (selected) return;

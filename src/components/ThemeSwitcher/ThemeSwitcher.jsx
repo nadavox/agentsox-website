@@ -23,9 +23,11 @@ export default function ThemeSwitcher() {
       if (e.key === 'Escape') setOpen(false);
     }
     document.addEventListener('mousedown', handleClose);
+    document.addEventListener('touchstart', handleClose);
     document.addEventListener('keydown', handleEsc);
     return () => {
       document.removeEventListener('mousedown', handleClose);
+      document.removeEventListener('touchstart', handleClose);
       document.removeEventListener('keydown', handleEsc);
     };
   }, [open]);

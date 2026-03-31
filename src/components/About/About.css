@@ -28,6 +28,12 @@
   border: 1px solid var(--color-border-subtle);
   border-radius: 12px;
   padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.about__card:active {
+  transform: scale(0.98);
+  border-color: var(--color-accent);
 }
 
 .about__card-icon {
