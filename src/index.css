@@ -126,7 +126,7 @@ main {
 }
 
 section {
-  padding: var(--space-xl) var(--space-lg);
+  padding: 0;
 }
 
 /* === Selection === */
