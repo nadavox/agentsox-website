@@ -11,9 +11,11 @@ import ErrorBoundary from './components/ui/ErrorBoundary';
 const Services = lazy(() => import('./components/Services'));
 const Products = lazy(() => import('./components/Products'));
 const About = lazy(() => import('./components/About'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
 const Contact = lazy(() => import('./components/Contact'));
 const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'));
+const NotFound = lazy(() => import('./components/NotFound'));
 
 function SectionSkeleton() {
   return (
@@ -86,6 +88,14 @@ function AppContent() {
     );
   }
 
+  if (path !== '/') {
+    return (
+      <Suspense fallback={<SectionSkeleton />}>
+        <NotFound />
+      </Suspense>
+    );
+  }
+
   return (
     <>
       <AnimatePresence>{!hasChosen && <ThemeChooser />}</AnimatePresence>
@@ -95,6 +105,7 @@ function AppContent() {
         <Hero />
         <Suspense fallback={<SectionSkeleton />}><Services /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><About /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Testimonials /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Products /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Contact /></Suspense>
       </main>
