@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__grid">
         <div className="footer__col">
-          <a href="/" className="footer__wordmark">
+          <a href="/" className="footer__wordmark" aria-label="AgentsOX home">
             Agents<span className="footer__ox">OX</span>
           </a>
           <p className="footer__tagline">
@@ -46,7 +46,7 @@ export default function Footer() {
 
         <div className="footer__col">
           <h4 className="footer__heading">Contact</h4>
-          <a href="mailto:atlas@agentsox.com" className="footer__link">
+          <a href="mailto:atlas@agentsox.com" className="footer__link" aria-label="Email us at atlas@agentsox.com">
             atlas@agentsox.com
           </a>
           <span className="footer__badge">Built with AI</span>

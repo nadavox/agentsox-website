@@ -40,7 +40,7 @@ const cardVariants = prefersReducedMotion
 
 function SunIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <circle cx="8" cy="8" r="3" />
       <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" />
     </svg>
@@ -49,7 +49,7 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <path d="M14 8.5A6 6 0 0 1 7.5 2 6 6 0 1 0 14 8.5Z" />
     </svg>
   );
@@ -85,12 +85,45 @@ export default function ThemeChooser() {
     markChosen();
   }, [selected, setAesthetic, setMode, markChosen]);
 
+  // Close on Escape key (skip to default)
+  useEffect(() => {
+    if (hasChosen) return;
+    function onKeyDown(e) {
+      if (e.key === 'Escape') handleSkip();
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [hasChosen, handleSkip]);
+
+  // Focus trap inside dialog
+  const overlayRef = useRef(null);
+  useEffect(() => {
+    if (hasChosen || !overlayRef.current) return;
+    function trapFocus(e) {
+      if (e.key !== 'Tab' || !overlayRef.current) return;
+      const els = overlayRef.current.querySelectorAll('button, [tabindex="0"]');
+      if (!els.length) return;
+      const first = els[0];
+      const last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener('keydown', trapFocus);
+    return () => document.removeEventListener('keydown', trapFocus);
+  }, [hasChosen]);
+
   if (hasChosen) return null;
 
   return (
     <AnimatePresence>
       {!exiting && (
         <motion.div
+          ref={overlayRef}
           className="chooser-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -98,7 +131,7 @@ export default function ThemeChooser() {
           transition={{ duration: 0.4 }}
           role="dialog"
           aria-modal="true"
-          aria-label="Choose your theme"
+          aria-labelledby="chooser-dialog-title"
         >
           <motion.div
             variants={containerVariants}
@@ -106,7 +139,7 @@ export default function ThemeChooser() {
             animate="visible"
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           >
-            <motion.h1 className="chooser-title" variants={titleVariants}>
+            <motion.h1 id="chooser-dialog-title" className="chooser-title" variants={titleVariants}>
               Choose Your Experience
             </motion.h1>
             <motion.p className="chooser-subtitle" variants={titleVariants}>

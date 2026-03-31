@@ -87,6 +87,7 @@ export default function Hero() {
       <motion.div
         className="hero__scroll-indicator"
         style={{ opacity: scrollOpacity }}
+        aria-hidden="true"
       >
         <motion.svg
           className="hero__chevron"

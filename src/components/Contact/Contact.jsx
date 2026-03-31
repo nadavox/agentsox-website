@@ -56,7 +56,7 @@ export default function Contact() {
             Have a project in mind or want to learn more? Send us a message
             and we&apos;ll get back to you within one business day.
           </p>
-          <a className="contact__email" href="mailto:atlas@agentsox.com">
+          <a className="contact__email" href="mailto:atlas@agentsox.com" aria-label="Email us at atlas@agentsox.com">
             atlas@agentsox.com
           </a>
         </div>
@@ -67,6 +67,8 @@ export default function Contact() {
               <motion.div
                 key="limited"
                 className="contact__success"
+                role="status"
+                aria-live="polite"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -79,6 +81,8 @@ export default function Contact() {
               <motion.div
                 key="success"
                 className="contact__success"
+                role="status"
+                aria-live="polite"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -93,6 +97,7 @@ export default function Contact() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  aria-hidden="true"
                 >
                   <circle cx="12" cy="12" r="10" />
                   <path d="M9 12l2 2 4-4" />
@@ -137,6 +142,7 @@ export default function Contact() {
                     name="name"
                     placeholder="Your name"
                     required
+                    aria-required="true"
                     minLength={2}
                     disabled={isSubmitting}
                   />
@@ -161,6 +167,7 @@ export default function Contact() {
                     name="email"
                     placeholder="you@company.com"
                     required
+                    aria-required="true"
                     disabled={isSubmitting}
                   />
                   <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -183,6 +190,7 @@ export default function Contact() {
                     name="message"
                     placeholder="Tell us about your project or question..."
                     required
+                    aria-required="true"
                     minLength={10}
                     rows={5}
                     disabled={isSubmitting}
@@ -215,6 +223,7 @@ export default function Contact() {
                     type="submit"
                     disabled={isSubmitting}
                     className="contact__submit"
+                    aria-busy={isSubmitting}
                   >
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />

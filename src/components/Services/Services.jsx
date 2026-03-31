@@ -8,7 +8,7 @@ const services = [
     description:
       'Automated calendar management, booking coordination, and smart reminders that keep your business running on time.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="6" y="10" width="36" height="32" rx="4" />
         <line x1="6" y1="20" x2="42" y2="20" />
         <line x1="16" y1="6" x2="16" y2="14" />
@@ -24,7 +24,7 @@ const services = [
     description:
       'Intelligent message routing across WhatsApp, Telegram, email, and SMS \u2014 with context-aware responses.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 36l4-8H8a4 4 0 01-4-4V12a4 4 0 014-4h20a4 4 0 014 4v12a4 4 0 01-4 4H18l-10 8z" />
         <path d="M32 20h8a4 4 0 014 4v12a4 4 0 01-4 4h-4l-10 8 4-8h-2" />
       </svg>
@@ -35,7 +35,7 @@ const services = [
     description:
       'End-to-end workflow automation that scales with you \u2014 from lead capture to task management.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="24" cy="24" r="8" />
         <path d="M24 4v4M24 40v4M4 24h4M40 24h4" />
         <path d="M9.86 9.86l2.83 2.83M35.31 35.31l2.83 2.83M9.86 38.14l2.83-2.83M35.31 12.69l2.83-2.83" />
