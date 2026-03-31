@@ -72,7 +72,7 @@ export default function Hero() {
             className="hero__btn hero__btn--primary"
             onClick={() => smoothScrollTo('services')}
           >
-            See What We Build
+            See How It Works
           </button>
           <button
             className="hero__btn hero__btn--ghost"

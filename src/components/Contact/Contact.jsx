@@ -216,7 +216,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />
                     ) : (
-                      'Send Message'
+                      'Start a Conversation'
                     )}
                   </Button>
                 </motion.div>

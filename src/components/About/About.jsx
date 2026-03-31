@@ -63,13 +63,11 @@ export default function About() {
   return (
     <SectionWrapper id="about" className="about">
       <p className="section-label">ABOUT US</p>
-      <h2 className="about__heading">Built Different, By Design</h2>
+      <h2 className="about__heading">Why AgentsOX</h2>
       <p className="about__narrative">
-        AgentsOX is an AI-first company where intelligent agents aren&apos;t
-        just tools &mdash; they&apos;re team members. We build autonomous
-        systems that handle the operational complexity of running a business,
-        from scheduling and communication to workflow automation. Our approach:
-        let AI handle the repetitive, so humans can focus on the creative.
+        We&apos;re an AI-first team that treats agents as colleagues, not
+        just tools. Every system we ship is built on four principles that
+        keep your business safe, scalable, and in your control.
       </p>
 
       <div className="about__grid">

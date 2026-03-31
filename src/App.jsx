@@ -94,8 +94,8 @@ function AppContent() {
       <main id="main-content">
         <Hero />
         <Suspense fallback={<SectionSkeleton />}><Services /></Suspense>
-        <Suspense fallback={<SectionSkeleton />}><Products /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><About /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Products /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Contact /></Suspense>
       </main>
       <Footer />
