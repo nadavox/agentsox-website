@@ -191,6 +191,11 @@
   border-color: var(--color-accent);
 }
 
+.hero__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 /* --- Scroll indicator --- */
 .hero__scroll-indicator {
   position: absolute;
