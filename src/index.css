@@ -135,7 +135,7 @@ section {
 /* === Selection === */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-bg-primary);
+  color: #fff;
 }
 
 /* === Focus Indicators === */

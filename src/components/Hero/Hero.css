@@ -72,6 +72,19 @@
   66% { transform: translate(15px, -25px) rotate(6deg) scale(1.1); }
 }
 
+/* Light mode: boost blob visibility on near-white backgrounds */
+[data-mode="light"] .hero__blob--1 {
+  opacity: 0.18;
+}
+
+[data-mode="light"] .hero__blob--2 {
+  opacity: 0.14;
+}
+
+[data-mode="light"] .hero__blob--3 {
+  opacity: 0.10;
+}
+
 @keyframes drift-3 {
   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   33% { transform: translate(20px, 15px) rotate(3deg) scale(1.1); }

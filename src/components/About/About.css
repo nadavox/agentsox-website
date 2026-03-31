@@ -34,6 +34,11 @@
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-accent-subtle);
 }
 
 .about__card-title {
