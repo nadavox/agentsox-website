@@ -7,16 +7,17 @@
 
 .contact__heading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--color-text-primary);
   margin: 0 0 1rem;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .contact__text {
   color: var(--color-text-secondary);
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
   margin: 0 0 1.5rem;
 }
@@ -25,7 +26,7 @@
   color: var(--color-accent);
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
 }
 
 .contact__email:hover {
@@ -45,8 +46,10 @@
 }
 
 .contact__field-label {
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
@@ -58,7 +61,7 @@
   padding: 0.75rem 1rem;
   color: var(--color-text-primary);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: max(16px, 1rem);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -146,6 +149,6 @@
   }
 
   .contact__heading {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   }
 }

@@ -1,6 +1,8 @@
 .services__heading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
   color: var(--color-text-primary);
   margin-bottom: var(--space-md);
 }
@@ -41,13 +43,18 @@
 }
 
 .services__card-title {
-  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   color: var(--color-text-primary);
   margin-bottom: var(--space-sm);
 }
 
 .services__card-description {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   color: var(--color-text-secondary);
   line-height: 1.6;
 }

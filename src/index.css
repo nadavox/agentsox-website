@@ -61,7 +61,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  font-size: clamp(0.9375rem, 0.875rem + 0.25vw, 1.125rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
@@ -71,7 +71,8 @@ body {
 /* === Typography Scale === */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: var(--color-text-primary);
 }
 
@@ -82,13 +83,14 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   letter-spacing: -0.01em;
   font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  letter-spacing: -0.01em;
   font-weight: 600;
 }
 
@@ -191,7 +193,7 @@ section {
 /* === Mobile Typography & Spacing === */
 @media (max-width: 768px) {
   body {
-    font-size: max(0.875rem, clamp(0.9375rem, 0.875rem + 0.25vw, 1.125rem));
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   }
 
   .section-label {

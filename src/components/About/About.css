@@ -1,16 +1,17 @@
 .about__heading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--color-text-primary);
   margin: 0 0 1.5rem;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .about__narrative {
   color: var(--color-text-secondary);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.7;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.6;
   max-width: 700px;
   margin: 0 0 3rem;
 }
@@ -37,15 +38,18 @@
 
 .about__card-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   color: var(--color-text-primary);
   margin: 0 0 0.5rem;
 }
 
 .about__card-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
 }
