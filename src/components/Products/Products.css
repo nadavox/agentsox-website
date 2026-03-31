@@ -19,7 +19,8 @@
 @media (max-width: 768px) {
   .products__card {
     grid-template-columns: 1fr;
-    padding: 2rem;
+    padding: 1.5rem;
+    gap: 2rem;
   }
 }
 

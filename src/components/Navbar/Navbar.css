@@ -131,4 +131,10 @@
   .navbar__hamburger {
     display: flex;
   }
+  .navbar__inner {
+    padding: 0 1rem;
+  }
+  .navbar__wordmark {
+    font-size: 1.3rem;
+  }
 }

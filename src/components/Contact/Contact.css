@@ -142,6 +142,10 @@
 @media (max-width: 768px) {
   .contact__columns {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
+  }
+
+  .contact__heading {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
   }
 }

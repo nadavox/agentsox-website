@@ -188,6 +188,18 @@ section {
   margin-bottom: var(--space-sm);
 }
 
+/* === Mobile Typography & Spacing === */
+@media (max-width: 768px) {
+  body {
+    font-size: max(0.875rem, clamp(0.9375rem, 0.875rem + 0.25vw, 1.125rem));
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+}
+
 /* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
   *,

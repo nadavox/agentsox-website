@@ -13,7 +13,7 @@
 
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -50,4 +50,10 @@
 .services__card-description {
   color: var(--color-text-secondary);
   line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .services__card {
+    padding: 1.5rem;
+  }
 }

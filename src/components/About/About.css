@@ -54,4 +54,12 @@
   .about__grid {
     grid-template-columns: 1fr;
   }
+
+  .about__card {
+    padding: 1.25rem;
+  }
+
+  .about__narrative {
+    margin: 0 0 2rem;
+  }
 }

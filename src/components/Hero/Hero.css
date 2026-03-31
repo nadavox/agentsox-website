@@ -213,3 +213,27 @@
   width: 24px;
   height: 24px;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;
+    min-height: 90vh;
+  }
+
+  .hero__content {
+    padding: 0 1rem;
+  }
+
+  .hero__subheadline {
+    margin: 1rem auto 2rem;
+  }
+
+  .hero__btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .hero__scroll-indicator {
+    bottom: 1rem;
+  }
+}
