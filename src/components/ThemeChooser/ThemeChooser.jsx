@@ -6,9 +6,9 @@ import { useTheme } from '../../hooks/useTheme';
 import './ThemeChooser.css';
 
 const AESTHETICS = [
-  { key: 'sleek', name: 'Sleek', descriptor: 'Precision & Performance' },
-  { key: 'warm', name: 'Warm', descriptor: 'Human & Approachable' },
-  { key: 'bold', name: 'Bold', descriptor: 'Statement & Impact' },
+  { key: 'sleek', name: 'Sleek', descriptor: 'Precision & Performance', ctaRadius: '6px', ctaLabel: 'Get Started' },
+  { key: 'warm', name: 'Warm', descriptor: 'Human & Approachable', ctaRadius: '20px', ctaLabel: 'Let\u2019s Talk' },
+  { key: 'bold', name: 'Bold', descriptor: 'Statement & Impact', ctaRadius: '2px', ctaLabel: 'Launch Now' },
 ];
 
 const prefersReducedMotion =
@@ -21,21 +21,21 @@ const containerVariants = prefersReducedMotion
   ? FADE_ONLY
   : {
       hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.15, delayChildren: 0.35 } },
+      visible: { opacity: 1, transition: { duration: 0.35, staggerChildren: 0.08, delayChildren: 0.15 } },
     };
 
 const titleVariants = prefersReducedMotion
   ? FADE_ONLY
   : {
-      hidden: { y: -30, opacity: 0 },
-      visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.2 } },
+      hidden: { y: -20, opacity: 0 },
+      visible: { y: 0, opacity: 1, transition: { duration: 0.35, delay: 0.1 } },
     };
 
 const cardVariants = prefersReducedMotion
   ? FADE_ONLY
   : {
-      hidden: { y: 60, opacity: 0, scale: 0.95 },
-      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+      hidden: { y: 40, opacity: 0, scale: 0.97 },
+      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeOut' } },
     };
 
 function SunIcon() {
@@ -71,12 +71,19 @@ export default function ThemeChooser() {
       setSelected(key);
       setAesthetic(key);
       timersRef.current.push(
-        setTimeout(() => setExiting(true), 400),
-        setTimeout(() => markChosen(), 1200)
+        setTimeout(() => setExiting(true), 350),
+        setTimeout(() => markChosen(), 900)
       );
     },
     [selected, setAesthetic, markChosen]
   );
+
+  const handleSkip = useCallback(() => {
+    if (selected) return;
+    setAesthetic('sleek');
+    setMode('dark');
+    markChosen();
+  }, [selected, setAesthetic, setMode, markChosen]);
 
   if (hasChosen) return null;
 
@@ -88,7 +95,7 @@ export default function ThemeChooser() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           role="dialog"
           aria-modal="true"
           aria-label="Choose your theme"
@@ -169,9 +176,15 @@ export default function ThemeChooser() {
                       </p>
                       <span
                         className="chooser-card-cta"
-                        style={{ backgroundColor: tokens['color-accent'] }}
+                        style={{
+                          backgroundColor: tokens['color-accent'],
+                          borderRadius: a.ctaRadius,
+                          textTransform: a.key === 'bold' ? 'uppercase' : 'none',
+                          letterSpacing: a.key === 'bold' ? '0.08em' : '0',
+                          fontFamily: fonts.body,
+                        }}
                       >
-                        Get Started
+                        {a.ctaLabel}
                       </span>
                     </div>
                     <div
@@ -209,6 +222,16 @@ export default function ThemeChooser() {
                 </button>
               </div>
             </motion.div>
+
+            <motion.button
+              className="chooser-skip"
+              variants={titleVariants}
+              onClick={handleSkip}
+              type="button"
+              aria-label="Skip theme selection and use default"
+            >
+              Just show me the site &rarr;
+            </motion.button>
           </motion.div>
         </motion.div>
       )}
