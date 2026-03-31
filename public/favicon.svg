@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="6" fill="#0A0A0F"/>
-  <text x="16" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="16" fill="#3B82F6">OX</text>
+  <!-- O letter -->
+  <path d="M5.5 16c0-4 2.5-7 6-7s6 3 6 7-2.5 7-6 7-6-3-6-7zm3.2 0c0 2.5 1.2 4.2 2.8 4.2s2.8-1.7 2.8-4.2-1.2-4.2-2.8-4.2-2.8 1.7-2.8 4.2z" fill="#3B82F6"/>
+  <!-- X letter -->
+  <path d="M18 9h3.5l2.5 4.5L26.5 9H30l-4.5 7L30 23h-3.5l-2.5-4.5L21.5 23H18l4.5-7L18 9z" fill="#3B82F6"/>
 </svg>
