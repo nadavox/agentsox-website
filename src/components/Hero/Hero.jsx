@@ -57,8 +57,8 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          Intelligent automation for scheduling, communication, and operations
-          — so you can focus on what matters.
+          Intelligent automation for scheduling, communication, and daily
+          operations — so you can focus on growing your business.
         </motion.p>
 
         <motion.div

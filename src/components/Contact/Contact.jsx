@@ -53,8 +53,8 @@ export default function Contact() {
           <p className="section-label">CONTACT</p>
           <h2 className="contact__heading">Let&apos;s Talk</h2>
           <p className="contact__text">
-            Have a project in mind? Want to learn more about what we do? Drop us
-            a message and we&apos;ll get back to you.
+            Have a project in mind or want to learn more? Send us a message
+            and we&apos;ll get back to you within one business day.
           </p>
           <a className="contact__email" href="mailto:atlas@agentsox.com">
             atlas@agentsox.com
@@ -98,7 +98,7 @@ export default function Contact() {
                   <path d="M9 12l2 2 4-4" />
                 </svg>
                 <p className="contact__success-text">
-                  Thanks! We&apos;ll be in touch.
+                  Message received — we&apos;ll get back to you shortly.
                 </p>
               </motion.div>
             ) : (
@@ -113,9 +113,9 @@ export default function Contact() {
                 {state.errors && state.errors.getFormErrors &&
                   state.errors.getFormErrors().length > 0 && (
                   <div className="contact__error" role="alert">
-                    Something went wrong. Please try again or email{' '}
-                    <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>{' '}
-                    directly.
+                    We couldn&apos;t send your message. Please try again, or
+                    email us directly at{' '}
+                    <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>.
                   </div>
                 )}
 
@@ -135,6 +135,7 @@ export default function Contact() {
                     className="contact__input"
                     type="text"
                     name="name"
+                    placeholder="Your name"
                     required
                     minLength={2}
                     disabled={isSubmitting}
@@ -158,6 +159,7 @@ export default function Contact() {
                     className="contact__input"
                     type="email"
                     name="email"
+                    placeholder="you@company.com"
                     required
                     disabled={isSubmitting}
                   />
@@ -179,6 +181,7 @@ export default function Contact() {
                     id="contact-message"
                     className="contact__input contact__textarea"
                     name="message"
+                    placeholder="Tell us about your project or question..."
                     required
                     minLength={10}
                     rows={5}
@@ -216,7 +219,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />
                     ) : (
-                      'Start a Conversation'
+                      'Send Message'
                     )}
                   </Button>
                 </motion.div>

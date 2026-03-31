@@ -9,9 +9,9 @@ const cardVariants = {
 };
 
 const features = [
-  '11 hands-on sections from mindset to mastery',
-  'Learn CLAUDE.md, Plan Mode, Skills & MCP',
-  'Build real projects with AI pair programming',
+  '11 hands-on sections from mindset to mastery.',
+  'Learn CLAUDE.md, Plan Mode, Skills & MCP.',
+  'Build real projects with AI pair programming.',
 ];
 
 export default function Products() {
@@ -31,8 +31,8 @@ export default function Products() {
           <span className="products__badge">WORKSHOP</span>
           <h3 className="products__name">Just Ask</h3>
           <p className="products__description">
-            An interactive workshop teaching you to harness the power of Claude
-            Code &mdash; from zero to building real projects with AI assistance.
+            A hands-on workshop that takes you from zero to building real
+            projects with Claude Code &mdash; no prior AI experience needed.
           </p>
           <ul className="products__features">
             {features.map((f) => (
