@@ -6,7 +6,7 @@ const projects = [
   {
     title: '360 Basketball',
     description:
-      'Built a full web platform for a basketball training business — from concept to launch.',
+      'Built a full web platform for a basketball agency — connecting players with teams, managing contracts, and securing new opportunities.',
     result: 'Live product with paying users',
     url: 'https://360-basketball-66d8df02.base44.app/',
     tag: 'Web App',
