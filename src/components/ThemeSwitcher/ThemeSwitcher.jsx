@@ -32,8 +32,6 @@ export default function ThemeSwitcher() {
     };
   }, [open]);
 
-  const abbrev = aesthetic.charAt(0).toUpperCase() + aesthetic.slice(1, 3);
-
   return (
     <div className="theme-switcher" ref={ref}>
       <button
@@ -42,8 +40,7 @@ export default function ThemeSwitcher() {
         aria-label="Change theme"
         aria-expanded={open}
       >
-        <span className="theme-switcher__dot" />
-        <span className="theme-switcher__label">{abbrev}</span>
+        <span className={`theme-switcher__dot theme-switcher__dot--${aesthetic}`} />
       </button>
 
       <AnimatePresence>

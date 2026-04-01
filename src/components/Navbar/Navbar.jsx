@@ -68,7 +68,10 @@ export default function Navbar() {
   function handleLinkClick(e, href) {
     e.preventDefault();
     setMenuOpen(false);
-    smoothScrollTo(href.replace('#', ''));
+    // Delay scroll until after body overflow:hidden is removed by the useEffect
+    requestAnimationFrame(() => {
+      smoothScrollTo(href.replace('#', ''));
+    });
   }
 
   return (
