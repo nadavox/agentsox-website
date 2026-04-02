@@ -6,7 +6,16 @@ import './LegalPage.css';
 export default function LegalPage({ title, lastUpdated, children }) {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    const originalTitle = document.title;
+    document.title = `${title} — AgentsOX`;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const originalDesc = metaDesc?.getAttribute('content');
+    if (metaDesc) metaDesc.setAttribute('content', `${title} for AgentsOX — AI agents for business automation.`);
+    return () => {
+      document.title = originalTitle;
+      if (metaDesc && originalDesc) metaDesc.setAttribute('content', originalDesc);
+    };
+  }, [title]);
 
   return (
     <>
