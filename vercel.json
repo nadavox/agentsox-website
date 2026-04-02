@@ -16,8 +16,8 @@
       ]
     }
   ],
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/google(.*)html", "destination": "/google$1html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!google).*)", "destination": "/index.html" }
   ]
 }
