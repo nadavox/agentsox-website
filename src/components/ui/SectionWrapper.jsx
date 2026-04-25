@@ -1,21 +1,10 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import './SectionWrapper.css';
 
 export default function SectionWrapper({ id, children, className, background }) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.05 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const isInView = useInView(ref, { once: true, margin: '-5%' });
 
   return (
     <section
@@ -27,7 +16,7 @@ export default function SectionWrapper({ id, children, className, background }) 
       <motion.div
         className="section-inner"
         initial={{ opacity: 0, y: 20 }}
-        animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         {children}

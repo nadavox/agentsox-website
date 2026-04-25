@@ -102,8 +102,15 @@ export default function ThemeChooser() {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [hasChosen, handleSkip]);
 
-  // Focus trap inside dialog
+  // Set initial focus on first card when dialog opens
   const overlayRef = useRef(null);
+  useEffect(() => {
+    if (hasChosen || !overlayRef.current) return;
+    const firstCard = overlayRef.current.querySelector('[tabindex="0"]');
+    if (firstCard) firstCard.focus();
+  }, [hasChosen]);
+
+  // Focus trap inside dialog
   useEffect(() => {
     if (hasChosen || !overlayRef.current) return;
     function trapFocus(e) {

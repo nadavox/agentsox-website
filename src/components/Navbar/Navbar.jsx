@@ -8,14 +8,18 @@ import './Navbar.css';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = useRef(null);
   const drawerRef = useRef(null);
 
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 20);
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+      // Direct DOM mutation avoids a React re-render on every scroll frame
+      if (progressBarRef.current) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        progressBarRef.current.style.width = `${pct}%`;
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -81,13 +85,12 @@ export default function Navbar() {
           Agents<span className="navbar__ox">OX</span>
         </a>
 
-        <ul className="navbar__links" role="menubar">
+        <ul className="navbar__links">
           {NAV_LINKS.map((link) => (
-            <li key={link.href} role="none">
+            <li key={link.href}>
               <a
                 href={link.href}
                 className="navbar__link"
-                role="menuitem"
                 onClick={(e) => handleLinkClick(e, link.href)}
               >
                 {link.label}
@@ -113,8 +116,8 @@ export default function Navbar() {
       </div>
 
       <div
+        ref={progressBarRef}
         className="navbar__scroll-progress"
-        style={{ width: `${scrollProgress}%` }}
         aria-hidden="true"
       />
 

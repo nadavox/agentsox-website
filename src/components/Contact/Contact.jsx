@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionWrapper from '../ui/SectionWrapper';
@@ -36,6 +37,13 @@ export default function Contact() {
   const [state, handleSubmit] = useForm('xwvwbekw');
   const isSubmitting = state.submitting;
   const isRateLimited = getSubmissionCount() >= MAX_SUBMISSIONS;
+  const successRef = useRef(null);
+
+  useEffect(() => {
+    if (state.succeeded && successRef.current) {
+      successRef.current.focus();
+    }
+  }, [state.succeeded]);
 
   function onSubmit(e) {
     if (isRateLimited) {
@@ -74,15 +82,17 @@ export default function Contact() {
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
                 <p className="contact__success-text">
-                  You&apos;ve already sent a message. We&apos;ll get back to you soon!
+                  We received your message and will reply within one business day.
                 </p>
               </motion.div>
             ) : state.succeeded ? (
               <motion.div
+                ref={successRef}
                 key="success"
                 className="contact__success"
                 role="status"
                 aria-live="polite"
+                tabIndex={-1}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}

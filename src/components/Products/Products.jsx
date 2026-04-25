@@ -18,7 +18,7 @@ export default function Products() {
   return (
     <SectionWrapper id="products" className="products">
       <p className="section-label">PRODUCTS</p>
-      <h2 className="products__heading">Tools We've Built</h2>
+      <h2 className="products__heading">What We&apos;ve Built</h2>
 
       <motion.div
         className="products__card"

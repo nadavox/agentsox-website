@@ -18,6 +18,8 @@
   --color-accent: #3B82F6;
   --color-accent-hover: #2563EB;
   --color-accent-subtle: rgba(59, 130, 246, 0.12);
+  --color-accent-2: #10B981;
+  --color-accent-2-subtle: rgba(16, 185, 129, 0.10);
   --color-border: #2A2A3A;
   --color-border-subtle: #1E1E2A;
   --color-error: #E53E3E;
@@ -25,8 +27,8 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
 
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Figtree', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Spacing scale */

@@ -4,11 +4,11 @@ import { smoothScrollTo } from '../../utils/smoothScroll';
 import './Hero.css';
 
 const fadeUp = {
-  hidden: { y: 40, opacity: 0 },
+  hidden: { y: 32, opacity: 0 },
   visible: (delay) => ({
     y: 0,
     opacity: 1,
-    transition: { duration: 0.8, delay, ease: 'easeOut' },
+    transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] },
   }),
 };
 
@@ -19,7 +19,6 @@ export default function Hero() {
   useEffect(() => {
     function handleScroll() {
       const fade = Math.max(0, 1 - window.scrollY / 300);
-      // Only update when the value changes meaningfully
       if (Math.abs(fade - lastOpacityRef.current) > 0.01) {
         lastOpacityRef.current = fade;
         scrollOpacity.set(fade);
@@ -31,23 +30,27 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <div className="hero__mesh" aria-hidden="true">
-        <div className="hero__blob hero__blob--1" />
-        <div className="hero__blob hero__blob--2" />
-        <div className="hero__blob hero__blob--3" />
-      </div>
-
+      <div className="hero__bg" aria-hidden="true" />
       <div className="hero__decoration" aria-hidden="true" />
 
       <div className="hero__content">
+        <motion.div
+          className="hero__eyeline"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          aria-hidden="true"
+        />
+
         <motion.h1
           className="hero__headline"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0}
+          custom={0.2}
         >
-          <span className="hero__headline-accent">AI Agents</span> That Run Your Business
+          <span className="hero__headline-accent">AI Agents</span>{' '}
+          That Run Your Business
         </motion.h1>
 
         <motion.p
@@ -55,7 +58,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.2}
+          custom={0.38}
         >
           Intelligent automation for scheduling, communication, and daily
           operations — so you can focus on growing your business.
@@ -66,7 +69,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.4}
+          custom={0.52}
         >
           <button
             className="hero__btn hero__btn--primary"
@@ -83,7 +86,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Fades out on scroll via motion value to avoid re-renders */}
       <motion.div
         className="hero__scroll-indicator"
         style={{ opacity: scrollOpacity }}

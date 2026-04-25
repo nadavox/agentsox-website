@@ -13,44 +13,45 @@
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
   max-width: 700px;
-  margin: 0 0 3.5rem;
-  padding-bottom: var(--space-md);
+  margin: 0 0 3rem;
 }
 
-.about__grid {
+/* Feature list — horizontal rows separated by rules */
+.about__list {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.about__item {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem 2rem;
+  grid-template-columns: 52px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.about__card {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.about__card:active {
-  transform: scale(0.98);
-  border-color: var(--color-accent);
-}
-
-.about__card-icon {
-  color: var(--color-accent);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.about__item-icon {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.about__card-title {
+/* Alternate icon color for visual rhythm — avoids all-same-blue monotony */
+.about__item:nth-child(even) .about__item-icon {
+  background: var(--color-accent-2-subtle);
+  color: var(--color-accent-2);
+}
+
+.about__item-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -58,21 +59,25 @@
   margin: 0 0 0.5rem;
 }
 
-.about__card-desc {
+.about__item-desc {
   font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0;
+  max-width: 56ch;
 }
 
 @media (max-width: 640px) {
-  .about__grid {
-    grid-template-columns: 1fr;
+  .about__item {
+    grid-template-columns: 40px 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem 0;
   }
 
-  .about__card {
-    padding: 1.25rem;
+  .about__item-icon {
+    width: 40px;
+    height: 40px;
   }
 
   .about__narrative {

@@ -70,22 +70,24 @@ export default function About() {
         keep your business safe, scalable, and in your control.
       </p>
 
-      <div className="about__grid">
+      <div className="about__list">
         {values.map((value, i) => (
           <motion.div
             key={value.title}
-            className="about__card"
+            className="about__item"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             custom={i}
           >
-            <div className="about__card-icon" aria-hidden="true">
+            <div className="about__item-icon" aria-hidden="true">
               {value.icon}
             </div>
-            <h3 className="about__card-title">{value.title}</h3>
-            <p className="about__card-desc">{value.description}</p>
+            <div className="about__item-body">
+              <h3 className="about__item-title">{value.title}</h3>
+              <p className="about__item-desc">{value.description}</p>
+            </div>
           </motion.div>
         ))}
       </div>

@@ -72,6 +72,13 @@
   box-shadow: 0 0 0 3px var(--color-accent-subtle);
 }
 
+@media (forced-colors: active) {
+  .contact__input:focus {
+    outline: 2px solid ButtonText;
+    outline-offset: 1px;
+  }
+}
+
 .contact__input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
