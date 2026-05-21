@@ -3,19 +3,24 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './LegalPage.css';
 
-export default function LegalPage({ title, lastUpdated, children }) {
+export default function LegalPage({ title, description, lastUpdated, children }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     const originalTitle = document.title;
     document.title = `${title} — AgentsOX`;
     const metaDesc = document.querySelector('meta[name="description"]');
     const originalDesc = metaDesc?.getAttribute('content');
-    if (metaDesc) metaDesc.setAttribute('content', `${title} for AgentsOX — AI agents for business automation.`);
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        'content',
+        description || `${title} for AgentsOX AI tools, automations, and workshops.`
+      );
+    }
     return () => {
       document.title = originalTitle;
       if (metaDesc && originalDesc) metaDesc.setAttribute('content', originalDesc);
     };
-  }, [title]);
+  }, [description, title]);
 
   return (
     <>

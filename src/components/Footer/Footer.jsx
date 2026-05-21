@@ -23,7 +23,7 @@ export default function Footer() {
             Agents<span className="footer__ox">OX</span>
           </a>
           <p className="footer__tagline">
-            AI agents that handle the work, so you don&apos;t have to
+            AI tools, automations, and workshops for modern teams
           </p>
         </div>
 

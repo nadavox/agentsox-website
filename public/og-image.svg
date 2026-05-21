@@ -36,7 +36,7 @@
   <path d="M530 455c-8 0-14-10-14-20s6-20 14-20 14 10 14 20-6 20-14 20zm0-7c4 0 7-6 7-13s-3-13-7-13-7 6-7 13 3 13 7 13z" fill="#3B82F6"/>
   <!-- X (blue) -->
   <path d="M550 416h8l8 14 8-14h8l-12 19 12 19h-8l-8-14-8 14h-8l12-19-12-19z" fill="#3B82F6"/>
-  <!-- Tagline: "AI Agents That Run Your Business" -->
+  <!-- Tagline: "AI Tools, Automations, and Workshops" -->
   <!-- Simplified tagline as a subtle line + dots pattern instead of text -->
   <rect x="350" y="490" width="500" height="1" rx="0.5" fill="#A0A0B0" opacity="0.3"/>
   <!-- Three dots representing the tagline abstractly -->

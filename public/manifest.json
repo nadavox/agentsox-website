@@ -1,7 +1,7 @@
 {
   "name": "AgentsOX",
   "short_name": "AgentsOX",
-  "description": "AI Agents That Run Your Business",
+  "description": "AI tools, automations, and workshops for modern teams",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0A0F",
