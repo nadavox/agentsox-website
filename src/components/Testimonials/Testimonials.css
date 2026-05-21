@@ -4,8 +4,16 @@
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
-  margin: 0 0 3rem;
+  margin: 0 0 1rem;
   line-height: 1.15;
+  text-wrap: balance;
+}
+
+.testimonials__intro {
+  margin: 0 0 3rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  color: var(--color-text-secondary);
+  line-height: 1.65;
 }
 
 .testimonials__grid {
@@ -19,7 +27,7 @@
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-subtle);
   border-radius: 12px;
-  padding: 1.75rem 1.5rem 1.5rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -51,6 +59,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1.5rem;
+}
+
+.testimonials__preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.testimonials__preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--color-bg-secondary) 82%, transparent));
+  pointer-events: none;
+}
+
+.testimonials__preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.3s ease-out;
+}
+
+.testimonials__card--link:hover .testimonials__preview img {
+  transform: scale(1.035);
 }
 
 .testimonials__tag {
@@ -81,6 +120,7 @@
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
+  padding: 0 1.5rem;
 }
 
 .testimonials__text {
@@ -90,6 +130,7 @@
   line-height: 1.65;
   margin: 0;
   flex: 1;
+  padding: 0 1.5rem;
 }
 
 .testimonials__result {
@@ -100,6 +141,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-accent-2);
+  margin: 0 1.5rem 1.5rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--color-border-subtle);
 }
@@ -124,10 +166,25 @@
   }
 
   .testimonials__card {
-    padding: 1.5rem 1.25rem 1.25rem;
+    border-radius: 10px;
   }
 
   .testimonials__heading {
+    margin: 0 0 1rem;
+  }
+
+  .testimonials__intro {
     margin: 0 0 2rem;
+  }
+
+  .testimonials__card-header,
+  .testimonials__name,
+  .testimonials__text {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .testimonials__result {
+    margin: 0 1.25rem 1.25rem;
   }
 }

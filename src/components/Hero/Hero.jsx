@@ -49,8 +49,8 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          <span className="hero__headline-accent">AI Agents</span>{' '}
-          That Run Your Business
+          <span className="hero__headline-accent">AI Tools</span>, Automations,
+          and Workshops for Modern Teams
         </motion.h1>
 
         <motion.p
@@ -60,8 +60,9 @@ export default function Hero() {
           animate="visible"
           custom={0.38}
         >
-          Intelligent automation for scheduling, communication, and daily
-          operations — so you can focus on growing your business.
+          We build practical AI systems, ship client automations, and train
+          teams to use tools like Claude Code, ChatGPT, and agent workflows in
+          real work.
         </motion.p>
 
         <motion.div
@@ -73,15 +74,15 @@ export default function Hero() {
         >
           <button
             className="hero__btn hero__btn--primary"
-            onClick={() => smoothScrollTo('services')}
+            onClick={() => smoothScrollTo('testimonials')}
           >
-            See How It Works
+            View Client Work
           </button>
           <button
             className="hero__btn hero__btn--ghost"
-            onClick={() => smoothScrollTo('contact')}
+            onClick={() => smoothScrollTo('products')}
           >
-            Get in Touch
+            Explore Workshops
           </button>
         </motion.div>
       </div>

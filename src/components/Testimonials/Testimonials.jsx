@@ -10,14 +10,18 @@ const projects = [
     result: 'Live product with paying users',
     url: 'https://360-basketball-66d8df02.base44.app/',
     tag: 'Web App',
+    preview: '/project-previews/360-basketball.png',
+    previewAlt: '360 Basketball web platform preview',
   },
   {
     title: 'Shades of the Soul',
     description:
       'Automated a creative process that took over 10 hours manually — reduced to under 1 hour with intelligent automation.',
     result: '10x faster workflow',
-    url: 'https://shadesofthesoul.vercel.app/',
+    url: 'https://theshadesofsoul.com/',
     tag: 'Automation',
+    preview: '/project-previews/shades-of-the-soul.png',
+    previewAlt: 'Shades of the Soul automation workflow preview',
   },
   {
     title: 'Drone Videographer',
@@ -26,6 +30,8 @@ const projects = [
     result: 'Real clients from day one',
     url: 'https://drone-videographer-landing.vercel.app/',
     tag: 'Landing Page',
+    preview: '/project-previews/drone-videographer.png',
+    previewAlt: 'Drone videographer landing page preview',
   },
 ];
 
@@ -41,8 +47,12 @@ const cardVariants = {
 export default function Testimonials() {
   return (
     <SectionWrapper id="testimonials" className="testimonials">
-      <p className="section-label">OUR WORK</p>
-      <h2 className="testimonials__heading">Projects We&apos;ve Shipped</h2>
+      <p className="section-label">CLIENT WORK</p>
+      <h2 className="testimonials__heading">Selected Work We&apos;ve Shipped</h2>
+      <p className="testimonials__intro">
+        Real projects delivered for businesses, from full web platforms to
+        workflow automation and client-facing landing pages.
+      </p>
 
       <div className="testimonials__grid">
         {projects.map((p, i) => (
@@ -58,6 +68,15 @@ export default function Testimonials() {
             viewport={{ once: true, margin: '-50px' }}
             custom={i}
           >
+            <div className="testimonials__preview">
+              <img
+                src={p.preview}
+                alt={p.previewAlt}
+                width="1440"
+                height="900"
+                loading="lazy"
+              />
+            </div>
             <div className="testimonials__card-header">
               <span className="testimonials__tag">{p.tag}</span>
               <svg className="testimonials__external-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
