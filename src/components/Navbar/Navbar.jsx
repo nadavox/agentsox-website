@@ -1,6 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 import { NAV_LINKS } from '../../utils/navLinks';
 import { smoothScrollTo } from '../../utils/smoothScroll';
 import './Navbar.css';
@@ -82,7 +81,8 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         <a href="/" className="navbar__wordmark" aria-label="AgentsOX home">
-          Agents<span className="navbar__ox">OX</span>
+          <img src="/brand/agentsox-mark.svg" alt="" className="navbar__mark" />
+          <span>Agents<span className="navbar__ox">OX</span></span>
         </a>
 
         <ul className="navbar__links">
@@ -100,7 +100,6 @@ export default function Navbar() {
         </ul>
 
         <div className="navbar__right">
-          <ThemeSwitcher />
           <button
             className="navbar__hamburger"
             onClick={() => setMenuOpen((v) => !v)}

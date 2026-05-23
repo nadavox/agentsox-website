@@ -25,6 +25,9 @@
 }
 
 .navbar__wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-size: 1.5rem;
   font-weight: 700;
   font-family: var(--font-heading);
@@ -33,8 +36,18 @@
   flex-shrink: 0;
 }
 
+.navbar__mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
 .navbar__ox {
-  color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   transition: text-shadow 0.3s ease-out;
 }
 
@@ -200,5 +213,25 @@
   }
   .navbar__wordmark {
     font-size: 1.3rem;
+  }
+
+  .navbar__mark {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar__inner {
+    padding: 0 0.75rem;
+  }
+
+  .navbar__right {
+    gap: 0.25rem;
+  }
+
+  .navbar__hamburger {
+    min-width: 40px;
+    padding: 8px;
   }
 }

@@ -49,8 +49,8 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          <span className="hero__headline-accent">AI Tools</span>, Automations,
-          and Workshops for Modern Teams
+          <span className="hero__headline-accent">Custom AI systems</span> for
+          the work your business actually does
         </motion.h1>
 
         <motion.p
@@ -60,10 +60,23 @@ export default function Hero() {
           animate="visible"
           custom={0.38}
         >
-          We build practical AI systems, ship client automations, and train
-          teams to use tools like Claude Code, ChatGPT, and agent workflows in
-          real work.
+          AgentsOX builds chatbots, automations, and analytics around your real
+          workflow, then stays with you until the system is trusted in daily use.
         </motion.p>
+
+        <motion.div
+          className="hero__proof"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.46}
+          aria-label="AgentsOX trust promises"
+        >
+          <span>Clinics</span>
+          <span>Local services</span>
+          <span>Real estate</span>
+          <span>E-commerce</span>
+        </motion.div>
 
         <motion.div
           className="hero__cta"
@@ -74,16 +87,34 @@ export default function Hero() {
         >
           <button
             className="hero__btn hero__btn--primary"
-            onClick={() => smoothScrollTo('testimonials')}
+            onClick={() => smoothScrollTo('contact')}
           >
-            View Client Work
+            Start With One Workflow
           </button>
           <button
             className="hero__btn hero__btn--ghost"
-            onClick={() => smoothScrollTo('products')}
+            onClick={() => smoothScrollTo('services')}
           >
-            Explore Workshops
+            See What We Build
           </button>
+        </motion.div>
+
+        <motion.div
+          className="hero__system"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.64}
+          aria-label="AgentsOX workflow approach"
+        >
+          <img src="/brand/agentsox-mark.svg" alt="" className="hero__system-mark" />
+          <div className="hero__system-steps">
+            <span>Listen</span>
+            <span>Map</span>
+            <span>Build</span>
+            <span>Harden</span>
+            <span>Support</span>
+          </div>
         </motion.div>
       </div>
 

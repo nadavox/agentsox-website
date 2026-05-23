@@ -4,9 +4,9 @@ import './About.css';
 
 const values = [
   {
-    title: 'Automation First',
+    title: 'Listen Before Building',
     description:
-      "We don't automate for the sake of it. Every agent we build solves a real operational bottleneck.",
+      'We learn how the business actually works before proposing the system. The workflow drives the technology, not the other way around.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -14,9 +14,9 @@ const values = [
     ),
   },
   {
-    title: 'Human in the Loop',
+    title: 'Human Control Stays Visible',
     description:
-      'AI handles execution, but humans stay in control. Every critical decision has a human checkpoint.',
+      'Sensitive steps need review, approval, or escalation. Every serious automation has a clear human checkpoint.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -26,9 +26,9 @@ const values = [
     ),
   },
   {
-    title: 'Built to Scale',
+    title: 'Failure Paths Are Designed',
     description:
-      'Our systems grow with your business \u2014 from solo founder to enterprise, without rebuilding.',
+      'If a model, API, form, or CRM step fails, the workflow should save the state, notify the owner, and make recovery obvious.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="14" width="20" height="6" rx="1" />
@@ -38,9 +38,9 @@ const values = [
     ),
   },
   {
-    title: 'Privacy by Design',
+    title: 'Supported Until Trusted',
     description:
-      'Your data stays yours. We follow strict data minimization and never share with third parties.',
+      'Launch is not the finish line. We explain, document, adjust, and support the system until the client feels safe using it.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -63,11 +63,12 @@ export default function About() {
   return (
     <SectionWrapper id="about" className="about" background="bg-secondary">
       <p className="section-label">ABOUT US</p>
-      <h2 className="about__heading">Why AgentsOX</h2>
+      <h2 className="about__heading">Built Around Your Real Workflow</h2>
       <p className="about__narrative">
-        We&apos;re an AI-first team that treats agents as colleagues, not
-        just tools. Every system we ship is built on four principles that
-        keep your business safe, scalable, and in your control.
+        AgentsOX is for non-technical businesses that need practical AI and
+        automation without being forced into a one-size-fits-all product. We
+        listen first, ship quickly, and harden the system until it is clear,
+        useful, and trusted.
       </p>
 
       <div className="about__list">

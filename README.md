@@ -1,16 +1,43 @@
-# React + Vite
+# AgentsOX Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React/Vite website for AgentsOX.
 
-Currently, two official plugins are available:
+## Environments
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The bot and contact endpoints are selected by Vite mode. Both values are
+required public client config; the contact form does not derive one endpoint
+from the other.
 
-## React Compiler
+```bash
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Uses `.env.development`:
 
-## Expanding the ESLint configuration
+```text
+VITE_INTAKE_BOT_ENDPOINT=http://127.0.0.1:8787/api/chat
+VITE_CONTACT_ENDPOINT=http://127.0.0.1:8787/api/contact
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run build
+```
+
+Uses `.env.production`:
+
+```text
+VITE_INTAKE_BOT_ENDPOINT=https://intake.agentsox.com/api/chat
+VITE_CONTACT_ENDPOINT=https://intake.agentsox.com/api/contact
+```
+
+Run the local intake Worker separately:
+
+```bash
+cd services/intake-worker
+npm install
+npm run dev
+```
+
+The contact endpoint sends through Resend. Local secrets live in
+`services/intake-worker/.dev.vars`; production secrets must be set with
+Wrangler, not committed.

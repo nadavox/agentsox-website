@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
       <ul>
         <li><strong>Business name:</strong> AgentsOX</li>
         <li><strong>Website:</strong> <a href="https://agentsox.com">agentsox.com</a></li>
-        <li><strong>Contact email:</strong> <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a></li>
+        <li><strong>Contact email:</strong> <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a></li>
       </ul>
 
       <h2>2. Scope of This Policy</h2>
@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
       <h2>3. Information We Collect</h2>
       <p>We collect only information reasonably needed to operate the website, respond to inquiries, provide workshops, and deliver services.</p>
       <ul>
-        <li><strong>Contact form data:</strong> Name, email address, message content, and technical submission metadata processed through our form provider.</li>
+        <li><strong>Contact form data:</strong> Name, email address, message content, and technical submission metadata processed through our website contact endpoint.</li>
         <li><strong>Email and direct communications:</strong> Information you choose to send us, including project requirements, company details, files, or scheduling information.</li>
         <li><strong>Workshop and service information:</strong> Information needed to plan or deliver a workshop or project, such as participant names, business context, workflow requirements, and tool preferences.</li>
         <li><strong>Website analytics:</strong> Aggregated page view and device information collected through Vercel Web Analytics. Vercel states that this analytics product does not use third-party cookies and is designed to avoid identifying individual visitors.</li>
@@ -63,9 +63,10 @@ export default function PrivacyPolicy() {
       <p>We use third-party providers to operate the website and services. These providers process information under their own terms and privacy policies, and in some cases act as processors or service providers for us.</p>
       <ul>
         <li><strong>Vercel:</strong> Website hosting, deployment, security logs, and privacy-focused web analytics.</li>
-        <li><strong>Formspree:</strong> Contact form handling, spam prevention, and email notification for submitted inquiries.</li>
+        <li><strong>Cloudflare Workers:</strong> Contact form processing, bot API handling, request validation, and abuse prevention.</li>
+        <li><strong>Resend:</strong> Email delivery for contact form notifications.</li>
         <li><strong>Google Fonts:</strong> Font delivery for the website.</li>
-        <li><strong>Business email provider:</strong> Email hosting and delivery for messages sent to <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>.</li>
+        <li><strong>Business email provider:</strong> Email hosting and delivery for messages sent to <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a>.</li>
         <li><strong>AI and developer tools:</strong> Tools such as Claude Code, ChatGPT, OpenRouter, or similar providers may be used during workshops, development, or automation work depending on the engagement.</li>
         <li><strong>External project links:</strong> Our site links to client work, workshop sites, and third-party websites. Their privacy practices are governed by their own policies.</li>
       </ul>
@@ -91,7 +92,7 @@ export default function PrivacyPolicy() {
 
       <h2>12. Your Rights</h2>
       <p>Depending on your location and applicable law, you may have rights to access, correct, delete, restrict, object to processing, request portability of, or withdraw consent for your personal information.</p>
-      <p>To make a privacy request, email <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>. We may need to verify your identity before acting on a request. We will respond within a reasonable period and, where a law sets a specific deadline, within that legal deadline.</p>
+      <p>To make a privacy request, email <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a>. We may need to verify your identity before acting on a request. We will respond within a reasonable period and, where a law sets a specific deadline, within that legal deadline.</p>
 
       <h2>13. Children</h2>
       <p>Our website and services are intended for business users and are not directed to children under 16. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, contact us and we will take appropriate steps to delete it.</p>
@@ -102,7 +103,7 @@ export default function PrivacyPolicy() {
       <h2>15. Contact Us</h2>
       <p>For privacy questions, concerns, or data requests:</p>
       <ul>
-        <li><strong>Email:</strong> <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a></li>
+        <li><strong>Email:</strong> <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a></li>
         <li><strong>Website:</strong> <a href="https://agentsox.com">agentsox.com</a></li>
       </ul>
     </LegalPage>

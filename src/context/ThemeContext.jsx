@@ -1,29 +1,11 @@
-import { createContext, useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { applyTheme } from '../themes/applyTheme';
+import { DEFAULT_THEME_STATE, ThemeContext } from './themeContextValue';
 
 const STORAGE_KEY = 'agentsox-theme';
-const DEFAULTS = { aesthetic: 'sleek', mode: 'dark', hasChosen: false };
-
-export const ThemeContext = createContext(DEFAULTS);
 
 function getInitialState() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      return {
-        aesthetic: parsed.aesthetic || DEFAULTS.aesthetic,
-        mode: parsed.mode || DEFAULTS.mode,
-        hasChosen: parsed.hasChosen ?? DEFAULTS.hasChosen,
-      };
-    }
-  } catch {
-    // ignore parse errors
-  }
-
-  // Respect system preference for initial mode
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  return { ...DEFAULTS, mode: prefersDark ? 'dark' : 'light' };
+  return DEFAULT_THEME_STATE;
 }
 
 export function ThemeProvider({ children }) {
@@ -50,13 +32,6 @@ export function ThemeProvider({ children }) {
   const markChosen = useCallback(() => {
     setState((prev) => ({ ...prev, hasChosen: true }));
   }, []);
-
-  // Auto-skip chooser when arriving via hash link (e.g. /#contact)
-  useEffect(() => {
-    if (!state.hasChosen && window.location.hash) {
-      setState((prev) => ({ ...prev, hasChosen: true }));
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <ThemeContext.Provider

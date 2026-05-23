@@ -20,10 +20,11 @@ export default function Footer() {
       <div className="footer__grid">
         <div className="footer__col">
           <a href="/" className="footer__wordmark" aria-label="AgentsOX home">
-            Agents<span className="footer__ox">OX</span>
+            <img src="/brand/agentsox-mark.svg" alt="" className="footer__mark" />
+            <span>Agents<span className="footer__ox">OX</span></span>
           </a>
           <p className="footer__tagline">
-            AI tools, automations, and workshops for modern teams
+            Custom AI systems for real business operations.
           </p>
         </div>
 
@@ -46,10 +47,10 @@ export default function Footer() {
 
         <div className="footer__col">
           <h4 className="footer__heading">Contact</h4>
-          <a href="mailto:atlas@agentsox.com" className="footer__link" aria-label="Email us at atlas@agentsox.com">
-            atlas@agentsox.com
+          <a href="mailto:nadav@agentsox.com" className="footer__link" aria-label="Email us at nadav@agentsox.com">
+            nadav@agentsox.com
           </a>
-          <span className="footer__badge">Built with AI</span>
+          <span className="footer__badge">Built around your workflow</span>
         </div>
       </div>
 

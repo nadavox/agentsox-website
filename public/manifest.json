@@ -1,11 +1,11 @@
 {
   "name": "AgentsOX",
   "short_name": "AgentsOX",
-  "description": "AI tools, automations, and workshops for modern teams",
+  "description": "Custom AI systems for real business operations",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0A0F",
-  "theme_color": "#2563EB",
+  "theme_color": "#22D3EE",
   "icons": [
     {
       "src": "/icon-192x192.png",

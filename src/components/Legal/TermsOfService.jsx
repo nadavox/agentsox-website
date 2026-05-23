@@ -11,7 +11,7 @@ export default function TermsOfService() {
       <p>By accessing agentsox.com, contacting us, registering interest in a workshop, or using services provided by AgentsOX (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;), you agree to these Terms of Service. If you do not agree, do not use the website or services.</p>
 
       <h2>2. Who Operates AgentsOX</h2>
-      <p>AgentsOX is operated by Nadav Oxenberg, based in Israel. You can contact us at <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a>.</p>
+      <p>AgentsOX is operated by Nadav Oxenberg, based in Israel. You can contact us at <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a>.</p>
 
       <h2>3. What We Provide</h2>
       <p>AgentsOX provides AI tool workshops, business automation, and related consulting or implementation services. This may include:</p>
@@ -46,7 +46,7 @@ export default function TermsOfService() {
       <p>Nothing on the website, in workshops, or in AI-generated materials is legal, financial, medical, tax, employment, cybersecurity, or other regulated professional advice. You are responsible for obtaining professional advice where appropriate.</p>
 
       <h2>7. Third-Party Tools and Platforms</h2>
-      <p>Our website and services may use or refer to third-party services such as Vercel, Formspree, Google Fonts, business email providers, Claude Code, ChatGPT, OpenRouter, MCP servers, hosting providers, messaging platforms, and other developer or automation tools.</p>
+      <p>Our website and services may use or refer to third-party services such as Vercel, Cloudflare Workers, Resend, Google Fonts, business email providers, Claude Code, ChatGPT, OpenRouter, MCP servers, hosting providers, messaging platforms, and other developer or automation tools.</p>
       <ul>
         <li>Third-party services are governed by their own terms, privacy policies, pricing, availability, security practices, and data handling rules.</li>
         <li>We are not responsible for third-party outages, policy changes, pricing changes, model behavior, or security incidents outside our control.</li>
@@ -92,7 +92,7 @@ export default function TermsOfService() {
       <h2>18. Contact Us</h2>
       <p>For questions about these terms:</p>
       <ul>
-        <li><strong>Email:</strong> <a href="mailto:atlas@agentsox.com">atlas@agentsox.com</a></li>
+        <li><strong>Email:</strong> <a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a></li>
         <li><strong>Website:</strong> <a href="https://agentsox.com">agentsox.com</a></li>
       </ul>
     </LegalPage>

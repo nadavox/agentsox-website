@@ -1,3 +1,8 @@
+.contact__header {
+  max-width: 760px;
+  margin-bottom: var(--space-xl);
+}
+
 .contact__columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -32,6 +37,205 @@
 
 .contact__email:hover {
   text-decoration: underline;
+}
+
+.contact__next {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.contact__next-title {
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-sm);
+}
+
+.contact__next-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+.contact__next-list li {
+  padding-left: 0.2rem;
+}
+
+.contact__bot {
+  max-width: 100%;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 30%),
+    var(--color-bg-primary) !important;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  color: var(--color-text-primary);
+}
+
+.contact__bot-top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-bg-secondary) 82%, transparent);
+}
+
+.contact__bot-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+.contact__bot-title {
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.contact__bot-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin: 0.15rem 0 0;
+}
+
+.contact__bot-scroll {
+  max-width: 100%;
+  min-height: 360px;
+}
+
+.contact__bot-messages {
+  padding: 1rem;
+}
+
+.contact__bot-message {
+  max-width: 88%;
+  min-width: 0;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  line-height: 1.55;
+}
+
+.contact__bot-message p,
+.contact__bot-message .mantine-Text-root {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.contact__bot-message--assistant {
+  align-self: flex-start;
+  background: var(--color-bg-secondary);
+}
+
+.contact__bot-message--user {
+  align-self: flex-end;
+  background: var(--color-accent-subtle);
+  border-color: color-mix(in srgb, var(--color-accent) 34%, var(--color-border-subtle));
+}
+
+.contact__bot-message--user p,
+.contact__bot-message--user .mantine-Text-root {
+  color: var(--color-text-primary);
+}
+
+.contact__bot-options {
+  margin-top: 0.75rem;
+}
+
+.contact__bot-option,
+.contact__bot-send {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.contact__bot-option:hover,
+.contact__bot-send:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.contact__bot-option:disabled,
+.contact__bot-send:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.contact__bot-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  max-width: 100%;
+  padding: 1rem;
+  border-top: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-bg-secondary) 72%, transparent);
+}
+
+.contact__bot-input {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.contact__bot-input input {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: max(16px, 1rem);
+  min-height: 44px;
+}
+
+.contact__bot-input input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+.contact__bot-send {
+  min-height: 44px;
+  padding: 0 1rem;
+}
+
+.contact__brief {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background: var(--color-bg-primary) !important;
+}
+
+.contact__brief--ready {
+  border-color: color-mix(in srgb, var(--color-accent) 44%, var(--color-border-subtle));
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+.contact__brief p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.contact__brief pre {
+  white-space: pre-wrap;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  line-height: 1.55;
 }
 
 /* --- Form --- */
@@ -92,6 +296,13 @@
 /* --- Submit button --- */
 .contact__submit {
   width: 100%;
+}
+
+.contact__submit-note {
+  margin: 0.75rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 /* --- Spinner --- */
@@ -158,5 +369,32 @@
 
   .contact__heading {
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+
+  .contact__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact__bot-messages {
+    padding: 1rem;
+  }
+
+  .contact__bot-scroll {
+    min-height: 300px;
+  }
+
+  .contact__bot-message {
+    max-width: 94%;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact__bot-input-row {
+    gap: 0.5rem;
+    padding: 0.85rem;
+  }
+
+  .contact__bot-send {
+    padding: 0 0.85rem;
   }
 }

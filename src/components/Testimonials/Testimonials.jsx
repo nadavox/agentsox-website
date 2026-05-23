@@ -48,10 +48,11 @@ export default function Testimonials() {
   return (
     <SectionWrapper id="testimonials" className="testimonials">
       <p className="section-label">CLIENT WORK</p>
-      <h2 className="testimonials__heading">Selected Work We&apos;ve Shipped</h2>
+      <h2 className="testimonials__heading">Proof That We Execute</h2>
       <p className="testimonials__intro">
-        Real projects delivered for businesses, from full web platforms to
-        workflow automation and client-facing landing pages.
+        Real projects delivered across web platforms, automation, and
+        client-facing systems. The goal is always the same: turn a business
+        problem into something working.
       </p>
 
       <div className="testimonials__grid">

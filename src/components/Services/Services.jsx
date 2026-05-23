@@ -4,9 +4,9 @@ import './Services.css';
 
 const services = [
   {
-    title: 'AI Scheduling',
+    title: 'AI Chatbots',
     description:
-      'Automated calendar management, booking coordination, and smart reminders that keep your business running on time.',
+      'Website, WhatsApp, or internal assistants for lead capture, FAQs, booking, routing, and business-specific workflows.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="6" y="10" width="36" height="32" rx="4" />
@@ -20,9 +20,9 @@ const services = [
     ),
   },
   {
-    title: 'Communication Hub',
+    title: 'Business Automations',
     description:
-      'Intelligent message routing across WhatsApp, Telegram, email, and SMS \u2014 with context-aware responses.',
+      'Scheduling, reminders, CRM updates, follow-ups, documents, notifications, and repetitive admin workflows.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 36l4-8H8a4 4 0 01-4-4V12a4 4 0 014-4h20a4 4 0 014 4v12a4 4 0 01-4 4H18l-10 8z" />
@@ -31,15 +31,43 @@ const services = [
     ),
   },
   {
-    title: 'Business Operations',
+    title: 'Business Analytics',
     description:
-      'End-to-end workflow automation that scales with you \u2014 from lead capture to task management.',
+      'Dashboards and reports that help owners see leads, bookings, revenue signals, bottlenecks, and work progress.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="24" cy="24" r="8" />
         <path d="M24 4v4M24 40v4M4 24h4M40 24h4" />
         <path d="M9.86 9.86l2.83 2.83M35.31 35.31l2.83 2.83M9.86 38.14l2.83-2.83M35.31 12.69l2.83-2.83" />
         <circle cx="24" cy="24" r="16" strokeDasharray="4 4" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Workflow Optimization',
+    description:
+      'We review the current process, remove manual steps, and connect the tools your team already depends on.',
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M8 12h10l6 24h16" />
+        <path d="M8 36h10l6-24h16" />
+        <circle cx="8" cy="12" r="3" />
+        <circle cx="8" cy="36" r="3" />
+        <circle cx="40" cy="12" r="3" />
+        <circle cx="40" cy="36" r="3" />
+        <path d="M21 24h6" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Training & Support',
+    description:
+      'Hands-on workshops, documentation, and post-launch support so the system is understood and trusted.',
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M8 12h24a8 8 0 018 8v16H16a8 8 0 01-8-8V12z" />
+        <path d="M16 20h16M16 28h10" />
+        <path d="M34 34l4 4 6-8" />
       </svg>
     ),
   },
@@ -59,10 +87,10 @@ export default function Services() {
   return (
     <SectionWrapper id="services" className="services">
       <p className="section-label">WHAT WE DO</p>
-      <h2 className="services__heading">Automation That Actually Works</h2>
+      <h2 className="services__heading">Custom Solutions, Not Generic AI Products</h2>
       <p className="services__description">
-        We build AI agents that handle the operational work so your team can
-        focus on growth.
+        We start with one business problem, map the real workflow, and build the
+        system around your tools, team, and trust requirements.
       </p>
 
       <motion.div

@@ -62,7 +62,8 @@ export default function ThemeChooser() {
   const timersRef = useRef([]);
 
   useEffect(() => {
-    return () => timersRef.current.forEach(clearTimeout);
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   // Lock body scroll while chooser is visible

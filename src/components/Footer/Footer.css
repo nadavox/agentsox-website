@@ -21,15 +21,28 @@
 }
 
 .footer__wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-size: 1.3rem;
   font-weight: 700;
   font-family: var(--font-heading);
   color: var(--color-text-primary);
   text-decoration: none;
+  width: fit-content;
 }
 
 .footer__ox {
-  color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
 }
 
 .footer__tagline {

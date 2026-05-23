@@ -9,26 +9,26 @@ const cardVariants = {
 };
 
 const features = [
-  'Claude Code, ChatGPT, MCP, prompts, and agent workflows.',
-  'Build a real internal tool during the workshop.',
-  'Turn AI usage into a repeatable team workflow.',
+  'Bring one real workflow from your business.',
+  'Leave with a reusable AI-assisted process.',
+  'Learn where human review and safety checks belong.',
 ];
 
 const tools = [
-  'Claude Code',
-  'ChatGPT',
-  'MCP',
-  'Agents',
+  'Workflow map',
+  'AI assistant',
+  'Human review',
+  'Reusable process',
 ];
 
 export default function Products() {
   return (
     <SectionWrapper id="products" className="products">
       <p className="section-label">WORKSHOPS &amp; TRAINING</p>
-      <h2 className="products__heading">AI Tool Workshops for Teams</h2>
+      <h2 className="products__heading">Workshops for Practical AI Adoption</h2>
       <p className="products__intro">
-        Practical training for teams that want to use AI tools seriously, from
-        daily development workflows to internal automation.
+        Hands-on training for business teams that want to use AI safely in daily
+        operations, not watch another generic demo.
       </p>
 
       <motion.div
@@ -42,9 +42,9 @@ export default function Products() {
           <span className="products__badge">HANDS-ON WORKSHOP</span>
           <h3 className="products__name">Just Ask</h3>
           <p className="products__description">
-            A hands-on workshop for operators, founders, and builders who want
-            to work with AI tools in production-like workflows, not just watch
-            demos.
+            A hands-on workshop for owners and operators. Bring one workflow;
+            leave with a working AI-assisted process your team can understand
+            and reuse.
           </p>
           <div className="products__tool-list" aria-label="Workshop tools covered">
             {tools.map((tool) => (
@@ -81,19 +81,19 @@ export default function Products() {
           </div>
           <div className="products__browser-content">
             <div className="products__browser-kicker">Workshop Path</div>
-            <div className="products__browser-title">Build With AI Tools</div>
+            <div className="products__browser-title">Build Around One Real Workflow</div>
             <div className="products__browser-panel">
               <div>
                 <span>01</span>
-                Claude Code project setup
+                Map the current manual process
               </div>
               <div>
                 <span>02</span>
-                Prompt, plan, and execute safely
+                Add AI where it reduces real work
               </div>
               <div>
                 <span>03</span>
-                Ship a working internal tool
+                Define review, handoff, and reuse
               </div>
             </div>
           </div>

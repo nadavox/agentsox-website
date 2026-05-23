@@ -1,8 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
-import { useTheme } from './hooks/useTheme';
-import ThemeChooser from './components/ThemeChooser/ThemeChooser';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
@@ -51,7 +48,6 @@ function SectionSkeleton() {
 }
 
 function AppContent() {
-  const { hasChosen } = useTheme();
   const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -62,7 +58,7 @@ function AppContent() {
 
   useEffect(() => {
     let timer;
-    if (hasChosen && window.location.hash) {
+    if (window.location.hash) {
       const id = window.location.hash.slice(1);
       // Small delay to let lazy sections render
       timer = setTimeout(() => {
@@ -71,7 +67,7 @@ function AppContent() {
       }, 500);
     }
     return () => clearTimeout(timer);
-  }, [hasChosen]);
+  }, []);
 
   if (path === '/privacy') {
     return (
@@ -99,7 +95,6 @@ function AppContent() {
 
   return (
     <>
-      <AnimatePresence>{!hasChosen && <ThemeChooser />}</AnimatePresence>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <Navbar />
       <main id="main-content">
