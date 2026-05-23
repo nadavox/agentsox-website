@@ -2,6 +2,13 @@ name = "agentsox-intake-worker"
 main = "src/index.ts"
 compatibility_date = "2026-05-23"
 
+[observability]
+enabled = true
+
+  [observability.logs]
+  enabled = true
+  invocation_logs = true
+
 [env.local]
 name = "agentsox-intake-worker-local"
 

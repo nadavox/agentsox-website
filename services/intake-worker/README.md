@@ -5,6 +5,10 @@ Standalone Cloudflare Worker for the website intake bot.
 The website owns the UI. This service owns the bot API contract and the contact
 email endpoint.
 
+Cloudflare observability logs and invocation logs are enabled in
+`wrangler.toml`. Keep logs structured and avoid secrets, raw request bodies, or
+full lead messages.
+
 ```http
 POST /api/chat
 Content-Type: application/json
@@ -74,6 +78,12 @@ npm run deploy
 
 Deploy uses the Wrangler `production` environment, which sets `MODEL_PROVIDER=workers-ai` and routes `intake.agentsox.com` to this Worker.
 
+After the first deploy, set the Resend production secret:
+
+```bash
+npx wrangler secret put RESEND_API_KEY --env production
+```
+
 ## Contact Email Endpoint
 
 The website contact form posts to:
@@ -114,6 +124,50 @@ Set production secrets after the Worker exists:
 
 ```bash
 npx wrangler secret put RESEND_API_KEY --env production
+```
+
+## Production Smoke Tests
+
+Health:
+
+```bash
+curl -i https://intake.agentsox.com/health
+```
+
+Valid chat request from the production origin:
+
+```bash
+curl -i -X POST https://intake.agentsox.com/api/chat \
+  -H 'Origin: https://agentsox.com' \
+  -H 'Content-Type: application/json' \
+  --data '{"siteId":"agentsox-main","context":{},"messages":[{"role":"user","content":"What does AgentsOX do?"}]}'
+```
+
+Origin enforcement should reject a bad origin:
+
+```bash
+curl -i -X POST https://intake.agentsox.com/api/chat \
+  -H 'Origin: https://evil.example' \
+  -H 'Content-Type: application/json' \
+  --data '{"siteId":"agentsox-main","context":{},"messages":[{"role":"user","content":"hello"}]}'
+```
+
+`siteId` enforcement should reject a missing `siteId`:
+
+```bash
+curl -i -X POST https://intake.agentsox.com/api/chat \
+  -H 'Origin: https://agentsox.com' \
+  -H 'Content-Type: application/json' \
+  --data '{"context":{},"messages":[{"role":"user","content":"hello"}]}'
+```
+
+Contact smoke test sends a real email to `CONTACT_TO_EMAIL`:
+
+```bash
+curl -i -X POST https://intake.agentsox.com/api/contact \
+  -H 'Origin: https://agentsox.com' \
+  -H 'Content-Type: application/json' \
+  --data '{"siteId":"agentsox-main","name":"Production Smoke","email":"nadavoknbarg@gmail.com","message":"Problem: Production smoke test\nBusiness: AgentsOX\nCurrent tools: website, Cloudflare Worker, Resend\nDetails: Verify production contact endpoint sends branded email with AgentsOX Website subject prefix.","source":"agentsox-production-smoke-test"}'
 ```
 
 ## Provider Strategy
