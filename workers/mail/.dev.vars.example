@@ -1,0 +1,9 @@
+# Optional local overrides for `npm run dev`.
+# Keep real secrets in `.dev.vars`, never in git.
+
+SITE_ID=agentsox-main
+ALLOWED_ORIGINS=http://localhost:5174,http://127.0.0.1:5174
+CONTACT_TO_EMAIL=nadav@agentsox.com
+CONTACT_FROM_EMAIL=nadav@agentsox.com
+CONTACT_FROM_NAME=AgentsOX Website
+RESEND_API_KEY=re_your_local_resend_key

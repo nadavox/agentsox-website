@@ -1,0 +1,65 @@
+name = "agentsox-intake-worker"
+main = "src/index.ts"
+compatibility_date = "2026-05-23"
+
+[observability]
+enabled = true
+
+  [observability.logs]
+  enabled = true
+  invocation_logs = true
+
+[env.local]
+name = "agentsox-intake-worker-local"
+
+[env.local.vars]
+SITE_ID = "agentsox-main"
+MODEL_PROVIDER = "local-preview"
+WORKERS_AI_MODEL = "@cf/qwen/qwen3-30b-a3b-fp8"
+ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+CONTACT_ENDPOINT = "http://127.0.0.1:8788/api/contact"
+
+[env.remote]
+name = "agentsox-intake-worker-remote"
+
+[env.remote.vars]
+SITE_ID = "agentsox-main"
+MODEL_PROVIDER = "workers-ai"
+WORKERS_AI_MODEL = "@cf/qwen/qwen3-30b-a3b-fp8"
+ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+CONTACT_ENDPOINT = "https://contact.agentsox.com/api/contact"
+
+[env.remote.ai]
+binding = "AI"
+
+[[env.remote.ratelimits]]
+name = "API_RATE_LIMITER"
+namespace_id = "1001"
+
+  [env.remote.ratelimits.simple]
+  limit = 30
+  period = 60
+
+[env.production]
+name = "agentsox-intake-worker"
+routes = [
+  { pattern = "intake.agentsox.com", custom_domain = true }
+]
+
+[env.production.vars]
+SITE_ID = "agentsox-main"
+MODEL_PROVIDER = "workers-ai"
+WORKERS_AI_MODEL = "@cf/qwen/qwen3-30b-a3b-fp8"
+ALLOWED_ORIGINS = "https://agentsox.com,https://www.agentsox.com"
+CONTACT_ENDPOINT = "https://contact.agentsox.com/api/contact"
+
+[env.production.ai]
+binding = "AI"
+
+[[env.production.ratelimits]]
+name = "API_RATE_LIMITER"
+namespace_id = "1002"
+
+  [env.production.ratelimits.simple]
+  limit = 30
+  period = 60

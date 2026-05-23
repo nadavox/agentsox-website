@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AgentsOX Brandbook</title>
+    <meta name="description" content="AgentsOX brandbook: positioning, offers, trust, proof, logo, color, typography, UI, and voice systems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --ox-black: #0A0A0F;
+        --ox-surface: #12121A;
+        --ox-surface-2: #1A1A25;
+        --ox-text: #EEEEF0;
+        --ox-muted: #A0A0B0;
+        --ox-dim: #6B6B80;
+        --ox-cyan: #22D3EE;
+        --ox-blue: #3B82F6;
+        --ox-emerald: #10B981;
+        --ox-red: #E53E3E;
+        --ox-amber: #F59E0B;
+        --ox-border: #2A2A3A;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--ox-black);
+        color: var(--ox-text);
+        font-family: "Figtree", system-ui, sans-serif;
+        line-height: 1.6;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 22% 4%, rgba(34, 211, 238, 0.14), transparent 32%),
+          radial-gradient(circle at 84% 12%, rgba(59, 130, 246, 0.1), transparent 34%),
+          linear-gradient(180deg, #0A0A0F 0%, #101018 48%, #0A0A0F 100%);
+      }
+
+      a {
+        color: var(--ox-cyan);
+      }
+
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 48px;
+        align-items: center;
+        min-height: 78vh;
+        padding: 40px 0 64px;
+      }
+
+      .eyebrow,
+      .section-label,
+      .token {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        color: var(--ox-cyan);
+        font-size: 13px;
+        margin: 0 0 18px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: 0;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        font-size: clamp(42px, 7vw, 76px);
+        line-height: 1.02;
+      }
+
+      h2 {
+        font-size: clamp(30px, 4vw, 42px);
+      }
+
+      h3 {
+        font-size: 22px;
+      }
+
+      p {
+        color: var(--ox-muted);
+        max-width: 68ch;
+      }
+
+      .lead {
+        font-size: 20px;
+        line-height: 1.65;
+        margin: 24px 0 0;
+      }
+
+      .hero__card,
+      .panel,
+      .logo-tile,
+      .spec-card,
+      .swatch,
+      .type-row,
+      .positioning-card,
+      .offer-card,
+      .proof-card,
+      .voice-card {
+        background: rgba(18, 18, 26, 0.82);
+        border: 1px solid var(--ox-border);
+        border-radius: var(--radius-md);
+      }
+
+      .hero__card {
+        padding: 22px;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero__card img {
+        display: block;
+        width: 100%;
+        border-radius: var(--radius-md);
+      }
+
+      .hero__caption {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 14px;
+        color: var(--ox-muted);
+        font-size: 14px;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 14px 0;
+        margin-bottom: 48px;
+        background: rgba(10, 10, 15, 0.82);
+        backdrop-filter: blur(16px);
+      }
+
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border: 1px solid var(--ox-border);
+        border-radius: 999px;
+        color: var(--ox-text);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      section {
+        padding: 72px 0;
+        border-top: 1px solid rgba(42, 42, 58, 0.72);
+      }
+
+      .section-label {
+        color: var(--ox-cyan);
+        font-size: 12px;
+        margin: 0 0 12px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1fr);
+        gap: 40px;
+        align-items: start;
+        margin-bottom: 32px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid--2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .logo-tile {
+        min-height: 210px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-tile--light {
+        background: #EEEEF0;
+      }
+
+      .logo-tile img {
+        max-width: 100%;
+        max-height: 148px;
+      }
+
+      .logo-tile--light .wordmark {
+        color: #0A0A0F;
+      }
+
+      .wordmark {
+        color: var(--ox-text);
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: clamp(34px, 5vw, 64px);
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .wordmark span {
+        background: linear-gradient(135deg, var(--ox-cyan), var(--ox-blue));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .spec-card {
+        padding: 20px;
+      }
+
+      .spec-card p,
+      .positioning-card p,
+      .offer-card p,
+      .proof-card p,
+      .voice-card p {
+        margin-bottom: 0;
+      }
+
+      .positioning-card,
+      .offer-card,
+      .proof-card {
+        padding: 22px;
+      }
+
+      .positioning-card--wide {
+        grid-column: 1 / -1;
+      }
+
+      .statement {
+        margin: 0;
+        color: var(--ox-text);
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 800;
+        line-height: 1.18;
+      }
+
+      .quote {
+        margin: 0;
+        color: var(--ox-text);
+        font-size: 22px;
+        line-height: 1.4;
+      }
+
+      .mini-label {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--ox-cyan);
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .number {
+        color: var(--ox-cyan);
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 13px;
+      }
+
+      .message-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .message {
+        padding: 16px;
+        border: 1px solid var(--ox-border);
+        border-radius: var(--radius-md);
+        background: rgba(10, 10, 15, 0.58);
+      }
+
+      .message strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ox-text);
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      .clear-space-demo {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 240px;
+        border: 1px dashed rgba(34, 211, 238, 0.5);
+        border-radius: var(--radius-md);
+      }
+
+      .clear-space-demo::before {
+        content: "0.5X clear space";
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        color: var(--ox-cyan);
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 12px;
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .swatch {
+        overflow: hidden;
+      }
+
+      .swatch__chip {
+        height: 96px;
+      }
+
+      .swatch__body {
+        padding: 14px;
+      }
+
+      .swatch strong {
+        display: block;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      .swatch code,
+      .code {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        color: var(--ox-muted);
+        font-size: 13px;
+      }
+
+      .type-row {
+        display: grid;
+        grid-template-columns: 160px minmax(0, 1fr) 180px;
+        gap: 20px;
+        align-items: center;
+        padding: 18px 20px;
+      }
+
+      .type-row__sample {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        color: var(--ox-text);
+      }
+
+      .component-strip {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button--primary {
+        background: linear-gradient(135deg, var(--ox-cyan), var(--ox-blue));
+      }
+
+      .button--secondary {
+        background: transparent;
+        border-color: var(--ox-border);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(34, 211, 238, 0.12);
+        color: var(--ox-cyan);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .voice-card {
+        padding: 22px;
+      }
+
+      .do-dont {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      ul {
+        margin: 14px 0 0;
+        padding-left: 20px;
+        color: var(--ox-muted);
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .footer {
+        padding-top: 48px;
+        color: var(--ox-dim);
+        font-size: 14px;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .section-head,
+        .grid--2,
+        .grid--3,
+        .do-dont {
+          grid-template-columns: 1fr;
+        }
+
+        .positioning-card--wide {
+          grid-column: auto;
+        }
+
+        .color-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .type-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          padding: 28px 16px 56px;
+        }
+
+        .color-grid {
+          grid-template-columns: 1fr;
+        }
+
+        section {
+          padding: 52px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">AgentsOX brandbook / v1.1</p>
+          <h1>Custom AI systems for real business operations.</h1>
+          <p class="lead">A functional brand system for an AI automation agency that listens first, builds around the client's workflow, and stays involved until the system feels safe in daily use.</p>
+        </div>
+        <div class="hero__card">
+          <img src="/brand/agentsox-logo-concept.png" alt="AgentsOX upgraded logo concept">
+          <div class="hero__caption">
+            <span>Direction reference</span>
+            <span class="code">PNG concept</span>
+          </div>
+        </div>
+      </header>
+
+      <nav class="nav" aria-label="Brandbook sections">
+        <a href="#positioning">Positioning</a>
+        <a href="#offers">Offers</a>
+        <a href="#trust">Trust</a>
+        <a href="#logo">Logo</a>
+        <a href="#color">Color</a>
+        <a href="#type">Typography</a>
+        <a href="#ui">Visual/UI</a>
+        <a href="#voice">Voice</a>
+      </nav>
+
+      <section id="positioning">
+        <div class="section-head">
+          <div>
+            <p class="section-label">00 / Positioning</p>
+            <h2>Built for non-technical businesses with real workflow pain.</h2>
+          </div>
+          <p>AgentsOX should not sound like a generic AI agency. The brand is for small business owners, clinics, local service operators, real-estate offices, coaches, and e-commerce teams that need custom systems around existing operations.</p>
+        </div>
+        <div class="grid grid--2">
+          <article class="positioning-card positioning-card--wide">
+            <span class="mini-label">Positioning statement</span>
+            <p class="statement">For small business owners dealing with legacy systems, missed leads, manual admin, and messy workflows, AgentsOX is the custom AI automation partner that listens first, ships fast, and keeps improving the system until the client feels safe using it.</p>
+          </article>
+          <article class="positioning-card">
+            <span class="mini-label">10-second belief</span>
+            <p class="quote">AgentsOX can understand my business problem and build a practical system that solves it.</p>
+          </article>
+          <article class="positioning-card">
+            <span class="mini-label">Case-study belief</span>
+            <p class="quote">AgentsOX executes, integrates, and supports real business workflows, not just AI demos.</p>
+          </article>
+        </div>
+        <div class="grid grid--3" style="margin-top: 16px;">
+          <article class="spec-card">
+            <h3>Primary buyers</h3>
+            <ul>
+              <li>Clinics and MedSpas</li>
+              <li>Local service operators</li>
+              <li>Real-estate offices</li>
+              <li>Coaches and appointment-based experts</li>
+              <li>E-commerce stores</li>
+            </ul>
+          </article>
+          <article class="spec-card">
+            <h3>Brand posture</h3>
+            <p>Technical and premium, warm and founder-led, quiet and enterprise-ready. Serious without becoming cold.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Not this</h3>
+            <p>No AI-bro hype, no mystical language, no generic platform claims, no corporate consulting fog, and no developer-only language.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="offers">
+        <div class="section-head">
+          <div>
+            <p class="section-label">01 / Offer architecture</p>
+            <h2>Custom solution first, product second.</h2>
+          </div>
+          <p>The first paid offer is an automation build. AgentsOX should sell the ability to understand the client problem and build the right system, not a fixed product.</p>
+        </div>
+        <div class="grid grid--3">
+          <article class="offer-card">
+            <span class="number">01</span>
+            <h3>AI chatbots</h3>
+            <p>Website, WhatsApp, or internal assistants for lead capture, FAQs, booking, routing, and business-specific workflows.</p>
+          </article>
+          <article class="offer-card">
+            <span class="number">02</span>
+            <h3>Automations</h3>
+            <p>Scheduling, reminders, CRM updates, follow-ups, documents, notifications, and repetitive admin workflows.</p>
+          </article>
+          <article class="offer-card">
+            <span class="number">03</span>
+            <h3>Analytics</h3>
+            <p>Dashboards and reports that help owners see leads, bookings, revenue signals, bottlenecks, and work progress.</p>
+          </article>
+          <article class="offer-card">
+            <span class="number">04</span>
+            <h3>Business optimization</h3>
+            <p>Workflow review and implementation support to remove manual steps and make existing systems work together.</p>
+          </article>
+          <article class="offer-card">
+            <span class="number">05</span>
+            <h3>Workshops</h3>
+            <p>Hands-on training for teams that need to use AI tools safely in daily operations, not watch generic demos.</p>
+          </article>
+          <article class="offer-card">
+            <span class="number">06</span>
+            <h3>Support</h3>
+            <p>Documentation, monitoring, refinement, and handoff so the client can keep trusting the system after launch.</p>
+          </article>
+        </div>
+        <div class="panel" style="padding: 22px; margin-top: 16px;">
+          <span class="mini-label">Offer ladder</span>
+          <div class="component-strip">
+            <span class="tag">Discovery</span>
+            <span class="tag">Workflow audit</span>
+            <span class="tag">Automation build</span>
+            <span class="tag">Trust hardening</span>
+            <span class="tag">Support</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="trust">
+        <div class="section-head">
+          <div>
+            <p class="section-label">02 / Trust architecture</p>
+            <h2>Stay until the client feels safe.</h2>
+          </div>
+          <p>The core trust signal is not "AI expertise" by itself. It is listening, translating the client's problem, building a working system, explaining it clearly, and handling the failure paths.</p>
+        </div>
+        <div class="grid grid--2">
+          <article class="proof-card">
+            <span class="mini-label">Trust promise</span>
+            <p class="quote">We listen, build around your real workflow, explain the system clearly, and keep improving it until you trust it.</p>
+          </article>
+          <article class="proof-card">
+            <span class="mini-label">Proof types</span>
+            <ul>
+              <li>Client work and screenshots</li>
+              <li>Short demos</li>
+              <li>Automations built</li>
+              <li>Before/after workflow maps</li>
+              <li>Technical case studies</li>
+            </ul>
+          </article>
+        </div>
+        <div class="grid grid--3" style="margin-top: 16px;">
+          <article class="spec-card">
+            <h3>AI reliability</h3>
+            <p>Show human checkpoints, fallback paths, monitoring, and what happens when a model or API fails.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Data privacy</h3>
+            <p>Document what data is touched, where it flows, what is stored, and what is intentionally not retained.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Vendor lock-in</h3>
+            <p>Prefer clear handoff, understandable systems, and maintainable tools over unnecessary proprietary dependency.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="logo">
+        <div class="section-head">
+          <div>
+            <p class="section-label">03 / Logo system</p>
+            <h2>Ox strength, agent intelligence, precision engineering.</h2>
+          </div>
+          <p>The logo system keeps the old OX equity but makes it simpler and more implementation-safe. Use the SVG mark and lockup for production. Use the generated PNG as a concept reference, not as the only source of truth.</p>
+        </div>
+        <div class="grid grid--2">
+          <div class="logo-tile">
+            <img src="/brand/agentsox-logo-lockup.svg" alt="AgentsOX primary logo">
+          </div>
+          <div class="logo-tile logo-tile--light">
+            <div class="wordmark">Agents<span>OX</span></div>
+          </div>
+          <div class="logo-tile">
+            <img src="/brand/agentsox-mark.svg" alt="AgentsOX icon mark">
+          </div>
+          <div class="clear-space-demo">
+            <img src="/brand/agentsox-logo-lockup.svg" alt="" style="width: 78%;">
+          </div>
+        </div>
+        <div class="grid grid--3" style="margin-top: 16px;">
+          <article class="spec-card">
+            <h3>Minimum sizes</h3>
+            <p>Primary with descriptor: 360px digital / 55mm print. Primary without descriptor: 220px / 35mm. Icon-only: 24px UI, 16px favicon.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Clear space</h3>
+            <p>Use the O height in OX as X. Keep 0.5X around the lockup and 25% icon width around the standalone mark.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Do not</h3>
+            <p>Stretch, rotate, recolor randomly, add heavy glow, place over busy photos, or rebuild the wordmark in unrelated fonts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="color">
+        <div class="section-head">
+          <div>
+            <p class="section-label">04 / Color architecture</p>
+            <h2>Dark-first, calm, high contrast.</h2>
+          </div>
+          <p>Cyan and blue are reserved for action, focus, and logo energy. Emerald is a restrained success accent. Red and amber are strictly functional.</p>
+        </div>
+        <div class="color-grid">
+          <div class="swatch"><div class="swatch__chip" style="background:#0A0A0F"></div><div class="swatch__body"><strong>OX Black</strong><code>#0A0A0F<br>RGB 10 10 15<br>CMYK 33 33 0 94</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#12121A"></div><div class="swatch__body"><strong>Surface</strong><code>#12121A<br>RGB 18 18 26<br>CMYK 31 31 0 90</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#EEEEF0"></div><div class="swatch__body"><strong>Text</strong><code>#EEEEF0<br>RGB 238 238 240<br>CMYK 1 1 0 6</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#A0A0B0"></div><div class="swatch__body"><strong>Muted</strong><code>#A0A0B0<br>RGB 160 160 176<br>CMYK 9 9 0 31</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#22D3EE"></div><div class="swatch__body"><strong>Cyan</strong><code>#22D3EE<br>RGB 34 211 238<br>CMYK 86 11 0 7</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#3B82F6"></div><div class="swatch__body"><strong>Blue</strong><code>#3B82F6<br>RGB 59 130 246<br>CMYK 76 47 0 4</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#10B981"></div><div class="swatch__body"><strong>Emerald</strong><code>#10B981<br>RGB 16 185 129<br>CMYK 91 0 30 27</code></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:linear-gradient(135deg,#22D3EE,#3B82F6 70%,#10B981)"></div><div class="swatch__body"><strong>Accent gradient</strong><code>135deg cyan -> blue -> emerald</code></div></div>
+        </div>
+      </section>
+
+      <section id="type">
+        <div class="section-head">
+          <div>
+            <p class="section-label">05 / Typography</p>
+            <h2>Structured, readable, technical.</h2>
+          </div>
+          <p>Use Plus Jakarta Sans for structure, Figtree for body copy, and JetBrains Mono for implementation details. Keep letter spacing at 0 except uppercase labels.</p>
+        </div>
+        <div class="grid">
+          <div class="type-row"><div class="token">Hero H1</div><div class="type-row__sample" style="font-size:48px;font-weight:800;line-height:1.02">AI systems that run real operations</div><div class="code">64px / 1.02 / 800</div></div>
+          <div class="type-row"><div class="token">H2</div><div class="type-row__sample" style="font-size:36px;font-weight:700">Automation that actually works</div><div class="code">36px / 1.15 / 700</div></div>
+          <div class="type-row"><div class="token">H3</div><div class="type-row__sample" style="font-size:24px;font-weight:700">Human in the loop</div><div class="code">24px / 1.2 / 700</div></div>
+          <div class="type-row"><div class="token">Body</div><div style="font-size:16px;line-height:1.6;color:var(--ox-muted)">AgentsOX builds practical AI tools, automations, and workshops for teams that need production workflows, not demos.</div><div class="code">16px / 1.6 / 400</div></div>
+          <div class="type-row"><div class="token">Code</div><div class="code">agent.recover("calendar_sync", retry=3)</div><div class="code">14px / 1.5 / 400</div></div>
+        </div>
+      </section>
+
+      <section id="ui">
+        <div class="section-head">
+          <div>
+            <p class="section-label">06 / Visual and UI style</p>
+            <h2>Operational software, not decorative AI theater.</h2>
+          </div>
+          <p>Interfaces should feel dense but controlled. Use real workflow screenshots, monitoring loops, automation states, and implementation proof. Avoid generic robot imagery and purple neon stock visuals.</p>
+        </div>
+        <div class="grid grid--3">
+          <article class="spec-card">
+            <h3>Iconography</h3>
+            <p>Outlined, geometric icons with rounded caps. Use 2px strokes at 24px. Keep icons simple enough to match the ox mark.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Radii</h3>
+            <p>Buttons: 8-12px. Cards and panels: 8px. Large containers: 12px. Pills: 999px only for true tags.</p>
+          </article>
+          <article class="spec-card">
+            <h3>Spacing</h3>
+            <p>Use a 4px base scale: 4, 8, 12, 16, 24, 32, 48, 64, 96. Keep content max width near 1126px.</p>
+          </article>
+        </div>
+        <div class="panel" style="padding: 22px; margin-top: 16px;">
+          <div class="component-strip">
+            <a class="button button--primary" href="#">Primary action</a>
+            <a class="button button--secondary" href="#">Secondary action</a>
+            <span class="tag">Human checkpoint</span>
+            <span class="tag">Self-healing workflow</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="voice">
+        <div class="section-head">
+          <div>
+            <p class="section-label">07 / Voice and verbal identity</p>
+            <h2>Direct, technical, calm, accountable.</h2>
+          </div>
+          <p>The brand speaks like a builder who can ship and stay accountable. It should be clear enough for non-technical buyers and precise enough to earn trust.</p>
+        </div>
+        <div class="grid grid--3">
+          <article class="voice-card">
+            <h3>Direct</h3>
+            <p>Say what the system does. Use verbs like build, route, monitor, recover, schedule, and ship.</p>
+          </article>
+          <article class="voice-card">
+            <h3>Engineer-focused</h3>
+            <p>Use proof, constraints, tools, and reliability language when it helps people trust the implementation.</p>
+          </article>
+          <article class="voice-card">
+            <h3>Calm authority</h3>
+            <p>No hype, no magic, no unsupported autonomy claims. Keep human control explicit.</p>
+          </article>
+          <article class="voice-card">
+            <h3>Warm accountability</h3>
+            <p>Explain clearly, stay close to the client, and make the workflow feel safe before calling the project done.</p>
+          </article>
+        </div>
+        <div class="message-list" style="margin-top: 16px;">
+          <div class="message">
+            <strong>Primary tagline</strong>
+            <span class="code">Custom AI systems for real business operations.</span>
+          </div>
+          <div class="message">
+            <strong>Trust tagline</strong>
+            <span class="code">Built around your workflow. Explained clearly. Supported until it feels safe.</span>
+          </div>
+          <div class="message">
+            <strong>Short pitch</strong>
+            <span class="code">AgentsOX builds custom AI chatbots, automations, and analytics for small businesses that need practical systems, not generic AI products.</span>
+          </div>
+        </div>
+        <div class="do-dont" style="margin-top: 16px;">
+          <article class="spec-card">
+            <h3>Use</h3>
+            <ul>
+              <li>Custom AI systems for business operations</li>
+              <li>Built around your real workflow</li>
+              <li>One business problem at a time</li>
+              <li>We stay until the system feels safe</li>
+            </ul>
+          </article>
+          <article class="spec-card">
+            <h3>Avoid</h3>
+            <ul>
+              <li>Magic</li>
+              <li>10x everything</li>
+              <li>Fully autonomous with no oversight</li>
+              <li>Disrupt your industry</li>
+              <li>Universal AI platform</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        AgentsOX brandbook v1.1. Source rules are maintained in <span class="code">docs/BRANDBOOK.md</span>. Design tokens are maintained in <span class="code">apps/web/public/brand/tokens.json</span>.
+      </footer>
+    </main>
+  </body>
+</html>
