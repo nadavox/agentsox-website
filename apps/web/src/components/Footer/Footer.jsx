@@ -12,6 +12,10 @@ export default function Footer() {
   function handleSmoothScroll(e, href) {
     if (!href.startsWith('#')) return;
     e.preventDefault();
+    if (window.location.pathname !== '/') {
+      window.location.assign(`/${href}`);
+      return;
+    }
     smoothScrollTo(href.replace('#', ''));
   }
 
@@ -20,7 +24,7 @@ export default function Footer() {
       <div className="footer__grid">
         <div className="footer__col">
           <a href="/" className="footer__wordmark" aria-label="AgentsOX home">
-            <img src="/brand/agentsox-mark.svg" alt="" className="footer__mark" />
+            <img src="/brand/agentsox-mark.svg" alt="" width="32" height="32" className="footer__mark" />
             <span>Agents<span className="footer__ox">OX</span></span>
           </a>
           <p className="footer__tagline">

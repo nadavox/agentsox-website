@@ -1,13 +1,13 @@
 {
   "company": {
     "name": "AgentsOX",
-    "purpose": "AgentsOX builds custom AI systems for real business operations.",
-    "positioning": "Founder-led, technical, premium, practical, and calm. The work starts from the client's real problem, not from a fixed product.",
+    "purpose": "AgentsOX designs and builds custom AI automation, AI agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation around real workflows.",
+    "positioning": "Founder-led, technical, premium, practical, and calm. The work starts from the client's real workflow problem, not from a fixed product.",
     "promise": "We listen, clarify the workflow, build the simplest useful system, and stay close until the client trusts the result.",
     "symbolMeaning": "The ox represents strength, resilience, and business systems that keep working under pressure."
   },
   "audience": [
-    "small business owners",
+    "business owners",
     "clinics and MedSpas",
     "real-estate offices",
     "coaches",
@@ -19,12 +19,12 @@
   ],
   "services": [
     {
-      "name": "AI chatbots",
-      "description": "Customer-facing or internal chat systems that answer questions, collect context, and route work to the right next step."
+      "name": "AI systems",
+      "description": "Practical AI systems, agents, internal tools, and assistants that collect context, support decisions, and route work to the right next step."
     },
     {
       "name": "Workflow automations",
-      "description": "Automations for repetitive admin, follow-up, lead handling, scheduling, CRM updates, reporting, and internal handoffs."
+      "description": "Automations for repetitive admin, follow-up, lead handling, scheduling, CRM updates, reporting, brand systems, SEO operations, and internal handoffs."
     },
     {
       "name": "Business analytics",
@@ -52,18 +52,28 @@
   "faq": [
     {
       "question": "What is AgentsOX?",
-      "answer": "AgentsOX is a founder-led AI and automation agency that builds custom systems for real business operations. We do not sell one fixed product. We listen to the workflow, clarify the problem, and build around the client's actual need.",
-      "keywords": ["what is agentsox", "what does agentsox do", "what does agents ox do", "who are you", "who you are", "who is agentsox", "about agentsox", "tell me about you", "what do you do"]
+      "answer": "AgentsOX is a founder-led AI automation studio. We build AI systems, agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation around the client's real workflow.",
+      "keywords": ["what is agentsox", "what does agentsox do", "what does agentsox", "what agentsox does", "what does agents ox do", "what agents ox does", "what agnets ox does", "who are you", "who you are", "who is agentsox", "about agentsox", "tell me about you", "what do you do"]
     },
     {
       "question": "What can AgentsOX build?",
-      "answer": "We build AI chatbots, workflow automations, lead intake systems, follow-up flows, analytics dashboards, CRM improvements, and practical systems around legacy or messy business processes.",
+      "answer": "We build AI systems, workflow automations, lead systems, internal tools, analytics dashboards, CRM improvements, branding and SEO systems, and practical tools around legacy or messy business processes.",
       "keywords": ["what can you build", "services", "what do you build", "automation", "chatbot", "analytics"]
     },
     {
       "question": "Who do you help?",
-      "answer": "We help small business owners, clinics, MedSpas, real-estate offices, coaches, e-commerce stores, local service businesses, freelancers, and non-technical teams that need practical technical systems.",
+      "answer": "We help business owners, clinics, MedSpas, real-estate offices, coaches, e-commerce stores, local service businesses, freelancers, and non-technical teams that need practical technical systems.",
       "keywords": ["who do you help", "clients", "industries", "businesses", "clinics", "real estate"]
+    },
+    {
+      "question": "What can AgentsOX do for real estate offices?",
+      "answer": "For real-estate offices, AgentsOX can help with lead intake, WhatsApp or Instagram follow-up, property inquiry routing, CRM updates, and dashboards that show missed opportunities.",
+      "keywords": ["real estate", "realtor", "property", "broker", "real estate office"]
+    },
+    {
+      "question": "What can AgentsOX do for clinics or MedSpas?",
+      "answer": "For clinics and MedSpas, AgentsOX can help with inquiry intake, service FAQs, booking support, follow-up workflows, and owner dashboards while keeping sensitive steps under human review.",
+      "keywords": ["clinic", "medspa", "med spa", "patient", "appointment"]
     },
     {
       "question": "Do you sell a fixed product?",

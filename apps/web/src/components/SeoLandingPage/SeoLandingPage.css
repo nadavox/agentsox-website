@@ -1,0 +1,132 @@
+.seo-page {
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 70%),
+    var(--color-bg-primary);
+}
+
+.seo-page__hero,
+.seo-page__section {
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.seo-page__hero {
+  min-height: 70svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.seo-page__hero h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.seo-page__lead {
+  max-width: 720px;
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.seo-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.seo-page__section {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.seo-page__section h2 {
+  max-width: 700px;
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+
+.seo-page__grid,
+.seo-page__case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.seo-page__item,
+.seo-page__case {
+  min-width: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background: var(--color-bg-secondary);
+}
+
+.seo-page__item h3,
+.seo-page__case h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.seo-page__item p,
+.seo-page__case p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.seo-page__case {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.seo-page__case:hover {
+  border-color: var(--color-accent);
+}
+
+.seo-page__case span {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.seo-page__section--split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3rem;
+}
+
+.seo-page__copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.seo-page__copy p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .seo-page__hero,
+  .seo-page__section {
+    padding: 3.5rem 1rem;
+  }
+
+  .seo-page__hero {
+    min-height: auto;
+  }
+
+  .seo-page__grid,
+  .seo-page__case-grid,
+  .seo-page__section--split {
+    grid-template-columns: 1fr;
+  }
+}

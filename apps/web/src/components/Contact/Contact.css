@@ -25,6 +25,14 @@
   color: var(--color-text-secondary);
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.contact__privacy-note {
+  max-width: 680px;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
   margin: 0 0 var(--space-lg);
 }
 
@@ -84,6 +92,16 @@
   padding: 1rem;
   border-bottom: 1px solid var(--color-border-subtle);
   background: color-mix(in srgb, var(--color-bg-secondary) 82%, transparent);
+}
+
+.contact__bot-top > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact__bot-reset {
+  min-height: 44px;
+  color: var(--color-text-secondary);
 }
 
 .contact__bot-mark {
@@ -154,6 +172,7 @@
 
 .contact__bot-option,
 .contact__bot-send {
+  min-height: 44px;
   border: 1px solid var(--color-border);
   background: var(--color-bg-tertiary);
   color: var(--color-text-primary);
@@ -238,6 +257,23 @@
   line-height: 1.55;
 }
 
+.contact__brief-edit {
+  margin-top: 0.85rem;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.contact__brief-edit:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
 /* --- Form --- */
 .contact__form {
   display: flex;
@@ -257,6 +293,13 @@
   letter-spacing: 0.04em;
   color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
+}
+
+.contact__field-error {
+  margin: 0.45rem 0 0;
+  color: var(--color-error);
+  font-size: 0.86rem;
+  line-height: 1.4;
 }
 
 .contact__input {
@@ -367,6 +410,14 @@
     gap: 2rem;
   }
 
+  .contact__info {
+    order: 2;
+  }
+
+  .contact__form-wrapper {
+    order: 1;
+  }
+
   .contact__heading {
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   }
@@ -385,6 +436,10 @@
 
   .contact__bot-message {
     max-width: 94%;
+  }
+
+  .contact__bot-option {
+    min-height: 44px;
   }
 }
 

@@ -1,39 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from '../ui/SectionWrapper';
+import { CASE_STUDIES } from '../../data/siteContent';
 import './Testimonials.css';
-
-const projects = [
-  {
-    title: '360 Basketball',
-    description:
-      'Built a full web platform for a basketball agency — connecting players with teams, managing contracts, and securing new opportunities.',
-    result: 'Live product with paying users',
-    url: 'https://360-basketball-66d8df02.base44.app/',
-    tag: 'Web App',
-    preview: '/project-previews/360-basketball.png',
-    previewAlt: '360 Basketball web platform preview',
-  },
-  {
-    title: 'Shades of the Soul',
-    description:
-      'Automated a creative process that took over 10 hours manually — reduced to under 1 hour with intelligent automation.',
-    result: '10x faster workflow',
-    url: 'https://theshadesofsoul.com/',
-    tag: 'Automation',
-    preview: '/project-previews/shades-of-the-soul.png',
-    previewAlt: 'Shades of the Soul automation workflow preview',
-  },
-  {
-    title: 'Drone Videographer',
-    description:
-      'Took a small business and created a professional landing page that converts visitors into real clients closing deals.',
-    result: 'Real clients from day one',
-    url: 'https://drone-videographer-landing.vercel.app/',
-    tag: 'Landing Page',
-    preview: '/project-previews/drone-videographer.png',
-    previewAlt: 'Drone videographer landing page preview',
-  },
-];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -56,12 +24,10 @@ export default function Testimonials() {
       </p>
 
       <div className="testimonials__grid">
-        {projects.map((p, i) => (
+        {CASE_STUDIES.map((p, i) => (
           <motion.a
             key={p.title}
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/case-studies/${p.slug}`}
             className="testimonials__card testimonials__card--link"
             variants={cardVariants}
             initial="hidden"
@@ -90,7 +56,7 @@ export default function Testimonials() {
             <p className="testimonials__text">{p.description}</p>
             <div className="testimonials__result">
               <span className="testimonials__result-dot" aria-hidden="true" />
-              {p.result}
+              {p.metric}
             </div>
           </motion.a>
         ))}

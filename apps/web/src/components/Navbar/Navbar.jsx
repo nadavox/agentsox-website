@@ -71,6 +71,10 @@ export default function Navbar() {
   function handleLinkClick(e, href) {
     e.preventDefault();
     setMenuOpen(false);
+    if (window.location.pathname !== '/') {
+      window.location.assign(`/${href}`);
+      return;
+    }
     // Delay scroll until after body overflow:hidden is removed by the useEffect
     requestAnimationFrame(() => {
       smoothScrollTo(href.replace('#', ''));
@@ -81,7 +85,7 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         <a href="/" className="navbar__wordmark" aria-label="AgentsOX home">
-          <img src="/brand/agentsox-mark.svg" alt="" className="navbar__mark" />
+          <img src="/brand/agentsox-mark.svg" alt="" width="34" height="34" className="navbar__mark" />
           <span>Agents<span className="navbar__ox">OX</span></span>
         </a>
 

@@ -27,6 +27,7 @@
 .navbar__wordmark {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   gap: 0.65rem;
   font-size: 1.5rem;
   font-weight: 700;

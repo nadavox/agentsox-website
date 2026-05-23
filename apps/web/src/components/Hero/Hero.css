@@ -126,9 +126,19 @@
   font-family: var(--font-body);
   font-size: clamp(1.05rem, 2vw, 1.3rem);
   color: var(--color-text-secondary);
-  max-width: 600px;
-  margin: 1.75rem auto 2.75rem;
+  max-width: 680px;
+  margin: 1.75rem auto 1rem;
   line-height: 1.65;
+}
+
+.hero__proof-line {
+  max-width: 680px;
+  margin: 0 auto 2.2rem;
+  color: var(--color-text-primary);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .hero__proof {
@@ -136,13 +146,13 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.65rem;
-  margin: -1.25rem auto 2.35rem;
+  margin: 0 auto 2.35rem;
 }
 
 .hero__proof span {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
+  min-height: 44px;
   padding: 0.35rem 0.75rem;
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-full);
@@ -266,21 +276,34 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 60px;
-    min-height: 90vh;
+    padding-top: 3.25rem;
+    min-height: auto;
+    align-items: flex-start;
+    padding-bottom: 2.25rem;
   }
 
   .hero__content {
     padding: 0 1rem;
   }
 
+  .hero__headline {
+    font-size: clamp(2.25rem, 12vw, 4.1rem);
+    line-height: 1.04;
+  }
+
   .hero__subheadline {
-    margin: 1.25rem auto 2.25rem;
+    margin: 1rem auto 0.85rem;
+    line-height: 1.5;
+  }
+
+  .hero__proof-line {
+    margin-bottom: 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
   }
 
   .hero__proof {
-    margin-top: -1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
   }
 
   .hero__btn {
@@ -288,17 +311,33 @@
     font-size: 0.9rem;
   }
 
+  .hero__btn--ghost {
+    display: none;
+  }
+
   .hero__scroll-indicator {
-    bottom: 1rem;
+    display: none;
   }
 
   .hero__system {
     width: 100%;
+    max-width: 358px;
     align-items: flex-start;
+    margin-top: 1.6rem;
   }
 
   .hero__system-steps {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero__eyeline {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__system {
+    display: none;
   }
 }
 

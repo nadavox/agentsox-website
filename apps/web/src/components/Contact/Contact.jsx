@@ -88,6 +88,8 @@ export default function Contact() {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
+  const [messageEdited, setMessageEdited] = useState(false);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [submitState, setSubmitState] = useState('idle');
   const [submitError, setSubmitError] = useState('');
   const [submissionCount, setSubmissionCount] = useState(() => getSubmissionCount());
@@ -96,6 +98,9 @@ export default function Contact() {
   const isRateLimited = submissionCount >= MAX_SUBMISSIONS;
   const successRef = useRef(null);
   const botViewportRef = useRef(null);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
 
   const workflowSummary = useMemo(() => buildSummary(botContext), [botContext]);
   const isNameValid = contactName.trim().length >= 2;
@@ -118,10 +123,10 @@ export default function Contact() {
   }, [isSucceeded]);
 
   useEffect(() => {
-    if (workflowSummary) {
+    if (workflowSummary && !messageEdited) {
       setContactMessage(workflowSummary);
     }
-  }, [workflowSummary]);
+  }, [messageEdited, workflowSummary]);
 
   useEffect(() => {
     const viewport = botViewportRef.current;
@@ -145,9 +150,13 @@ export default function Contact() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    setSubmitAttempted(true);
 
     if (!canSubmit) {
       e.currentTarget.reportValidity();
+      if (!isNameValid) nameRef.current?.focus();
+      else if (!isEmailValid) emailRef.current?.focus();
+      else if (!isMessageValid) messageRef.current?.focus();
       return;
     }
 
@@ -235,7 +244,7 @@ export default function Contact() {
       const message =
         error instanceof Error && error.message.includes('Too many requests')
           ? 'Too many messages were sent too quickly. Please wait a minute and try again.'
-          : 'The live bot endpoint is not connected yet. You can still use the form and send the workflow directly.';
+          : 'The assistant is unavailable right now. You can still send the workflow form or email nadav@agentsox.com.';
 
       setBotMessages((messages) => [
         ...messages,
@@ -254,6 +263,15 @@ export default function Contact() {
     sendBotMessage(botInput);
   }
 
+  function resetBot() {
+    setBotMessages(initialMessages);
+    setBotInput('');
+    setBotContext({});
+    setLeadReady(false);
+    setMessageEdited(false);
+    setContactMessage('');
+  }
+
   const latestAssistantIndex = botMessages.findLastIndex(
     (message) => message.role === 'assistant',
   );
@@ -262,11 +280,14 @@ export default function Contact() {
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
       <div className="contact__header">
         <p className="section-label">START HERE</p>
-        <h2 className="contact__heading">Try the Kind of Bot We Can Build for You</h2>
+        <h2 className="contact__heading">Start With One Workflow</h2>
         <p className="contact__text">
-          Ask about AgentsOX, or describe one workflow you want to improve. This
-          same pattern can become a client-facing bot trained on your own
-          services, process, and internal knowledge.
+          Describe one workflow, offer, or client acquisition problem you want
+          to improve. AgentsOX will shape the first useful system around it.
+        </p>
+        <p className="contact__privacy-note">
+          Do not include passwords, medical records, payment details, or other sensitive data.
+          The brief is used to understand the workflow and follow up.
         </p>
       </div>
 
@@ -274,13 +295,22 @@ export default function Contact() {
         <div className="contact__info">
           <Card className="contact__bot" padding={0} aria-label="AgentsOX workflow intake bot">
             <Card.Section className="contact__bot-top">
-              <img src="/brand/agentsox-mark.svg" alt="" className="contact__bot-mark" />
+              <img src="/brand/agentsox-mark.svg" alt="" width="42" height="42" className="contact__bot-mark" />
               <div>
                 <h3 className="contact__bot-title">AgentsOX intake bot</h3>
                 <p className="contact__bot-subtitle">
                   Answers questions and shapes a workflow brief.
                 </p>
               </div>
+              <MantineButton
+                type="button"
+                className="contact__bot-reset"
+                variant="subtle"
+                size="xs"
+                onClick={resetBot}
+              >
+                Reset
+              </MantineButton>
             </Card.Section>
 
             <ScrollArea.Autosize
@@ -333,7 +363,10 @@ export default function Contact() {
                 className="contact__bot-input"
                 value={botInput}
                 onChange={(e) => setBotInput(e.target.value)}
-                placeholder="Type an answer or ask a FAQ..."
+                aria-label="Message the AgentsOX intake bot"
+                name="bot-message"
+                autoComplete="off"
+                placeholder="Type an answer or ask a FAQ…"
                 disabled={botLoading}
               />
               <MantineButton
@@ -351,7 +384,12 @@ export default function Contact() {
           <Card className={`contact__brief${leadReady ? ' contact__brief--ready' : ''}`}>
             <h3 className="contact__next-title">Workflow brief</h3>
             {workflowSummary ? (
-              <pre>{workflowSummary}</pre>
+              <>
+                <pre>{workflowSummary}</pre>
+                <button type="button" className="contact__brief-edit" onClick={() => messageRef.current?.focus()}>
+                  Edit before sending
+                </button>
+              </>
             ) : (
               <p>Answer the bot questions and this will become the message you send.</p>
             )}
@@ -433,19 +471,27 @@ export default function Contact() {
                     Name
                   </label>
                   <input
+                    ref={nameRef}
                     id="contact-name"
                     className="contact__input"
                     type="text"
                     name="name"
+                    autoComplete="name"
                     value={contactName}
                     onChange={(event) => setContactName(event.target.value)}
-                    placeholder="Your name"
+                    placeholder="Your name…"
                     required
                     aria-required="true"
-                    aria-invalid={contactName.length > 0 && !isNameValid ? 'true' : undefined}
+                    aria-invalid={(submitAttempted || contactName.length > 0) && !isNameValid ? 'true' : undefined}
+                    aria-describedby={submitAttempted && !isNameValid ? 'contact-name-error' : undefined}
                     minLength={2}
                     disabled={isSubmitting}
                   />
+                  {submitAttempted && !isNameValid && (
+                    <p id="contact-name-error" className="contact__field-error">
+                      Enter at least 2 characters.
+                    </p>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -460,18 +506,27 @@ export default function Contact() {
                     Email
                   </label>
                   <input
+                    ref={emailRef}
                     id="contact-email"
                     className="contact__input"
                     type="email"
                     name="email"
+                    autoComplete="email"
+                    spellCheck="false"
                     value={contactEmail}
                     onChange={(event) => setContactEmail(event.target.value)}
-                    placeholder="you@company.com"
+                    placeholder="you@company.com…"
                     required
                     aria-required="true"
-                    aria-invalid={contactEmail.length > 0 && !isEmailValid ? 'true' : undefined}
+                    aria-invalid={(submitAttempted || contactEmail.length > 0) && !isEmailValid ? 'true' : undefined}
+                    aria-describedby={submitAttempted && !isEmailValid ? 'contact-email-error' : undefined}
                     disabled={isSubmitting}
                   />
+                  {submitAttempted && !isEmailValid && (
+                    <p id="contact-email-error" className="contact__field-error">
+                      Enter a valid email address.
+                    </p>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -486,19 +541,30 @@ export default function Contact() {
                     Message
                   </label>
                   <textarea
+                    ref={messageRef}
                     id="contact-message"
                     className="contact__input contact__textarea"
                     name="message"
+                    autoComplete="off"
                     value={contactMessage}
-                    onChange={(event) => setContactMessage(event.target.value)}
-                    placeholder="What workflow do you want to improve? Include the tools you use today if you know them."
+                    onChange={(event) => {
+                      setMessageEdited(true);
+                      setContactMessage(event.target.value);
+                    }}
+                    placeholder="What workflow do you want to improve? Include the tools you use today if you know them…"
                     required
                     aria-required="true"
-                    aria-invalid={contactMessage.length > 0 && !isMessageValid ? 'true' : undefined}
+                    aria-invalid={(submitAttempted || contactMessage.length > 0) && !isMessageValid ? 'true' : undefined}
+                    aria-describedby={submitAttempted && !isMessageValid ? 'contact-message-error' : undefined}
                     minLength={10}
                     rows={5}
                     disabled={isSubmitting}
                   />
+                  {submitAttempted && !isMessageValid && (
+                    <p id="contact-message-error" className="contact__field-error">
+                      Describe the workflow in at least 10 characters.
+                    </p>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -510,10 +576,10 @@ export default function Contact() {
                 >
                   <Button
                     type="submit"
-                    disabled={!canSubmit}
+                    disabled={isSubmitting || isRateLimited}
                     className="contact__submit"
                     aria-busy={isSubmitting}
-                    aria-describedby={!canSubmit ? 'contact-submit-help' : undefined}
+                    aria-describedby={!canSubmit && !isSubmitting ? 'contact-submit-help' : undefined}
                   >
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />

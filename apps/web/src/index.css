@@ -134,6 +134,32 @@ section {
   padding: 0;
 }
 
+.static-page {
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.static-page__hero {
+  padding: 2rem 0 3rem;
+}
+
+.static-page h1,
+.static-page h2,
+.static-page h3 {
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+
+.static-page section {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.static-page article {
+  margin: 1rem 0;
+}
+
 /* === Selection === */
 ::selection {
   background: var(--color-accent);

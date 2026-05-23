@@ -3,6 +3,8 @@ import { motion, useMotionValue } from 'framer-motion';
 import { smoothScrollTo } from '../../utils/smoothScroll';
 import './Hero.css';
 
+const focusAreas = ['Leads', 'Admin', 'Reporting', 'Internal tools', 'Brand & SEO'];
+
 const fadeUp = {
   hidden: { y: 32, opacity: 0 },
   visible: (delay) => ({
@@ -49,8 +51,8 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          <span className="hero__headline-accent">Custom AI systems</span> for
-          the work your business actually does
+          <span className="hero__headline-accent">AI automation</span> for
+          business operations
         </motion.h1>
 
         <motion.p
@@ -60,22 +62,31 @@ export default function Hero() {
           animate="visible"
           custom={0.38}
         >
-          AgentsOX builds chatbots, automations, and analytics around your real
-          workflow, then stays with you until the system is trusted in daily use.
+          AgentsOX designs practical AI systems around your real workflow:
+          leads, admin, reporting, support, branding, SEO, and internal tools.
         </motion.p>
+
+        <motion.div
+          className="hero__proof-line"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.42}
+        >
+          Built around the business problem, not a fixed product.
+        </motion.div>
 
         <motion.div
           className="hero__proof"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.46}
+          custom={0.48}
           aria-label="AgentsOX trust promises"
         >
-          <span>Clinics</span>
-          <span>Local services</span>
-          <span>Real estate</span>
-          <span>E-commerce</span>
+          {focusAreas.map((area) => (
+            <span key={area}>{area}</span>
+          ))}
         </motion.div>
 
         <motion.div
@@ -89,13 +100,13 @@ export default function Hero() {
             className="hero__btn hero__btn--primary"
             onClick={() => smoothScrollTo('contact')}
           >
-            Start With One Workflow
+            Audit My Workflow
           </button>
           <button
             className="hero__btn hero__btn--ghost"
             onClick={() => smoothScrollTo('services')}
           >
-            See What We Build
+            See Examples
           </button>
         </motion.div>
 
@@ -107,7 +118,7 @@ export default function Hero() {
           custom={0.64}
           aria-label="AgentsOX workflow approach"
         >
-          <img src="/brand/agentsox-mark.svg" alt="" className="hero__system-mark" />
+          <img src="/brand/agentsox-mark.svg" alt="" width="52" height="52" className="hero__system-mark" />
           <div className="hero__system-steps">
             <span>Listen</span>
             <span>Map</span>

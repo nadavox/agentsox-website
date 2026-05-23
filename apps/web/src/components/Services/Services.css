@@ -56,6 +56,22 @@
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   color: var(--color-text-secondary);
   line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.services__card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-accent);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.services__card-link:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {

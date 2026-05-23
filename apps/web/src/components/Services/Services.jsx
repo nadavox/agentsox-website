@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from '../ui/SectionWrapper';
+import { SERVICE_PAGES } from '../../data/siteContent';
 import './Services.css';
 
-const services = [
+const serviceIcons = [
   {
-    title: 'AI Chatbots',
-    description:
-      'Website, WhatsApp, or internal assistants for lead capture, FAQs, booking, routing, and business-specific workflows.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="6" y="10" width="36" height="32" rx="4" />
@@ -20,9 +18,6 @@ const services = [
     ),
   },
   {
-    title: 'Business Automations',
-    description:
-      'Scheduling, reminders, CRM updates, follow-ups, documents, notifications, and repetitive admin workflows.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 36l4-8H8a4 4 0 01-4-4V12a4 4 0 014-4h20a4 4 0 014 4v12a4 4 0 01-4 4H18l-10 8z" />
@@ -31,9 +26,6 @@ const services = [
     ),
   },
   {
-    title: 'Business Analytics',
-    description:
-      'Dashboards and reports that help owners see leads, bookings, revenue signals, bottlenecks, and work progress.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="24" cy="24" r="8" />
@@ -44,9 +36,6 @@ const services = [
     ),
   },
   {
-    title: 'Workflow Optimization',
-    description:
-      'We review the current process, remove manual steps, and connect the tools your team already depends on.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 12h10l6 24h16" />
@@ -60,9 +49,6 @@ const services = [
     ),
   },
   {
-    title: 'Training & Support',
-    description:
-      'Hands-on workshops, documentation, and post-launch support so the system is understood and trusted.',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 12h24a8 8 0 018 8v16H16a8 8 0 01-8-8V12z" />
@@ -72,6 +58,12 @@ const services = [
     ),
   },
 ];
+
+const services = SERVICE_PAGES.map((service, index) => ({
+  ...service,
+  title: service.shortTitle,
+  icon: serviceIcons[index]?.icon,
+}));
 
 const containerVariants = {
   hidden: {},
@@ -87,7 +79,7 @@ export default function Services() {
   return (
     <SectionWrapper id="services" className="services">
       <p className="section-label">WHAT WE DO</p>
-      <h2 className="services__heading">Custom Solutions, Not Generic AI Products</h2>
+      <h2 className="services__heading">AI Systems Built Around One Business Workflow</h2>
       <p className="services__description">
         We start with one business problem, map the real workflow, and build the
         system around your tools, team, and trust requirements.
@@ -101,10 +93,13 @@ export default function Services() {
         viewport={{ once: true, margin: '-100px' }}
       >
         {services.map((service) => (
-          <motion.article key={service.title} className="services__card" variants={cardVariants}>
+          <motion.article key={service.slug} className="services__card" variants={cardVariants}>
             <div className="services__card-icon">{service.icon}</div>
             <h3 className="services__card-title">{service.title}</h3>
             <p className="services__card-description">{service.description}</p>
+            <a className="services__card-link" href={`/${service.slug}`}>
+              Explore {service.title}
+            </a>
           </motion.article>
         ))}
       </motion.div>

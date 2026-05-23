@@ -19,6 +19,29 @@ export const BUSINESS_OPTIONS = [
   'Other',
 ];
 
+const INDUSTRY_GUIDANCE = [
+  {
+    match: ['real estate', 'realtor', 'property', 'broker'],
+    answer:
+      'For a real-estate office, AgentsOX can help with lead intake, WhatsApp or Instagram follow-up, property inquiry routing, CRM updates, and owner visibility into missed opportunities.',
+  },
+  {
+    match: ['clinic', 'medspa', 'med spa', 'patient', 'appointment'],
+    answer:
+      'For a clinic or MedSpa, AgentsOX can help with inquiry intake, service FAQs, booking support, follow-up workflows, and dashboards while keeping sensitive steps under human review.',
+  },
+  {
+    match: ['local service', 'contractor', 'cleaning', 'repair', 'quote', 'dispatch'],
+    answer:
+      'For a local service business, AgentsOX can help capture after-hours inquiries, qualify quote requests, automate follow-up, and route jobs or handoffs to the right person.',
+  },
+  {
+    match: ['ecommerce', 'e commerce', 'shop', 'store', 'order'],
+    answer:
+      'For e-commerce teams, AgentsOX can help with support FAQs, order-status routing, post-purchase follow-up, customer segmentation, and reporting around repeated issues.',
+  },
+];
+
 export const SUCCESS_GOAL_OPTIONS = [
   'Faster replies',
   'Fewer missed leads',
@@ -30,7 +53,7 @@ export const SUCCESS_GOAL_OPTIONS = [
 export const SYSTEM_PROMPT = `You are the AgentsOX intake bot.
 
 Business context:
-- AgentsOX builds custom AI systems, chatbots, automations, and analytics for small business owners, clinics, real-estate offices, coaches, e-commerce stores, local services, freelancers, and non-technical businesses with legacy systems.
+- AgentsOX builds custom AI automation, AI agents, internal tools, reporting dashboards, lead systems, branding, SEO, chatbots, and workflow automation for business owners, clinics, real-estate offices, coaches, e-commerce stores, local services, freelancers, and non-technical businesses with legacy systems.
 - The brand promise is founder-led, technical, premium, calm, and practical.
 - The buyer should feel heard, safe, and guided. Avoid hype, generic AI claims, mystical language, and developer-only jargon.
 
@@ -65,7 +88,15 @@ export function getLastUserMessage(messages: ChatMessage[]): string {
 }
 
 function normalizeText(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  return text
+    .toLowerCase()
+    .replace(/\bagnets\s*ox\b/g, 'agentsox')
+    .replace(/\bagents\s*ox\b/g, 'agentsox')
+    .replace(/\bagent\s*sox\b/g, 'agentsox')
+    .replace(/\bagent\s*ox\b/g, 'agentsox')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export function isGreetingOrTooVague(text: string): boolean {
@@ -203,6 +234,52 @@ function summarizeWorkflow(context: IntakeContext, details: string): string {
   ].join('\n');
 }
 
+function findIndustryAnswer(text: string): string | null {
+  const normalized = normalizeText(text);
+  const looksLikeQuestion =
+    normalized.includes('what') ||
+    normalized.includes('how') ||
+    normalized.includes('can you') ||
+    normalized.includes('help') ||
+    text.includes('?');
+
+  if (!looksLikeQuestion) return null;
+
+  const guidance = INDUSTRY_GUIDANCE.find((item) =>
+    item.match.some((term) => normalized.includes(term)),
+  );
+
+  return guidance?.answer || null;
+}
+
+function commandReply(text: string): IntakeResponse | null {
+  const normalized = normalizeText(text);
+
+  if (['reset', 'start over', 'restart', 'clear'].includes(normalized)) {
+    return {
+      context: {},
+      reply: 'Reset. Tell me one workflow that feels slow, manual, missed, or hard to trust.',
+      options: FIRST_OPTIONS,
+      renderOptions: true,
+      optionType: 'problem_category',
+      leadReady: false,
+    };
+  }
+
+  if (normalized.includes('edit problem') || normalized.includes('change problem')) {
+    return {
+      context: {},
+      reply: 'No problem. What workflow should I use instead?',
+      options: FIRST_OPTIONS,
+      renderOptions: true,
+      optionType: 'problem_category',
+      leadReady: false,
+    };
+  }
+
+  return null;
+}
+
 function mergeDetails(existing = '', next: string): string {
   const normalizedExisting = normalizeText(existing);
   const normalizedNext = normalizeText(next);
@@ -257,18 +334,20 @@ function faqPreviewReply(text: string, context: IntakeContext): IntakeResponse |
   const answer = findFaqAnswer(text);
   if (!answer) return null;
 
-  const next = getNextIntakeQuestion(context);
   return {
     context,
-    reply: `${answer} ${next.reply}`,
-    options: next.options,
-    renderOptions: next.renderOptions,
-    optionType: next.optionType,
+    reply: `${answer} If you want, tell me what you want to improve and I will shape the next step.`,
+    options: [],
+    renderOptions: false,
+    optionType: undefined,
     leadReady: false,
   };
 }
 
 export function localPreviewReply(text: string, context: IntakeContext): IntakeResponse {
+  const command = commandReply(text);
+  if (command) return command;
+
   if (!context.problem && (isGreetingOrTooVague(text) || isMetaHelpQuestion(text))) {
     return {
       context,
@@ -277,6 +356,19 @@ export function localPreviewReply(text: string, context: IntakeContext): IntakeR
       options: FIRST_OPTIONS,
       renderOptions: true,
       optionType: 'problem_category',
+      leadReady: false,
+    };
+  }
+
+  const industryAnswer = findIndustryAnswer(text);
+  if (industryAnswer) {
+    const next = getNextIntakeQuestion(context);
+    return {
+      context,
+      reply: `${industryAnswer} ${next.reply}`,
+      options: next.options,
+      renderOptions: next.renderOptions,
+      optionType: next.optionType,
       leadReady: false,
     };
   }
