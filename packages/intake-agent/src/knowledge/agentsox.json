@@ -106,8 +106,8 @@
       "keywords": ["price", "pricing", "cost", "expensive", "budget"]
     },
     {
-      "question": "What happens after I send the workflow?",
-      "answer": "AgentsOX reviews the workflow brief, clarifies the current tools and failure points, then suggests the simplest useful system or automation to build first.",
+      "question": "What happens after I send the project?",
+      "answer": "AgentsOX reviews the project snapshot, clarifies the business goal, current tools, gaps, and failure points, then suggests the simplest useful system or technical next step to discuss first.",
       "keywords": ["after send", "what happens next", "next step", "reply", "contact"]
     }
   ],

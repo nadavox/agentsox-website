@@ -4,6 +4,7 @@ export type {
   IntakeContext,
   IntakeRequest,
   IntakeResponse,
+  ProjectContext,
 } from '@agentsox/contracts';
 
 export interface Env {
@@ -14,4 +15,5 @@ export interface Env {
   WORKERS_AI_MODEL?: string;
   ALLOWED_ORIGINS?: string;
   CONTACT_ENDPOINT?: string;
+  OPENROUTER_API_KEY?: string;
 }

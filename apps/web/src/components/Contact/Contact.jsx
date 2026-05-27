@@ -1,15 +1,7 @@
-import { useRef, useEffect, useMemo, useState } from 'react';
-import {
-  Button as MantineButton,
-  Card,
-  Group,
-  Paper,
-  ScrollArea,
-  Stack,
-  Text,
-  TextInput,
-} from '@mantine/core';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Card } from '@mantine/core';
 import { motion, AnimatePresence } from 'framer-motion';
+import IntakeChat from '../IntakeChat/IntakeChat';
 import SectionWrapper from '../ui/SectionWrapper';
 import Button from '../ui/Button';
 import './Contact.css';
@@ -39,16 +31,20 @@ const FIRST_OPTIONS = [
   'Not sure yet',
 ];
 
-const initialMessages = [
+const INITIAL_MESSAGES = [
   {
+    id: 'init',
     role: 'assistant',
-    content:
-      'Tell me one workflow that feels slow, manual, missed, or hard to trust. I will help shape it before you send it.',
-    options: FIRST_OPTIONS,
-    renderOptions: true,
-    optionType: 'problem_category',
+    parts: [
+      {
+        type: 'text',
+        text: 'What business result or tech problem should we look at first?',
+      },
+    ],
   },
 ];
+
+const INITIAL_CHIPS = { init: FIRST_OPTIONS };
 
 function getSubmissionCount() {
   try {
@@ -66,12 +62,20 @@ function incrementSubmissionCount() {
   return count;
 }
 
-function buildSummary(context) {
+function buildProjectSummary(context) {
+  if (context.summary) return context.summary;
+
   const parts = [];
-  if (context.problem) parts.push(`Problem: ${context.problem}`);
+  if (context.challenge) parts.push(`Challenge: ${context.challenge}`);
   if (context.businessType) parts.push(`Business: ${context.businessType}`);
-  if (context.tools) parts.push(`Current tools: ${context.tools}`);
-  if (context.details) parts.push(`Details: ${context.details}`);
+  if (context.currentProcess) parts.push(`Current process: ${context.currentProcess}`);
+  if (context.currentTools) parts.push(`Tools / channels: ${context.currentTools}`);
+  if (context.desiredOutcome) parts.push(`Desired result: ${context.desiredOutcome}`);
+  if (context.opportunity) parts.push(`Opportunity: ${context.opportunity}`);
+  if (context.suggestedFirstStep) parts.push(`Suggested first step: ${context.suggestedFirstStep}`);
+  if (Array.isArray(context.unknowns) && context.unknowns.length > 0) {
+    parts.push(`Unknowns: ${context.unknowns.join(', ')}`);
+  }
   return parts.join('\n');
 }
 
@@ -80,11 +84,9 @@ function isValidEmail(value) {
 }
 
 export default function Contact() {
-  const [botMessages, setBotMessages] = useState(initialMessages);
-  const [botInput, setBotInput] = useState('');
   const [botContext, setBotContext] = useState({});
-  const [leadReady, setLeadReady] = useState(false);
-  const [botLoading, setBotLoading] = useState(false);
+  const [readyToContact, setReadyToContact] = useState(false);
+
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
@@ -97,12 +99,24 @@ export default function Contact() {
   const isSucceeded = submitState === 'succeeded';
   const isRateLimited = submissionCount >= MAX_SUBMISSIONS;
   const successRef = useRef(null);
-  const botViewportRef = useRef(null);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const messageRef = useRef(null);
 
-  const workflowSummary = useMemo(() => buildSummary(botContext), [botContext]);
+  const projectSummary = useMemo(() => buildProjectSummary(botContext), [botContext]);
+
+  const handleContextChange = useCallback((context) => {
+    setBotContext(context);
+  }, []);
+  const handleReadyChange = useCallback((ready) => {
+    setReadyToContact(ready);
+  }, []);
+  const handleResetForm = useCallback(() => {
+    setBotContext({});
+    setReadyToContact(false);
+    setMessageEdited(false);
+    setContactMessage('');
+  }, []);
   const isNameValid = contactName.trim().length >= 2;
   const isEmailValid = isValidEmail(contactEmail);
   const isMessageValid = contactMessage.trim().length >= 10;
@@ -113,8 +127,8 @@ export default function Contact() {
     !isSubmitting &&
     !isRateLimited;
   const submitHelpText = isRateLimited
-    ? 'We received your message. Please wait before sending another workflow.'
-    : 'Complete your name, a valid email, and the workflow brief before sending.';
+    ? 'We received your message. Please wait before sending another project.'
+    : 'Complete your name, a valid email, and the project snapshot before sending.';
 
   useEffect(() => {
     if (isSucceeded && successRef.current) {
@@ -123,30 +137,10 @@ export default function Contact() {
   }, [isSucceeded]);
 
   useEffect(() => {
-    if (workflowSummary && !messageEdited) {
-      setContactMessage(workflowSummary);
+    if (projectSummary && !messageEdited) {
+      setContactMessage(projectSummary);
     }
-  }, [messageEdited, workflowSummary]);
-
-  useEffect(() => {
-    const viewport = botViewportRef.current;
-    if (!viewport) return undefined;
-
-    const scrollToBottom = () => {
-      viewport.scrollTo({
-        top: viewport.scrollHeight,
-        behavior: 'smooth',
-      });
-    };
-
-    const frame = requestAnimationFrame(scrollToBottom);
-    const timeout = window.setTimeout(scrollToBottom, 80);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.clearTimeout(timeout);
-    };
-  }, [botMessages, botLoading]);
+  }, [messageEdited, projectSummary]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -197,201 +191,44 @@ export default function Contact() {
     }
   }
 
-  async function sendBotMessage(value) {
-    const text = value.trim();
-    if (!text || botLoading) return;
-
-    const userMessage = { role: 'user', content: text };
-    const nextMessages = [...botMessages, userMessage];
-    setBotMessages(nextMessages);
-    setBotInput('');
-    setBotLoading(true);
-
-    try {
-      if (!BOT_ENDPOINT) {
-        throw new Error('Bot endpoint is not configured');
-      }
-
-      const response = await fetch(BOT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          siteId: BOT_SITE_ID,
-          context: botContext,
-          messages: nextMessages.map(({ role, content }) => ({ role, content })),
-        }),
-      });
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Bot endpoint failed');
-      }
-
-      const nextContext = data.context || botContext;
-      setBotContext(nextContext);
-      setLeadReady(Boolean(data.leadReady));
-      setBotMessages((messages) => [
-        ...messages,
-        {
-          role: 'assistant',
-          content: data.reply || data.message || 'Got it. What else should I know?',
-          options: data.options,
-          renderOptions: Boolean(data.renderOptions),
-          optionType: data.optionType,
-        },
-      ]);
-    } catch (error) {
-      const message =
-        error instanceof Error && error.message.includes('Too many requests')
-          ? 'Too many messages were sent too quickly. Please wait a minute and try again.'
-          : 'The assistant is unavailable right now. You can still send the workflow form or email nadav@agentsox.com.';
-
-      setBotMessages((messages) => [
-        ...messages,
-        {
-          role: 'assistant',
-          content: message,
-        },
-      ]);
-    } finally {
-      setBotLoading(false);
-    }
-  }
-
-  function handleBotSubmit(e) {
-    e.preventDefault();
-    sendBotMessage(botInput);
-  }
-
-  function resetBot() {
-    setBotMessages(initialMessages);
-    setBotInput('');
-    setBotContext({});
-    setLeadReady(false);
-    setMessageEdited(false);
-    setContactMessage('');
-  }
-
-  const latestAssistantIndex = botMessages.findLastIndex(
-    (message) => message.role === 'assistant',
-  );
-
   return (
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
       <div className="contact__header">
         <p className="section-label">START HERE</p>
-        <h2 className="contact__heading">Start With One Workflow</h2>
+        <h2 className="contact__heading">Start With One Business Problem</h2>
         <p className="contact__text">
-          Describe one workflow, offer, or client acquisition problem you want
-          to improve. AgentsOX will shape the first useful system around it.
+          Describe a business result, tech problem, client acquisition issue,
+          or system idea. AgentsOX will help shape the first useful next step.
         </p>
         <p className="contact__privacy-note">
           Do not include passwords, medical records, payment details, or other sensitive data.
-          The brief is used to understand the workflow and follow up.
+          The snapshot is used to understand the project and follow up.
         </p>
       </div>
 
       <div className="contact__columns">
         <div className="contact__info">
-          <Card className="contact__bot" padding={0} aria-label="AgentsOX workflow intake bot">
-            <Card.Section className="contact__bot-top">
-              <img src="/brand/agentsox-mark.svg" alt="" width="42" height="42" className="contact__bot-mark" />
-              <div>
-                <h3 className="contact__bot-title">AgentsOX intake bot</h3>
-                <p className="contact__bot-subtitle">
-                  Answers questions and shapes a workflow brief.
-                </p>
-              </div>
-              <MantineButton
-                type="button"
-                className="contact__bot-reset"
-                variant="subtle"
-                size="xs"
-                onClick={resetBot}
-              >
-                Reset
-              </MantineButton>
-            </Card.Section>
+          <IntakeChat
+            endpoint={BOT_ENDPOINT}
+            siteId={BOT_SITE_ID}
+            initialMessages={INITIAL_MESSAGES}
+            initialChips={INITIAL_CHIPS}
+            onContextChange={handleContextChange}
+            onReadyChange={handleReadyChange}
+            onReset={handleResetForm}
+          />
 
-            <ScrollArea.Autosize
-              mah={420}
-              className="contact__bot-scroll"
-              viewportRef={botViewportRef}
-            >
-              <Stack className="contact__bot-messages" gap="sm">
-                {botMessages.map((message, index) => (
-                  <Paper
-                    key={`${message.role}-${index}`}
-                    className={`contact__bot-message contact__bot-message--${message.role}`}
-                  >
-                    <Text>{message.content}</Text>
-                    {message.role === 'assistant' &&
-                      index === latestAssistantIndex &&
-                      message.renderOptions === true &&
-                      Array.isArray(message.options) &&
-                      message.options.length > 0 &&
-                      !botLoading && (
-                      <Group className="contact__bot-options" gap="xs">
-                        {message.options.map((option) => (
-                          <MantineButton
-                            key={option}
-                            type="button"
-                            className="contact__bot-option"
-                            variant="outline"
-                            size="xs"
-                            radius="xl"
-                            onClick={() => sendBotMessage(option)}
-                            disabled={botLoading}
-                          >
-                            {option}
-                          </MantineButton>
-                        ))}
-                      </Group>
-                    )}
-                  </Paper>
-                ))}
-                {botLoading && (
-                  <Paper className="contact__bot-message contact__bot-message--assistant">
-                    <Text>Thinking through the workflow...</Text>
-                  </Paper>
-                )}
-              </Stack>
-            </ScrollArea.Autosize>
-
-            <form className="contact__bot-input-row" onSubmit={handleBotSubmit}>
-              <TextInput
-                className="contact__bot-input"
-                value={botInput}
-                onChange={(e) => setBotInput(e.target.value)}
-                aria-label="Message the AgentsOX intake bot"
-                name="bot-message"
-                autoComplete="off"
-                placeholder="Type an answer or ask a FAQ…"
-                disabled={botLoading}
-              />
-              <MantineButton
-                type="submit"
-                className="contact__bot-send"
-                variant="outline"
-                radius="xl"
-                disabled={botLoading || !botInput.trim()}
-              >
-                Send
-              </MantineButton>
-            </form>
-          </Card>
-
-          <Card className={`contact__brief${leadReady ? ' contact__brief--ready' : ''}`}>
-            <h3 className="contact__next-title">Workflow brief</h3>
-            {workflowSummary ? (
+          <Card className={`contact__brief${readyToContact ? ' contact__brief--ready' : ''}`}>
+            <h3 className="contact__next-title">Project snapshot</h3>
+            {projectSummary ? (
               <>
-                <pre>{workflowSummary}</pre>
+                <pre>{projectSummary}</pre>
                 <button type="button" className="contact__brief-edit" onClick={() => messageRef.current?.focus()}>
                   Edit before sending
                 </button>
               </>
             ) : (
-              <p>Answer the bot questions and this will become the message you send.</p>
+              <p>Chat with the assistant and this will become the message you send.</p>
             )}
           </Card>
         </div>
@@ -551,7 +388,7 @@ export default function Contact() {
                       setMessageEdited(true);
                       setContactMessage(event.target.value);
                     }}
-                    placeholder="What workflow do you want to improve? Include the tools you use today if you know them…"
+                    placeholder="What do you want to improve or build? Include tools if you know them…"
                     required
                     aria-required="true"
                     aria-invalid={(submitAttempted || contactMessage.length > 0) && !isMessageValid ? 'true' : undefined}
@@ -562,7 +399,7 @@ export default function Contact() {
                   />
                   {submitAttempted && !isMessageValid && (
                     <p id="contact-message-error" className="contact__field-error">
-                      Describe the workflow in at least 10 characters.
+                      Describe the project in at least 10 characters.
                     </p>
                   )}
                 </motion.div>
@@ -584,7 +421,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />
                     ) : (
-                      'Send Workflow'
+                      'Send Project'
                     )}
                   </Button>
                   {!canSubmit && !isSubmitting && (

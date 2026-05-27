@@ -1,0 +1,17 @@
+{
+  "name": "@agentsox/intake-agent",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./prompts": "./src/prompts/index.ts",
+    "./tools": "./src/tools/index.ts",
+    "./knowledge": "./src/knowledge/agentsox.json"
+  },
+  "dependencies": {
+    "ai": "^6.0.0",
+    "zod": "^4.4.3"
+  }
+}

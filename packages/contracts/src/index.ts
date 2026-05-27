@@ -5,27 +5,32 @@ export interface ChatMessage {
   content: string;
 }
 
-export interface IntakeContext {
-  problem?: string;
+export interface ProjectContext {
+  challenge?: string;
   businessType?: string;
-  tools?: string;
-  details?: string;
+  currentProcess?: string;
+  currentTools?: string;
+  desiredOutcome?: string;
+  unknowns?: string[];
+  opportunity?: string;
+  suggestedFirstStep?: string;
   summary?: string;
 }
 
+export type IntakeContext = ProjectContext;
+
 export interface IntakeRequest {
   siteId?: string;
-  context?: IntakeContext;
+  context?: ProjectContext;
   messages?: ChatMessage[];
 }
 
 export interface IntakeResponse {
   reply: string;
-  context: IntakeContext;
-  options?: string[];
-  renderOptions?: boolean;
-  optionType?: 'problem_category' | 'business_type' | 'success_goal';
-  leadReady: boolean;
+  context: ProjectContext;
+  chips?: string[];
+  readyToContact: boolean;
+  contactSummary?: string;
 }
 
 export interface ContactRequest {
