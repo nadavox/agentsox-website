@@ -236,3 +236,5 @@ HTML (/, /<route>/, SPA fallback)  →  Cloudflare default: public, max-age=0, m
 ```
 Note: `_headers`/`_redirects` apply to static-asset responses only (not Worker code) — fine here,
 since `agentsox-web` is assets-only.
+
+> Build watch paths configured per worker on 2026-05-30 — each worker rebuilds only on its own code + the shared packages it uses.
