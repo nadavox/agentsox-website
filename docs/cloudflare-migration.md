@@ -242,3 +242,5 @@ since `agentsox-web` is assets-only.
 > Build watch paths use a single `*` per Cloudflare matcher (not `**`); verified each worker rebuilds only on its own code + shared packages.
 
 > Per-worker build watch paths use a single `*`: web watches apps/web; each bot watches its own dir + the shared packages it uses.
+
+<!-- watch-path final confirmation -->
