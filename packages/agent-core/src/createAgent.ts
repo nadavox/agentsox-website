@@ -146,7 +146,22 @@ Now write your single reply to the visitor in your normal voice - 2-3 short sent
               },
             });
             await drain(textPass.toUIMessageStream({ sendStart: false, sendFinish: false }), false);
-            await textPass.text;
+
+            // Safety net: small models occasionally return no text after a "final" tool
+            // call, which would leave a blank bubble. If the text pass produced nothing,
+            // emit a deterministic fallback so the visitor always gets a reply. A visible
+            // fallback is the documented handling - never silently drop the turn.
+            const replyText = (await textPass.text).trim();
+            if (!replyText) {
+              const fallback = readyFired
+                ? "Got what I need for now - add your name and email on the right and we'll come back with a first step."
+                : "Tell me a bit more about what you're running into and we'll work out the first step together.";
+              const id = 'fallback-reply';
+              const write = (chunk: unknown) => writer.write(chunk as Parameters<typeof writer.write>[0]);
+              write({ type: 'text-start', id });
+              write({ type: 'text-delta', id, delta: fallback });
+              write({ type: 'text-end', id });
+            }
             return;
           }
 
