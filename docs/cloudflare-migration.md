@@ -238,3 +238,5 @@ Note: `_headers`/`_redirects` apply to static-asset responses only (not Worker c
 since `agentsox-web` is assets-only.
 
 > Build watch paths configured per worker on 2026-05-30 — each worker rebuilds only on its own code + the shared packages it uses.
+
+> Build watch paths use a single `*` per Cloudflare matcher (not `**`); verified each worker rebuilds only on its own code + shared packages.
