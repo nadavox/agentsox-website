@@ -1,0 +1,43 @@
+# Cloudflare Workers Static Assets — response headers.
+# Vite copies public/ into dist/, and Workers parses dist/_headers (it is not served itself).
+# Ports the previous Vercel header policy (see the old vercel.json).
+#
+# IMPORTANT — these rules apply to STATIC-ASSET responses only, not to dynamic Worker code
+# (this is an assets-only Worker, so that covers everything we serve here).
+#
+# IMPORTANT — overlapping rules that set the SAME header are COMMA-JOINED (there is no
+# "most specific wins"). So `/*` below sets ONLY Strict-Transport-Security, never
+# Cache-Control, and every Cache-Control pattern is non-overlapping with the others.
+#
+# HTML (`/`, `/<route>/`, the SPA fallback) is intentionally left to Cloudflare's default
+# `Cache-Control: public, max-age=0, must-revalidate` (+ ETag) — which already matches the
+# previous Vercel behavior, so no explicit HTML rule is needed (and `/*.html` would not even
+# match the trailing-slash directory routes this site prerenders).
+
+# Security header on every response (preserves the prior Vercel HSTS value: 2 years).
+/*
+  Strict-Transport-Security: max-age=63072000
+
+# Content-hashed build assets are safe to cache forever.
+# NOTE: Workers does NOT do this automatically — its default is max-age=0, must-revalidate —
+# so this rule is required to keep Vercel's year-long immutable caching of fingerprinted files.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Non-hashed static files: 1-day cache (matches the prior Vercel policy).
+/favicon*
+  Cache-Control: public, max-age=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+/icon-*
+  Cache-Control: public, max-age=86400
+/icons.svg
+  Cache-Control: public, max-age=86400
+/og-image*
+  Cache-Control: public, max-age=86400
+/manifest.json
+  Cache-Control: public, max-age=86400
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400

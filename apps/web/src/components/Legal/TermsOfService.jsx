@@ -46,7 +46,7 @@ export default function TermsOfService() {
       <p>Nothing on the website, in workshops, or in AI-generated materials is legal, financial, medical, tax, employment, cybersecurity, or other regulated professional advice. You are responsible for obtaining professional advice where appropriate.</p>
 
       <h2>7. Third-Party Tools and Platforms</h2>
-      <p>Our website and services may use or refer to third-party services such as Vercel, Cloudflare Workers, Resend, Google Fonts, business email providers, Claude Code, ChatGPT, OpenRouter, MCP servers, hosting providers, messaging platforms, and other developer or automation tools.</p>
+      <p>Our website and services may use or refer to third-party services such as Cloudflare, Cloudflare Workers, Resend, Google Fonts, business email providers, Claude Code, ChatGPT, OpenRouter, MCP servers, hosting providers, messaging platforms, and other developer or automation tools.</p>
       <ul>
         <li>Third-party services are governed by their own terms, privacy policies, pricing, availability, security practices, and data handling rules.</li>
         <li>We are not responsible for third-party outages, policy changes, pricing changes, model behavior, or security incidents outside our control.</li>

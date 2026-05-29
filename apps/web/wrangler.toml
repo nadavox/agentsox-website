@@ -1,0 +1,23 @@
+# Assets-only Worker for the AgentsOX marketing site (apps/web).
+# No `main` script — this Worker serves the prerendered Vite build in ./dist.
+# Top-level config (no [env.*]) so a plain `wrangler deploy` from apps/web is correct.
+name = "agentsox-web"
+compatibility_date = "2026-05-23"
+
+[assets]
+directory = "./dist"
+# Unknown paths fall back to the root index.html for client-side routing.
+# Prerendered routes (e.g. /ai-chatbots/index.html) still resolve to their own file.
+not_found_handling = "single-page-application"
+# Serve prerendered routes at their canonical no-trailing-slash URL (e.g. /ai-chatbots),
+# matching the <link rel="canonical"> tags and sitemap.xml. The default
+# "auto-trailing-slash" would 307-redirect /ai-chatbots -> /ai-chatbots/, which Vercel did not.
+html_handling = "drop-trailing-slash"
+
+# Added at cutover (Phase 4) — attaches the apex as this Worker's custom domain.
+# Until then the Worker is reachable only at agentsox-web.<account>.workers.dev,
+# which leaves production (Vercel) untouched.
+# (Remove the conflicting apex A records first — A and CNAME cannot coexist on one name.)
+# [[routes]]
+# pattern = "agentsox.com"
+# custom_domain = true

@@ -9,7 +9,7 @@ answer FAQs, shape a workflow brief, and submit that brief by email.
 ## Tech Stack
 
 - Frontend: React 19, Vite 8, plain CSS by component in `apps/web`.
-- Hosting: Vercel for `https://agentsox.com`.
+- Hosting: Cloudflare Workers (Static Assets) for `https://agentsox.com`.
 - Intake Worker: Cloudflare Worker in `workers/intake` for `/api/chat`.
 - Mail Worker: Cloudflare Worker in `workers/mail` for `/api/contact`.
 - AI: Cloudflare Workers AI in production, deterministic local preview in dev.
@@ -126,7 +126,8 @@ npm --workspace @agentsox/mail-worker run deploy
 npm --workspace @agentsox/intake-worker run deploy
 ```
 
-Website deployment is handled by Vercel after pushing to `main`.
+Website deployment is handled by Cloudflare Workers Builds after pushing to `main`
+(see `docs/cloudflare-migration.md` for the migration/cutover runbook).
 
 Current production endpoints:
 

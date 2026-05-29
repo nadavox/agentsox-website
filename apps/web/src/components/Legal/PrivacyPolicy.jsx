@@ -25,7 +25,7 @@ export default function PrivacyPolicy() {
         <li><strong>Contact form data:</strong> Name, email address, message content, and technical submission metadata processed through our website contact endpoint.</li>
         <li><strong>Email and direct communications:</strong> Information you choose to send us, including project requirements, company details, files, or scheduling information.</li>
         <li><strong>Workshop and service information:</strong> Information needed to plan or deliver a workshop or project, such as participant names, business context, workflow requirements, and tool preferences.</li>
-        <li><strong>Website analytics:</strong> Aggregated page view and device information collected through Vercel Web Analytics. Vercel states that this analytics product does not use third-party cookies and is designed to avoid identifying individual visitors.</li>
+        <li><strong>Website analytics:</strong> Aggregated page view and device information collected through Cloudflare Web Analytics. Cloudflare states that this analytics product does not use client-side state such as cookies or local storage to track visitors and is designed to avoid identifying or fingerprinting individual visitors.</li>
         <li><strong>Local browser storage:</strong> We store small preferences in your browser, such as selected theme and limited contact-form abuse prevention state. This is local to your device.</li>
         <li><strong>Server and security logs:</strong> Hosting providers may process IP addresses, browser information, timestamps, and request metadata to operate and secure the website.</li>
       </ul>
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
       <h2>7. Third-Party Services</h2>
       <p>We use third-party providers to operate the website and services. These providers process information under their own terms and privacy policies, and in some cases act as processors or service providers for us.</p>
       <ul>
-        <li><strong>Vercel:</strong> Website hosting, deployment, security logs, and privacy-focused web analytics.</li>
+        <li><strong>Cloudflare:</strong> Website hosting, deployment, content delivery, security logs, and privacy-focused web analytics (Cloudflare Web Analytics).</li>
         <li><strong>Cloudflare Workers:</strong> Contact form processing, bot API handling, request validation, and abuse prevention.</li>
         <li><strong>Resend:</strong> Email delivery for contact form notifications.</li>
         <li><strong>Google Fonts:</strong> Font delivery for the website.</li>
@@ -72,7 +72,7 @@ export default function PrivacyPolicy() {
       </ul>
 
       <h2>8. Cookies and Local Storage</h2>
-      <p>We do not currently use advertising cookies. Vercel Web Analytics is described by Vercel as not using third-party cookies. The website does use local browser storage for theme preference and contact-form abuse prevention. You can clear local storage through your browser settings.</p>
+      <p>We do not currently use advertising cookies. Cloudflare Web Analytics is described by Cloudflare as not using client-side cookies to track visitors. The website does use local browser storage for theme preference and contact-form abuse prevention. You can clear local storage through your browser settings.</p>
       <p>If we later add cookies or tracking technologies that require consent, we will update this policy and add an appropriate consent mechanism before using them.</p>
 
       <h2>9. International Transfers</h2>
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
       <ul>
         <li><strong>Contact inquiries:</strong> Usually retained for up to 24 months after the last interaction, unless needed for an active project, dispute, or legal obligation.</li>
         <li><strong>Workshop and project records:</strong> Retained for the duration of the engagement and for a reasonable period afterward for business records, continuity, support, tax, accounting, and legal purposes.</li>
-        <li><strong>Analytics:</strong> Handled by Vercel in aggregated form according to Vercel Web Analytics documentation and settings.</li>
+        <li><strong>Analytics:</strong> Handled by Cloudflare in aggregated form according to Cloudflare Web Analytics documentation and settings.</li>
         <li><strong>Local storage:</strong> Remains on your device until you clear it or the browser removes it.</li>
       </ul>
 
