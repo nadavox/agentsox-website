@@ -16,7 +16,7 @@ export default function Testimonials() {
   return (
     <SectionWrapper id="testimonials" className="testimonials">
       <p className="section-label">CLIENT WORK</p>
-      <h2 className="testimonials__heading">Proof That We Execute</h2>
+      <h2 className="testimonials__heading">A few things we&apos;ve built</h2>
       <p className="testimonials__intro">
         Real projects delivered across web platforms, automation, and
         client-facing systems. The goal is always the same: turn a business
@@ -54,6 +54,9 @@ export default function Testimonials() {
             </div>
             <h3 className="testimonials__name">{p.title}</h3>
             <p className="testimonials__text">{p.description}</p>
+            {p.quote && (
+              <p className="testimonials__quote">{`"${p.quote}"`}</p>
+            )}
             <div className="testimonials__result">
               <span className="testimonials__result-dot" aria-hidden="true" />
               {p.metric}

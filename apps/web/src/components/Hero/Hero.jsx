@@ -51,8 +51,8 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          <span className="hero__headline-accent">AI automation</span> for
-          business operations
+          <span className="hero__headline-accent">Custom tech</span>, built
+          around how your business actually works
         </motion.h1>
 
         <motion.p
@@ -62,8 +62,9 @@ export default function Hero() {
           animate="visible"
           custom={0.38}
         >
-          AgentsOX designs practical AI systems around your real workflow:
-          leads, admin, reporting, support, branding, SEO, and internal tools.
+          We sit with you, find what is actually slowing the business down,
+          and build the system that fixes it - for companies of any size, in
+          any industry.
         </motion.p>
 
         <motion.div
@@ -104,9 +105,9 @@ export default function Hero() {
           </button>
           <button
             className="hero__btn hero__btn--ghost"
-            onClick={() => smoothScrollTo('services')}
+            onClick={() => smoothScrollTo('testimonials')}
           >
-            See Examples
+            See Our Work
           </button>
         </motion.div>
 

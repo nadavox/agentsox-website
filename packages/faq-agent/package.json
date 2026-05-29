@@ -1,5 +1,5 @@
 {
-  "name": "@agentsox/intake-agent",
+  "name": "@agentsox/faq-agent",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,7 +8,7 @@
     ".": "./src/index.ts",
     "./prompts": "./src/prompts/index.ts",
     "./tools": "./src/tools/index.ts",
-    "./knowledge": "./src/knowledge/agentsox.json"
+    "./knowledge": "./src/knowledge/faq.json"
   },
   "dependencies": {
     "@agentsox/agent-core": "file:../agent-core",

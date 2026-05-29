@@ -99,7 +99,7 @@ export default function IntakeChat({
         />
         <div>
           <h3 className="contact__bot-title">AgentsOX intake bot</h3>
-          <p className="contact__bot-subtitle">Helps clarify the project and next step.</p>
+          <p className="contact__bot-subtitle">Tell me what&apos;s slowing you down.</p>
         </div>
         <MantineButton
           type="button"
@@ -174,7 +174,7 @@ export default function IntakeChat({
           aria-label="Message the AgentsOX intake bot"
           name="bot-message"
           autoComplete="off"
-          placeholder="Type an answer or ask a FAQ…"
+          placeholder="Describe your project..."
           disabled={loading}
         />
         <MantineButton

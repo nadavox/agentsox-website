@@ -1,1 +1,1 @@
-export { STREAMING_SYSTEM_PROMPT, SNAPSHOT_EXTRACTION_PROMPT } from './streamingSystemPrompt';
+export { STREAMING_SYSTEM_PROMPT } from './streamingSystemPrompt';

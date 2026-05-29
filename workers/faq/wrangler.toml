@@ -1,0 +1,50 @@
+name = "agentsox-faq-worker"
+main = "src/index.ts"
+compatibility_date = "2026-05-23"
+
+[observability]
+enabled = true
+
+  [observability.logs]
+  enabled = true
+  invocation_logs = true
+
+[env.local]
+name = "agentsox-faq-worker-local"
+
+[env.local.vars]
+SITE_ID = "agentsox-main"
+ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+
+[env.remote]
+name = "agentsox-faq-worker-remote"
+
+[env.remote.vars]
+SITE_ID = "agentsox-main"
+ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+
+[[env.remote.ratelimits]]
+name = "API_RATE_LIMITER"
+namespace_id = "1003"
+
+  [env.remote.ratelimits.simple]
+  limit = 30
+  period = 60
+
+[env.production]
+name = "agentsox-faq-worker"
+routes = [
+  { pattern = "faq.agentsox.com", custom_domain = true }
+]
+
+[env.production.vars]
+SITE_ID = "agentsox-main"
+ALLOWED_ORIGINS = "https://agentsox.com,https://www.agentsox.com"
+
+[[env.production.ratelimits]]
+name = "API_RATE_LIMITER"
+namespace_id = "1004"
+
+  [env.production.ratelimits.simple]
+  limit = 30
+  period = 60

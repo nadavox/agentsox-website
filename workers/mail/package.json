@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "CI=true wrangler dev --env local --local --port 8788",
+    "dev": "CI=true wrangler dev --env local --local --port 8788 --inspector-port 9231",
     "deploy": "CI=true wrangler deploy --env production",
     "typecheck": "tsc --noEmit",
     "cf-typegen": "wrangler types"

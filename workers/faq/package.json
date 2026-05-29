@@ -1,20 +1,18 @@
 {
-  "name": "@agentsox/intake-worker",
+  "name": "@agentsox/faq-worker",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "CI=true wrangler dev --env local --local --port 8787 --inspector-port 9229",
-    "dev:remote-ai": "CI=true wrangler dev --env remote --remote --port 8787 --inspector-port 9229",
+    "dev": "CI=true wrangler dev --env local --local --port 8789 --inspector-port 9230",
+    "dev:remote-ai": "CI=true wrangler dev --env remote --remote --port 8789 --inspector-port 9230",
     "deploy": "CI=true wrangler deploy --env production",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@agentsox/contracts": "file:../../packages/contracts",
-    "@agentsox/intake-agent": "file:../../packages/intake-agent",
+    "@agentsox/agent-core": "file:../../packages/agent-core",
+    "@agentsox/faq-agent": "file:../../packages/faq-agent",
     "@agentsox/worker-utils": "file:../../packages/worker-utils",
     "@openrouter/ai-sdk-provider": "^2.9.0",
     "ai": "^6.0.0",
@@ -22,9 +20,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260521.0",
-    "@vitest/coverage-v8": "^4.1.7",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.7",
     "wrangler": "^4.49.0"
   }
 }

@@ -11,12 +11,14 @@ const Services = lazy(() => import('./components/Services'));
 const Products = lazy(() => import('./components/Products'));
 const About = lazy(() => import('./components/About'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
+const Faq = lazy(() => import('./components/Faq'));
 const Contact = lazy(() => import('./components/Contact'));
 const SeoLandingPage = lazy(() => import('./components/SeoLandingPage'));
 const CaseStudy = lazy(() => import('./components/CaseStudy'));
 const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'));
 const NotFound = lazy(() => import('./components/NotFound'));
+const FaqChat = lazy(() => import('./components/FaqChat/FaqChat'));
 
 const ROUTE_META = new Map([
   ['/', HOME_META],
@@ -181,6 +183,7 @@ function AppContent() {
         <Suspense fallback={<SectionSkeleton />}><About /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Testimonials /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Products /></Suspense>
+        <Suspense fallback={<SectionSkeleton />}><Faq /></Suspense>
         <Suspense fallback={<SectionSkeleton />}><Contact /></Suspense>
       </main>
       <Footer />
@@ -194,6 +197,9 @@ export default function App() {
     <ThemeProvider>
       <ErrorBoundary>
         <AppContent />
+        <Suspense fallback={null}>
+          <FaqChat />
+        </Suspense>
       </ErrorBoundary>
     </ThemeProvider>
   );

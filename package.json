@@ -10,10 +10,14 @@
   ],
   "scripts": {
     "dev": "npm --workspace @agentsox/web run dev",
+    "dev:all": "concurrently -n web,intake,faq,mail -c cyan,magenta,green,yellow \"npm --workspace @agentsox/web run dev\" \"npm --workspace @agentsox/intake-worker run dev\" \"npm --workspace @agentsox/faq-worker run dev\" \"npm --workspace @agentsox/mail-worker run dev\"",
     "build": "npm --workspace @agentsox/web run build",
     "preview": "npm --workspace @agentsox/web run preview",
     "lint": "npm --workspace @agentsox/web run lint",
-    "typecheck": "npm --workspace @agentsox/intake-worker run typecheck && npm --workspace @agentsox/mail-worker run typecheck",
+    "typecheck": "npm --workspace @agentsox/intake-worker run typecheck && npm --workspace @agentsox/faq-worker run typecheck && npm --workspace @agentsox/mail-worker run typecheck",
     "verify": "npm run lint && npm run build && npm run typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
   }
 }

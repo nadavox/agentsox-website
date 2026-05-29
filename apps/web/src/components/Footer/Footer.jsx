@@ -28,7 +28,7 @@ export default function Footer() {
             <span>Agents<span className="footer__ox">OX</span></span>
           </a>
           <p className="footer__tagline">
-            Custom AI systems for real business operations.
+            Custom tech that helps your business run better.
           </p>
         </div>
 

@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   CASE_STUDIES,
+  FAQ_ITEMS,
   HOME_META,
   INDUSTRY_PAGES,
   SERVICE_PAGES,
@@ -66,8 +67,8 @@ function renderHome() {
     <a href="#main-content" class="skip-link">Skip to content</a>
     <main id="main-content" class="static-page">
       <section class="static-page__hero">
-        <h1>AI automation for business operations</h1>
-        <p>AgentsOX designs practical AI systems around your real workflow: leads, admin, reporting, support, branding, SEO, and internal tools.</p>
+        <h1>Custom tech, built around how your business actually works</h1>
+        <p>We sit with you, find what is actually slowing the business down, and build the system that fixes it - for companies of any size, in any industry.</p>
         <p><strong>Built around the business problem, not a fixed product.</strong></p>
         <p><a href="#contact">Audit My Workflow</a></p>
       </section>
@@ -81,12 +82,22 @@ function renderHome() {
         `).join('')}
       </section>
       <section>
-        <h2>Proof That We Execute</h2>
+        <h2>A few things we&apos;ve built</h2>
         ${CASE_STUDIES.map((study) => `
           <article>
             <h3><a href="/case-studies/${study.slug}">${escapeHtml(study.title)}</a></h3>
             <p>${escapeHtml(study.description)}</p>
+            ${study.quote ? `<blockquote>"${escapeHtml(study.quote)}"</blockquote>` : ''}
             <p><strong>${escapeHtml(study.outcome)}</strong></p>
+          </article>
+        `).join('')}
+      </section>
+      <section id="faq">
+        <h2>Questions clients usually ask</h2>
+        ${FAQ_ITEMS.map((item) => `
+          <article>
+            <h3>${escapeHtml(item.question)}</h3>
+            <p>${escapeHtml(item.answer)}</p>
           </article>
         `).join('')}
       </section>
@@ -96,7 +107,22 @@ function renderHome() {
         <p><a href="mailto:nadav@agentsox.com">nadav@agentsox.com</a></p>
       </section>
     </main>
+    <script type="application/ld+json">${faqJsonLd()}</script>
   `;
+}
+
+function faqJsonLd() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+  // Escape '<' so a stray '</script>' in content can never break out of the tag.
+  return JSON.stringify(schema).replaceAll('<', '\\u003c');
 }
 
 function renderLanding(page, type) {

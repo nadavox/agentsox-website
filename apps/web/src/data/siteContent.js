@@ -151,6 +151,8 @@ export const CASE_STUDIES = [
     metric: 'Paying users',
     description:
       'Built a web platform that connects players with teams, manages contracts, and supports real agency workflows.',
+    quote:
+      "I don't have to explain why I'm the top recruiter anymore - the site does that for me. And I can finally keep track of every player I represent in one place.",
   },
   {
     slug: 'shades-of-the-soul-automation',
@@ -160,11 +162,13 @@ export const CASE_STUDIES = [
     preview: '/project-previews/shades-of-the-soul.png',
     previewAlt: 'Shades of the Soul automation workflow preview',
     url: 'https://theshadesofsoul.com/',
-    problem: 'A creative workflow took more than 10 hours manually and needed reliable automation.',
-    outcome: 'Reduced from 10+ hours to under 1 hour',
-    metric: '10x faster workflow',
+    problem: 'A creative workflow took about 10 hours manually and needed reliable automation.',
+    outcome: 'Cut from 10 hours to about 2',
+    metric: 'About 5x faster',
     description:
       'Automated a creative production process while keeping review and recovery paths visible.',
+    quote:
+      'Work that used to take me a full day now takes about two hours.',
   },
   {
     slug: 'drone-videographer-landing-page',
@@ -175,17 +179,65 @@ export const CASE_STUDIES = [
     previewAlt: 'Drone videographer landing page preview',
     url: 'https://drone-videographer-landing.vercel.app/',
     problem: 'A local service business needed a professional landing page that could convert visitors into real leads.',
-    outcome: 'Real clients from day one',
-    metric: 'Client-ready launch',
+    outcome: 'Two new clients from the site',
+    metric: '2 new clients',
     description:
       'Created a focused landing page for a service business with direct conversion paths.',
+    quote:
+      "Two new clients came in through the site, and I didn't have to chase either of them.",
+  },
+];
+
+// Source of truth for the website FAQ section + FAQPage structured data.
+// Mirror of packages/faq-agent/src/knowledge/faq.json (which drives the FAQ bot) -
+// keep the two in sync when answers change.
+export const FAQ_ITEMS = [
+  {
+    question: 'What is AgentsOX?',
+    answer:
+      "AgentsOX is a small, founder-led team that builds custom tech to help a business run better. You work with us directly - we learn how your business actually works, then build whatever solves the problem, whether you're a one-person shop or a larger company.",
+  },
+  {
+    question: 'What can you build?',
+    answer:
+      'Pretty much anything that makes the business run smoother - AI assistants, automations for the repetitive admin, dashboards, branding and a site that brings people in, even a single workspace to run everything from. If it can be solved with tech, we can probably build it.',
+  },
+  {
+    question: 'Who do you help?',
+    answer:
+      "Businesses of any size and any industry. The common thread isn't the sector - it's having a workflow that's eating time or losing money. If something's slowing you down, that's usually something we can help with.",
+  },
+  {
+    question: 'Do you sell a fixed product?',
+    answer:
+      "No. Everything's built around your business - your workflow, your tools, what you're comfortable with. We reuse what we've learned from past work, but you're not getting someone else's template.",
+  },
+  {
+    question: 'How does the process work?',
+    answer:
+      'We start with one real problem, learn how you handle it now, build the smallest useful version first, and keep improving it until you trust it day to day.',
+  },
+  {
+    question: 'Is AI reliable enough for business workflows?',
+    answer:
+      "It is when it's kept on a tight leash - clear limits, a human checking the important parts, and a sensible fallback when something's off. We don't hand sensitive decisions to a model and walk away.",
+  },
+  {
+    question: 'What about privacy and data?',
+    answer:
+      "We sort this out before building anything - what data is actually needed, what should stay private, who gets access, and which integrations make sense. It's part of the first conversation, not an afterthought.",
+  },
+  {
+    question: 'How much does it cost?',
+    answer:
+      "It depends on what you need - how complex it is, what it connects to, and how much support you want. We can start small with a focused pilot, or build something larger once we've talked it through.",
   },
 ];
 
 export const HOME_META = {
   title: 'AI Automation for Business Operations | AgentsOX',
   description:
-    'AgentsOX designs and builds custom AI automation, AI agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation around real workflows.',
+    'AgentsOX sits with you to find what is slowing your business down, then builds custom tech to fix it - for companies of any size, in any industry.',
 };
 
 export const SITE_URL = 'https://agentsox.com';

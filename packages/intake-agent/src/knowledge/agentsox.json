@@ -1,121 +1,46 @@
 {
   "company": {
     "name": "AgentsOX",
-    "purpose": "AgentsOX designs and builds custom AI automation, AI agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation around real workflows.",
-    "positioning": "Founder-led, technical, premium, practical, and calm. The work starts from the client's real workflow problem, not from a fixed product.",
-    "promise": "We listen, clarify the workflow, build the simplest useful system, and stay close until the client trusts the result.",
-    "symbolMeaning": "The ox represents strength, resilience, and business systems that keep working under pressure."
+    "purpose": "AgentsOX helps businesses of any size run more efficiently with custom technology. We sit with each client one-on-one, get to the real pain points, and build a solution shaped around how that business actually works.",
+    "positioning": "Every project starts from your actual problem, not a template or a fixed product. You work directly with the founder, and the system is built for your business - not adapted from someone else's.",
+    "promise": "We listen first, figure out what actually needs solving, build the simplest thing that works, and stay with you until you trust it.",
+    "symbolMeaning": "The ox stands for steady, dependable work - systems that keep running even when things get busy."
   },
-  "audience": [
-    "business owners",
-    "clinics and MedSpas",
-    "real-estate offices",
-    "coaches",
-    "e-commerce stores",
-    "local service businesses",
-    "freelancers",
-    "non-technical businesses",
-    "businesses with legacy systems"
-  ],
+  "audience": "Any business with a problem worth solving - any size, any industry. Whatever's slowing the owner down, from buried admin to a larger company stuck on legacy systems, there's almost always a way to fix it with the right tech. That's what we build.",
   "services": [
     {
-      "name": "AI systems",
-      "description": "Practical AI systems, agents, internal tools, and assistants that collect context, support decisions, and route work to the right next step."
+      "name": "AI assistants and tools",
+      "description": "An AI assistant that takes over the repetitive thinking - the stuff that eats your time but doesn't really need you."
     },
     {
       "name": "Workflow automations",
-      "description": "Automations for repetitive admin, follow-up, lead handling, scheduling, CRM updates, reporting, brand systems, SEO operations, and internal handoffs."
+      "description": "The boring admin that fills your day - follow-ups, scheduling, CRM updates - set up once to run on its own."
     },
     {
-      "name": "Business analytics",
-      "description": "Dashboards and reporting flows that help owners understand operations, leads, performance, and missed opportunities."
+      "name": "Dashboards and analytics",
+      "description": "One screen that tells you how the business is really doing, so you're not guessing from scattered spreadsheets."
     },
     {
-      "name": "Business optimization",
-      "description": "Practical technical improvements that reduce manual work, improve response time, and make daily operations easier to trust."
+      "name": "Branding and marketing",
+      "description": "The brand side too: how you show up, a website that actually brings in business, and content that helps the right people find you."
+    },
+    {
+      "name": "One place to run everything",
+      "description": "A single workspace to run the whole business from - everything together, instead of a dozen open tabs."
     }
   ],
   "process": [
-    "Clarify one business problem and the current workflow.",
-    "Map the tools, data, people, failure points, and handoff points.",
-    "Define the smallest useful automation or AI system to ship first.",
-    "Build a working pilot with review, handoff, and failure behavior.",
-    "Improve the system until the client feels safe using it."
+    "We start with one real problem and how you handle it today.",
+    "We map out your tools, the people involved, and where things break down.",
+    "We pick the smallest thing worth building first - the one that helps right away.",
+    "We build a working version and test it, including what happens when something goes wrong.",
+    "Then we keep refining it until you trust it, day to day."
   ],
   "trustPrinciples": [
-    "Human control stays part of important workflows.",
-    "The system should be easy to understand and maintain.",
-    "No generic AI hype. The solution must fit the client's business.",
-    "Privacy, access, and data handling are discussed before implementation.",
-    "If a fixed product is not the right fit, AgentsOX builds around the actual need."
-  ],
-  "faq": [
-    {
-      "question": "What is AgentsOX?",
-      "answer": "AgentsOX is a founder-led AI automation studio. We build AI systems, agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation around the client's real workflow.",
-      "keywords": ["what is agentsox", "what does agentsox do", "what does agentsox", "what agentsox does", "what does agents ox do", "what agents ox does", "what agnets ox does", "who are you", "who you are", "who is agentsox", "about agentsox", "tell me about you", "what do you do"]
-    },
-    {
-      "question": "What can AgentsOX build?",
-      "answer": "We build AI systems, workflow automations, lead systems, internal tools, analytics dashboards, CRM improvements, branding and SEO systems, and practical tools around legacy or messy business processes.",
-      "keywords": ["what can you build", "services", "what do you build", "automation", "chatbot", "analytics"]
-    },
-    {
-      "question": "Who do you help?",
-      "answer": "We help business owners, clinics, MedSpas, real-estate offices, coaches, e-commerce stores, local service businesses, freelancers, and non-technical teams that need practical technical systems.",
-      "keywords": ["who do you help", "clients", "industries", "businesses", "clinics", "real estate"]
-    },
-    {
-      "question": "What can AgentsOX do for real estate offices?",
-      "answer": "For real-estate offices, AgentsOX can help with lead intake, WhatsApp or Instagram follow-up, property inquiry routing, CRM updates, and dashboards that show missed opportunities.",
-      "keywords": ["real estate", "realtor", "property", "broker", "real estate office"]
-    },
-    {
-      "question": "What can AgentsOX do for clinics or MedSpas?",
-      "answer": "For clinics and MedSpas, AgentsOX can help with inquiry intake, service FAQs, booking support, follow-up workflows, and owner dashboards while keeping sensitive steps under human review.",
-      "keywords": ["clinic", "medspa", "med spa", "patient", "appointment"]
-    },
-    {
-      "question": "Do you sell a fixed product?",
-      "answer": "No. AgentsOX builds custom solutions per client need. We may reuse proven patterns, but the system is shaped around the client's workflow, tools, risk, and business goal.",
-      "keywords": ["fixed product", "product", "custom", "template", "same system"]
-    },
-    {
-      "question": "How does the process work?",
-      "answer": "We start with one business problem, map the current workflow, identify the smallest useful system to ship first, build a pilot, and refine it until the client trusts the workflow.",
-      "keywords": ["process", "how it works", "steps", "workflow", "pilot"]
-    },
-    {
-      "question": "Can you work with non-technical businesses?",
-      "answer": "Yes. AgentsOX is built for businesses that do not want to manage technical complexity. We explain the system clearly, keep the workflow practical, and avoid unnecessary jargon.",
-      "keywords": ["non technical", "not technical", "legacy", "explain", "simple"]
-    },
-    {
-      "question": "Is AI reliable enough for business workflows?",
-      "answer": "AI can be useful when it is bounded, reviewed, and connected to clear fallback behavior. We avoid blind automation for sensitive steps and define where humans stay in control.",
-      "keywords": ["reliable", "trust", "hallucination", "mistakes", "safe"]
-    },
-    {
-      "question": "What about privacy and data?",
-      "answer": "Privacy and access are part of discovery. We identify what data is needed, what should not be exposed, who can access the system, and which integrations are appropriate before implementation.",
-      "keywords": ["privacy", "data", "security", "safe", "access"]
-    },
-    {
-      "question": "How much does it cost?",
-      "answer": "Pricing depends on the workflow, integrations, complexity, and support needed. AgentsOX can start with a focused pilot or build a larger custom system after discovery.",
-      "keywords": ["price", "pricing", "cost", "expensive", "budget"]
-    },
-    {
-      "question": "What happens after I send the project?",
-      "answer": "AgentsOX reviews the project snapshot, clarifies the business goal, current tools, gaps, and failure points, then suggests the simplest useful system or technical next step to discuss first.",
-      "keywords": ["after send", "what happens next", "next step", "reply", "contact"]
-    }
-  ],
-  "answerBoundaries": [
-    "Do not promise exact pricing before discovery.",
-    "Do not promise exact delivery timelines before discovery.",
-    "Do not claim a specific integration is guaranteed before checking access and API limits.",
-    "Do not say AI will replace the client's team.",
-    "Do not overuse AI jargon or generic hype."
+    "You stay in control of anything that matters - the important calls never get fully automated.",
+    "Whatever we build, you should be able to understand it and keep it running without us.",
+    "No AI hype - if it won't genuinely help your business, we won't push it.",
+    "We talk through privacy and who can access what before we build anything.",
+    "If an off-the-shelf product would serve you better, we'll say so - we only build what you actually need."
   ]
 }

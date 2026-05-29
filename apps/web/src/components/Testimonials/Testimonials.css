@@ -129,8 +129,18 @@
   color: var(--color-text-secondary);
   line-height: 1.65;
   margin: 0;
-  flex: 1;
   padding: 0 1.5rem;
+}
+
+.testimonials__quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  color: var(--color-text-primary);
+  line-height: 1.55;
+  margin: 0.25rem 1.5rem 0;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--color-accent);
 }
 
 .testimonials__result {
@@ -141,7 +151,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-accent-2);
-  margin: 0 1.5rem 1.5rem;
+  margin: auto 1.5rem 1.5rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--color-border-subtle);
 }
@@ -184,7 +194,12 @@
     padding-right: 1.25rem;
   }
 
+  .testimonials__quote {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
   .testimonials__result {
-    margin: 0 1.25rem 1.25rem;
+    margin: auto 1.25rem 1.25rem;
   }
 }

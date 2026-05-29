@@ -1,0 +1,4 @@
+# Optional local overrides for `npm run dev`.
+# Keep real secrets in `.dev.vars`, never in git.
+
+OPENROUTER_API_KEY=sk-or-...

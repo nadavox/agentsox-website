@@ -195,14 +195,10 @@ export default function Contact() {
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
       <div className="contact__header">
         <p className="section-label">START HERE</p>
-        <h2 className="contact__heading">Start With One Business Problem</h2>
+        <h2 className="contact__heading">What should we look at first?</h2>
         <p className="contact__text">
-          Describe a business result, tech problem, client acquisition issue,
-          or system idea. AgentsOX will help shape the first useful next step.
-        </p>
-        <p className="contact__privacy-note">
-          Do not include passwords, medical records, payment details, or other sensitive data.
-          The snapshot is used to understand the project and follow up.
+          Describe what you want to improve or build, and we&apos;ll shape the
+          first useful next step together.
         </p>
       </div>
 
@@ -231,6 +227,11 @@ export default function Contact() {
               <p>Chat with the assistant and this will become the message you send.</p>
             )}
           </Card>
+
+          <p className="contact__privacy-note">
+            No need to share passwords, medical records, or payment details -
+            just enough for us to understand the project and follow up.
+          </p>
         </div>
 
         <div className="contact__form-wrapper">
@@ -421,7 +422,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <span className="contact__spinner" aria-label="Sending" />
                     ) : (
-                      'Send Project'
+                      'Send to AgentsOX'
                     )}
                   </Button>
                   {!canSubmit && !isSubmitting && (

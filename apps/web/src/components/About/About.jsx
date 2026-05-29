@@ -65,10 +65,10 @@ export default function About() {
       <p className="section-label">ABOUT US</p>
       <h2 className="about__heading">Built Around Your Real Workflow</h2>
       <p className="about__narrative">
-        AgentsOX is for non-technical businesses that need practical AI and
-        automation without being forced into a one-size-fits-all product. We
-        listen first, ship quickly, and harden the system until it is clear,
-        useful, and trusted.
+        AgentsOX is for businesses of any size that need practical tech
+        without being forced into a one-size-fits-all product. We sit with you
+        first, build quickly, and harden the system until it is clear, useful,
+        and trusted.
       </p>
 
       <div className="about__list">
