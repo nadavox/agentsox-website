@@ -87,6 +87,14 @@ To delete it: `npx wrangler delete --name agentsox-web` (do this if you don't wa
 
 ## Phase 3 — Workers Builds (push-to-deploy for all 4 workers)
 
+> ✅ **Done (2026-05-29):** all 4 Workers are connected to `nadavox/agentsox-website`, production
+> branch `main`. Deploy — web: `npm --workspace @agentsox/web run deploy`; bots:
+> `npm --workspace @agentsox/<x>-worker run deploy` (= `--env production`). Build — web:
+> `npm run build` (root script delegates to `@agentsox/web`); bots: *none*. Non-production builds:
+> web **on**, bots **off**. Build watch paths are currently `*` (every push to `main` rebuilds all
+> four) — optional follow-up: narrow them per the table below to cut redundant builds. Note: Workers
+> Builds' Git connection is dashboard-only (no API/wrangler), so this phase was set up in the UI.
+
 Connect the GitHub repo to **4** separate Workers Builds (Workers & Pages → each Worker → Settings →
 Builds → Connect repo). Defaults are wrong for a monorepo — set these explicitly.
 
