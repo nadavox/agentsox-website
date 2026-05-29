@@ -10,6 +10,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { messageText, useIntakeChat } from './useIntakeChat';
+import TypingDots from '../ui/TypingDots';
 
 /**
  * AgentsOX intake chat card. Streams a project-clarification conversation,
@@ -35,6 +36,7 @@ export default function IntakeChat({
 }) {
   const [input, setInput] = useState('');
   const viewportRef = useRef(null);
+  const pendingRef = useRef(null);
 
   const { messages, sendMessage, status, error, context, chips, ready, reset } = useIntakeChat({
     endpoint,
@@ -44,6 +46,16 @@ export default function IntakeChat({
   });
 
   const loading = status === 'submitted' || status === 'streaming';
+
+  // Type-ahead: if the visitor sends while the bot is still replying, hold the
+  // message and fire it the moment the turn finishes instead of dropping it.
+  useEffect(() => {
+    if (status === 'ready' && pendingRef.current) {
+      const next = pendingRef.current;
+      pendingRef.current = null;
+      sendMessage({ text: next });
+    }
+  }, [status, sendMessage]);
 
   useEffect(() => {
     onContextChange?.(context);
@@ -69,7 +81,12 @@ export default function IntakeChat({
 
   function handleSend(value) {
     const text = value.trim();
-    if (!text || loading) return;
+    if (!text) return;
+    if (loading) {
+      pendingRef.current = text;
+      setInput('');
+      return;
+    }
     setInput('');
     sendMessage({ text });
   }
@@ -124,7 +141,7 @@ export default function IntakeChat({
                 key={message.id || `${message.role}-${index}`}
                 className={`contact__bot-message contact__bot-message--${message.role}`}
               >
-                <Text>{text || (isStreamingThis ? 'Thinking through the project…' : '')}</Text>
+                <Text>{text || (isStreamingThis ? <TypingDots /> : '')}</Text>
                 {isLatestAssistant &&
                   Array.isArray(messageChips) &&
                   messageChips.length > 0 &&
@@ -152,7 +169,7 @@ export default function IntakeChat({
           {loading &&
             (latestAssistantIndex === -1 || messages[messages.length - 1]?.role === 'user') && (
               <Paper className="contact__bot-message contact__bot-message--assistant">
-                <Text>Thinking through the project…</Text>
+                <Text><TypingDots /></Text>
               </Paper>
             )}
           {error && (
@@ -175,14 +192,13 @@ export default function IntakeChat({
           name="bot-message"
           autoComplete="off"
           placeholder="Describe your project..."
-          disabled={loading}
         />
         <MantineButton
           type="submit"
           className="contact__bot-send"
           variant="outline"
           radius="xl"
-          disabled={loading || !input.trim()}
+          disabled={!input.trim()}
         >
           Send
         </MantineButton>

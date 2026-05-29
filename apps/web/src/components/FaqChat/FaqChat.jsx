@@ -10,6 +10,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { messageText, useFaqChat } from './useFaqChat';
+import TypingDots from '../ui/TypingDots';
 import './FaqChat.css';
 
 const FAQ_GREETING = [
@@ -37,6 +38,7 @@ export default function FaqChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const viewportRef = useRef(null);
+  const pendingRef = useRef(null);
 
   const { messages, sendMessage, status, error, chips, intakeCtas, reset } = useFaqChat({
     endpoint: ENDPOINT,
@@ -45,6 +47,16 @@ export default function FaqChat() {
   });
 
   const loading = status === 'submitted' || status === 'streaming';
+
+  // Type-ahead: if the visitor sends while the bot is still replying, hold the
+  // message and fire it the moment the turn finishes instead of dropping it.
+  useEffect(() => {
+    if (status === 'ready' && pendingRef.current) {
+      const next = pendingRef.current;
+      pendingRef.current = null;
+      sendMessage({ text: next });
+    }
+  }, [status, sendMessage]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -63,7 +75,12 @@ export default function FaqChat() {
 
   function handleSend(value) {
     const text = value.trim();
-    if (!text || loading) return;
+    if (!text) return;
+    if (loading) {
+      pendingRef.current = text;
+      setInput('');
+      return;
+    }
     setInput('');
     sendMessage({ text });
   }
@@ -190,7 +207,7 @@ export default function FaqChat() {
                       key={message.id || `${message.role}-${index}`}
                       className={`faq-chat__message faq-chat__message--${message.role}`}
                     >
-                      <Text>{text || (isStreamingThis ? 'Thinking…' : '')}</Text>
+                      <Text>{text || (isStreamingThis ? <TypingDots /> : '')}</Text>
                       {cta && message.role === 'assistant' && (
                         <div className="faq-chat__cta">
                           <p className="faq-chat__cta-reason">{cta.reason}</p>
@@ -230,7 +247,7 @@ export default function FaqChat() {
                 {loading &&
                   (latestAssistantIndex === -1 || messages[messages.length - 1]?.role === 'user') && (
                     <Paper className="faq-chat__message faq-chat__message--assistant">
-                      <Text>Thinking…</Text>
+                      <Text><TypingDots /></Text>
                     </Paper>
                   )}
                 {error && (
@@ -252,14 +269,13 @@ export default function FaqChat() {
                 name="faq-message"
                 autoComplete="off"
                 placeholder="Ask anything about AgentsOX…"
-                disabled={loading}
               />
               <MantineButton
                 type="submit"
                 className="faq-chat__send"
                 variant="outline"
                 radius="xl"
-                disabled={loading || !input.trim()}
+                disabled={!input.trim()}
               >
                 Send
               </MantineButton>
