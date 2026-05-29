@@ -91,9 +91,10 @@ To delete it: `npx wrangler delete --name agentsox-web` (do this if you don't wa
 > branch `main`. Deploy — web: `npm --workspace @agentsox/web run deploy`; bots:
 > `npm --workspace @agentsox/<x>-worker run deploy` (= `--env production`). Build — web:
 > `npm run build` (root script delegates to `@agentsox/web`); bots: *none*. Non-production builds:
-> web **on**, bots **off**. Build watch paths are currently `*` (every push to `main` rebuilds all
-> four) — optional follow-up: narrow them per the table below to cut redundant builds. Note: Workers
-> Builds' Git connection is dashboard-only (no API/wrangler), so this phase was set up in the UI.
+> web **on**, bots **off**. Build watch paths are **configured per worker with single-`*` globs**
+> (see the table below) and **verified** — a docs-only push rebuilds none of the four; each worker
+> rebuilds only when its own dir or a shared package it uses changes. Note: Workers Builds' Git
+> connection is dashboard-only (no API/wrangler), so this phase was set up in the UI.
 
 Connect the GitHub repo to **4** separate Workers Builds (Workers & Pages → each Worker → Settings →
 Builds → Connect repo). Defaults are wrong for a monorepo — set these explicitly.
@@ -113,19 +114,23 @@ Builds → Connect repo). Defaults are wrong for a monorepo — set these explic
 
 ### Build watch paths (avoid rebuilding everything on every push)
 
-Use the **transitive** dependency closure, not just the worker dir. The original plan's paths were
-incomplete (verified against each `package.json`):
+Use the **transitive** dependency closure, not just the worker dir, **and single-`*` globs**.
+Two gotchas (learned the hard way): Cloudflare's matcher does **not** support `**`, and a lone `*`
+chip means "match everything" — so delete any lone `*`. A single `*` already spans sub-folders
+(`apps/web/*` covers all nested files).
 
-| Worker | Watch paths |
+| Worker | Include paths |
 |---|---|
-| `agentsox-web` | `apps/web/**` |
-| `intake` | `workers/intake/**`, `packages/intake-agent/**`, `packages/agent-core/**`, `packages/contracts/**`, `packages/worker-utils/**` |
-| `faq` | `workers/faq/**`, `packages/faq-agent/**`, `packages/agent-core/**`, `packages/worker-utils/**` |
-| `mail` | `workers/mail/**`, `packages/contracts/**`, `packages/worker-utils/**` |
+| `agentsox-web` | `apps/web/*` |
+| `intake` | `workers/intake/*`, `packages/intake-agent/*`, `packages/agent-core/*`, `packages/contracts/*`, `packages/worker-utils/*` |
+| `faq` | `workers/faq/*`, `packages/faq-agent/*`, `packages/agent-core/*`, `packages/worker-utils/*` |
+| `mail` | `workers/mail/*`, `packages/contracts/*`, `packages/worker-utils/*` |
 
 (Closure: `intake` → intake-agent → agent-core, plus contracts + worker-utils. `faq` → faq-agent →
-agent-core, plus worker-utils. `mail` → contracts + worker-utils.) Consider also watching
-`package-lock.json` if a lockfile change should rebuild everything.
+agent-core, plus worker-utils. `mail` → contracts + worker-utils.) Optionally add `package-lock.json`
+to each if a dependency bump should rebuild everything. Note: builds run regardless of these paths
+if a push has 0 changes, 3000+ changed files, or 20+ commits. **Verified 2026-05-30:** a docs-only
+push rebuilds none of the four.
 
 ---
 
@@ -236,11 +241,3 @@ HTML (/, /<route>/, SPA fallback)  →  Cloudflare default: public, max-age=0, m
 ```
 Note: `_headers`/`_redirects` apply to static-asset responses only (not Worker code) — fine here,
 since `agentsox-web` is assets-only.
-
-> Build watch paths configured per worker on 2026-05-30 — each worker rebuilds only on its own code + the shared packages it uses.
-
-> Build watch paths use a single `*` per Cloudflare matcher (not `**`); verified each worker rebuilds only on its own code + shared packages.
-
-> Per-worker build watch paths use a single `*`: web watches apps/web; each bot watches its own dir + the shared packages it uses.
-
-<!-- watch-path final confirmation -->
