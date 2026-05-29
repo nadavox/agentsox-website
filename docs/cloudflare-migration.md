@@ -18,18 +18,14 @@ workers auto-deploy via Workers Builds; analytics on Cloudflare Web Analytics; V
 
 ---
 
-## ⚠️ Required before cutover: the Web Analytics token
+## ✓ Web Analytics token — done
 
-`apps/web/index.html` ships the Cloudflare Web Analytics manual beacon with a placeholder token
-`__CF_WEB_ANALYTICS_TOKEN__`. Until it's replaced, analytics won't report (everything else works).
-
-1. Cloudflare dashboard → **Analytics & Logs → Web Analytics → Add a site** → `agentsox.com`.
-2. Choose **manual** install ("Enable with JS Snippet installation"), **not** automatic — we ship
-   our own beacon, and only one beacon per page is allowed (automatic injection would double-count).
-3. Copy the site **token** (it's a public site identifier — safe to commit) and replace
-   `__CF_WEB_ANALYTICS_TOKEN__` in `apps/web/index.html`. Rebuild/redeploy.
-4. SPA route tracking is **on by default** (the beacon overrides the History API). We deliberately
-   do **not** set `"spa": false` — that string in Cloudflare's own copy-paste example *disables* it.
+The Cloudflare Web Analytics site for `agentsox.com` is set up with **manual** install ("Enable with
+JS Snippet installation") and automatic injection **disabled** — so the single manual beacon in
+`apps/web/index.html` is the only one on the page (no double counting). The public token is wired into
+the beacon and verified live on the preview. SPA route tracking is on by default (the beacon overrides
+the History API); we deliberately do **not** set `"spa": false` (that string in Cloudflare's own
+copy-paste example *disables* it). The token is a public site identifier, safe to commit.
 
 ---
 

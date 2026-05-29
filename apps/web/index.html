@@ -112,12 +112,10 @@
 }
     </script>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Cloudflare Web Analytics (manual beacon). SPA/History-API route tracking is
-         ON by default (the "spa" option defaults to true) — do NOT add "spa": false.
-         The token is a public site identifier, safe to commit.
-         TODO(cutover): replace __CF_WEB_ANALYTICS_TOKEN__ with the token from the
-         Cloudflare dashboard (Web Analytics → add site), and set that site to manual
-         ("Enable with JS Snippet installation") / Disable auto-injection to avoid double counting. -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "__CF_WEB_ANALYTICS_TOKEN__"}'></script>
+    <!-- Cloudflare Web Analytics (manual beacon) for agentsox.com. SPA/History-API route
+         tracking is ON by default (the "spa" option defaults to true) — do NOT add "spa": false.
+         Manual install with auto-injection disabled in the dashboard, so there is no double counting.
+         The token is a public site identifier, safe to commit. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c9c5f1fff527413ca0c17ef5b70072b7"}'></script>
   </body>
 </html>
