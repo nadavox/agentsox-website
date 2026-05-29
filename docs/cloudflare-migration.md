@@ -133,11 +133,15 @@ npm --workspace @agentsox/web run build         # 14 prerendered routes     ✅
 Then merge `migrate-to-cloudflare` → `main`.
 
 ### DNS snapshot FIRST (rollback insurance)
-Export **all** records (A/AAAA/CNAME/MX/TXT/CAA/NS) with proxy status + TTL. Record rollback values:
-- apex `agentsox.com` → A `76.76.21.123`, A `66.33.60.35` (Vercel)
-- `www` → CNAME `cname.vercel-dns.com`
+Export **all** records (A/AAAA/CNAME/MX/TXT/CAA/NS) with proxy status + TTL. **Actual** rollback values
+(the live zone differed from the original plan — apex was a CNAME, not A records):
+- apex `agentsox.com` → **CNAME `cname.vercel-dns.com`** (dns-only, ttl 1)
+- `www.agentsox.com` → **CNAME `cname.vercel-dns.com`** (dns-only, ttl 1)
+- Full snapshot saved at `~/agentsox-dns-snapshot.json`.
 
-**Do NOT touch MX / TXT / CAA** (email + cert issuance).
+**Do NOT touch MX / TXT / CAA** (email + Google/Zoho/Railway verification + DKIM/SPF/DMARC). Note:
+Google Search Console is verified via a **DNS TXT** record on the apex (`google-site-verification=…`),
+so the `googlef…​.html` file's clean-URL 307 is irrelevant to verification.
 
 ### Cutover steps
 1. **Pre-stage the Worker:** confirm `agentsox-web` serves on `agentsox-web.<account>.workers.dev`.

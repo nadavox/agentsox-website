@@ -14,10 +14,9 @@ not_found_handling = "single-page-application"
 # "auto-trailing-slash" would 307-redirect /ai-chatbots -> /ai-chatbots/, which Vercel did not.
 html_handling = "drop-trailing-slash"
 
-# Added at cutover (Phase 4) — attaches the apex as this Worker's custom domain.
-# Until then the Worker is reachable only at agentsox-web.<account>.workers.dev,
-# which leaves production (Vercel) untouched.
-# (Remove the conflicting apex A records first — A and CNAME cannot coexist on one name.)
-# [[routes]]
-# pattern = "agentsox.com"
-# custom_domain = true
+# Apex custom domain — attached at cutover on 2026-05-29; agentsox.com is served by this Worker.
+# (The prior apex CNAME → cname.vercel-dns.com was removed first; A/CNAME can't coexist with the
+# Worker's record on one name.) www.agentsox.com 301-redirects here via a Cloudflare Redirect Rule.
+[[routes]]
+pattern = "agentsox.com"
+custom_domain = true
