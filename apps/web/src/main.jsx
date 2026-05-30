@@ -6,9 +6,9 @@ import './index.css';
 import App from './App.jsx';
 
 const theme = createTheme({
-  fontFamily: 'Figtree, system-ui, sans-serif',
+  fontFamily: 'Inter, system-ui, sans-serif',
   headings: {
-    fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif',
+    fontFamily: 'Space Grotesk, system-ui, sans-serif',
   },
   primaryColor: 'cyan',
 });

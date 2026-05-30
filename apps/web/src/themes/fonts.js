@@ -1,13 +1,13 @@
 export const FONT_CONFIG = {
   sleek: {
-    url: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Figtree:wght@400;500;600&display=swap',
-    heading: "'Plus Jakarta Sans', sans-serif",
-    body: "'Figtree', sans-serif",
+    url: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap',
+    heading: "'Space Grotesk', sans-serif",
+    body: "'Inter', sans-serif",
   },
   warm: {
-    url: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap',
+    url: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap',
     heading: "'Fraunces', serif",
-    body: "'Plus Jakarta Sans', sans-serif",
+    body: "'Inter', sans-serif",
   },
   bold: {
     url: 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Onest:wght@400;500;600&display=swap',
