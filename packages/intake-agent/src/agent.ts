@@ -1,5 +1,5 @@
 import { createAgent, type ProviderOptions } from '@agentsox/agent-core';
-import type { LanguageModel } from 'ai';
+import { stepCountIs, type LanguageModel } from 'ai';
 import knowledge from './knowledge/agentsox.json';
 import { STREAMING_SYSTEM_PROMPT } from './prompts';
 import { intakeTools } from './tools';
@@ -45,10 +45,12 @@ export function createIntakeAgent(opts: IntakeAgentOptions) {
     tools: intakeTools,
     providerOptions: opts.providerOptions,
     temperature: opts.temperature,
-    // Tools fire on nearly every intake turn, and DeepSeek sometimes emits its
-    // reply on the tool step too - which doubled the text. Split the passes so the
-    // visible reply is generated exactly once. See createAgent's splitToolAndText.
-    splitToolAndText: true,
+    // One streaming call per turn, with room for the model to finish across steps
+    // (ack -> tools -> question). DeepSeek tends to repeat its whole reply across
+    // those steps, so coalesceReply collects the per-step prose, de-duplicates it,
+    // and emits the reply once - no second pass, no doubled text, no empty-reply gap.
+    stopWhen: stepCountIs(5),
+    coalesceReply: true,
     logTag: '[intake-agent]',
   });
 }
