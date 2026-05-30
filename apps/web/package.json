@@ -8,7 +8,8 @@
     "build": "vite build && node scripts/prerender.mjs",
     "deploy": "wrangler deploy",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:brand": "node sync-brand.mjs"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.193",
