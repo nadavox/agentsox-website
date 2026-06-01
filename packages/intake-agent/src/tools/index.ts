@@ -54,9 +54,9 @@ export const intakeTools = {
   }),
   markReadyToContact: tool({
     description:
-      'Signal that the conversation has enough signal (clear problem + desired outcome) to send to the contact form. Provide a concise plain-English summary the visitor will see pre-filled.',
+      'Signal that the conversation has enough signal (clear problem + desired outcome) to hand off to the contact form, which emails the project to Nadav. This is the terminal action - a personal email follow-up, never a call or calendar booking. Provide a concise plain-English summary the visitor will see pre-filled in that email.',
     inputSchema: z.object({
-      summary: z.string().describe('Short plain-English project summary for the contact form.'),
+      summary: z.string().describe('Short plain-English project summary that pre-fills the email to Nadav.'),
     }),
     execute: async ({ summary }) => ({ ok: true, summary: sanitizeArg(summary) }),
   }),

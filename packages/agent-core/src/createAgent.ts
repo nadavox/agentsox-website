@@ -10,15 +10,97 @@ import {
 import { applyReplacements, sanitizeOutputTransform } from './sanitize';
 import type { AgentRespondInput, ProviderOptions } from './types';
 
+/** Jaccard word-set similarity, used to spot near-duplicate sentences. */
+function sentenceSimilarity(a: string, b: string): number {
+  const words = (s: string) =>
+    new Set(
+      s
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+  const wa = words(a);
+  const wb = words(b);
+  if (wa.size === 0 || wb.size === 0) return 0;
+  let inter = 0;
+  for (const w of wa) if (wb.has(w)) inter += 1;
+  return inter / (wa.size + wb.size - inter);
+}
+
+/**
+ * Collapse a sentence that restarts itself, e.g.
+ * "What booking system are you using now What booking system are you using?"
+ * -> "What booking system are you using now?". This happens when the model emits
+ * the trailing question, gets cut at a step boundary, then re-emits it: the two
+ * copies get joined into one run-on with no punctuation between them. We look for
+ * the sentence's own leading phrase (>= 4 words) recurring after a tiny gap and,
+ * if found, keep only the second (usually complete, punctuated) copy onward.
+ */
+function collapseInternalRepeat(sentence: string): string {
+  const words = sentence.split(/\s+/).filter(Boolean);
+  const norm = words.map((w) => w.toLowerCase().replace(/[^a-z0-9]/g, ''));
+  const n = words.length;
+  const MIN_PHRASE = 4;
+  const MAX_GAP = 2; // words allowed between the two copies of the leading phrase
+  for (let len = Math.floor(n / 2); len >= MIN_PHRASE; len -= 1) {
+    for (let k = len; k <= len + MAX_GAP && k + len <= n; k += 1) {
+      let match = true;
+      for (let i = 0; i < len; i += 1) {
+        if (norm[i] !== norm[k + i]) {
+          match = false;
+          break;
+        }
+      }
+      if (match) return words.slice(k).join(' ');
+    }
+  }
+  return sentence;
+}
+
+/**
+ * Drop sentences the model repeated across steps. Exact whole-step repeats are
+ * already removed by the containment pass in `assembleReply`; this catches the
+ * near-duplicates it misses - a trailing sentence re-emitted with a word changed
+ * or its punctuation dropped. Splits on blank-line paragraph breaks and keeps them
+ * verbatim so formatting survives; within each paragraph it collapses self-restarts
+ * (see `collapseInternalRepeat`) and drops any sentence that closely matches one
+ * already kept anywhere in the reply.
+ */
+function dedupeSentences(text: string): string {
+  const NEAR_DUP = 0.8;
+  const kept: string[] = []; // normalized-enough sentences kept across the whole reply
+  // Even indices are content blocks; odd indices are the "\n\n+" separators.
+  const blocks = text.split(/(\n{2,})/);
+  const out = blocks.map((block, idx) => {
+    if (idx % 2 === 1 || !block.trim()) return block; // separator or blank, keep verbatim
+    const sentences = block.split(/(?<=[.!?])\s+/).filter((s) => s.trim());
+    const survivors: string[] = [];
+    for (const raw of sentences) {
+      const s = collapseInternalRepeat(raw.trim());
+      if (!s) continue;
+      if (kept.some((k) => sentenceSimilarity(k, s) >= NEAR_DUP)) continue;
+      kept.push(s);
+      survivors.push(s);
+    }
+    return survivors.join(' ');
+  });
+  // Tidy separators left dangling if a block emptied out.
+  return out.join('').replace(/\n{2,}\s*$/, '').replace(/^\s*\n{2,}/, '').trim();
+}
+
 /**
  * Stitch the prose a model emitted across steps into one reply. DeepSeek tends to
  * write text alongside its tool calls and then again after the tool results, often
- * repeating its whole message verbatim. Dropping any step text that duplicates or
- * is contained in another collapses that back to a single clean reply, while still
- * keeping genuinely complementary halves (an acknowledgement then a question).
- * Empty steps are skipped, so a reply that only appears in the tool step survives.
+ * repeating its whole message. Pass 1 drops any step text that duplicates or is
+ * contained in another (collapsing verbatim repeats) while keeping genuinely
+ * complementary halves (an acknowledgement then a question); empty steps are
+ * skipped so a reply that only appears in the tool step survives. Pass 2
+ * (`dedupeSentences`) then removes the near-duplicate / restarted sentences that
+ * exact containment can't see - the trailing question repeated with a word changed
+ * or its "?" dropped.
  */
-function assembleReply(stepTexts: string[]): string {
+export function assembleReply(stepTexts: string[]): string {
   const parts: string[] = [];
   for (const raw of stepTexts) {
     const t = raw.trim();
@@ -28,7 +110,7 @@ function assembleReply(stepTexts: string[]): string {
     if (idx >= 0) parts[idx] = t;
     else parts.push(t);
   }
-  return applyReplacements(parts.join(' ')).trim();
+  return applyReplacements(dedupeSentences(parts.join(' '))).trim();
 }
 
 export interface CreateAgentOptions<TTools extends ToolSet> {
