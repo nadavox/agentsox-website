@@ -235,7 +235,7 @@ export const FAQ_ITEMS = [
 ];
 
 export const HOME_META = {
-  title: 'AI Automation for Business Operations | AgentsOX',
+  title: 'Custom tech, built around how your business works | AgentsOX',
   description:
     'AgentsOX sits with you to find what is slowing your business down, then builds custom tech to fix it - for companies of any size, in any industry.',
 };
