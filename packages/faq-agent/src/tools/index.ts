@@ -12,12 +12,12 @@ import { z } from 'zod';
 export const faqTools = {
   openIntake: tool({
     description:
-      "Surface a CTA card that points the visitor to the project intake form. Call ONLY when the visitor is clearly describing a real project they want help with (concrete business + specific problem or goal) - not just asking a curiosity question. The `reason` is a short headline rendered on the CTA, e.g. 'Build the medspa booking flow you described'.",
+      "Surface a CTA card that sends the visitor to send Nadav the details (the contact form that emails him). Call as soon as the visitor wants help with their own situation - even a small signal like naming their business or saying 'can you help me with X'. You do NOT need full project details first. The `reason` is a short headline rendered on the CTA, e.g. 'Tell Nadav about the medspa booking flow you mentioned'.",
     inputSchema: z.object({
       reason: z
         .string()
         .min(1)
-        .describe('Short plain-English headline for the intake CTA. One concise sentence.'),
+        .describe('Short plain-English headline for the CTA card. One concise sentence.'),
     }),
     execute: async ({ reason }) => ({ ok: true, reason: sanitizeArg(reason) }),
   }),

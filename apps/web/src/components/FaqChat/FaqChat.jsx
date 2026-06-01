@@ -20,7 +20,7 @@ const FAQ_GREETING = [
     parts: [
       {
         type: 'text',
-        text: "Questions about how we work, what we build, or what a project looks like? Ask away - and if it turns into a real project, I'll point you to the intake.",
+        text: "Questions about how we work, what we build, or what a project looks like? Ask away - and if it turns into a real project, I'll point you to where you can send Nadav the details.",
       },
     ],
   },
@@ -216,7 +216,7 @@ export default function FaqChat() {
                             className="faq-chat__cta-button"
                             onClick={() => handleOpenIntake(cta.reason)}
                           >
-                            Open project intake →
+                            Send Nadav the details →
                           </button>
                         </div>
                       )}
