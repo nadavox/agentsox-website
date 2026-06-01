@@ -46,10 +46,15 @@ function getToolPartName(part) {
 }
 
 export function messageText(message) {
+  // The model can emit prose across steps (e.g. an answer, then a line after a tool
+  // call), arriving as separate text parts. Joining with '' smashed them together
+  // ("take a lookHead over..."); join distinct parts with a space so sentences stay
+  // readable. Single-part replies (the common case) are unaffected.
   return (message.parts || [])
     .filter((part) => part.type === 'text')
-    .map((part) => part.text)
-    .join('');
+    .map((part) => (part.text || '').trim())
+    .filter(Boolean)
+    .join(' ');
 }
 
 /**

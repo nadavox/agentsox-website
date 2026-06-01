@@ -34,15 +34,18 @@ function sentenceSimilarity(a: string, b: string): number {
  * -> "What booking system are you using now?". This happens when the model emits
  * the trailing question, gets cut at a step boundary, then re-emits it: the two
  * copies get joined into one run-on with no punctuation between them. We look for
- * the sentence's own leading phrase (>= 4 words) recurring after a tiny gap and,
+ * the sentence's own leading phrase (>= 5 words) recurring after a tiny gap and,
  * if found, keep only the second (usually complete, punctuated) copy onward.
  */
 function collapseInternalRepeat(sentence: string): string {
   const words = sentence.split(/\s+/).filter(Boolean);
   const norm = words.map((w) => w.toLowerCase().replace(/[^a-z0-9]/g, ''));
   const n = words.length;
-  const MIN_PHRASE = 4;
-  const MAX_GAP = 2; // words allowed between the two copies of the leading phrase
+  // 5 words + a single-word gap keeps this tight to the real failure (a restarted
+  // trailing question) and avoids collapsing legitimately repeated short clauses
+  // like "you can book online, and you can book online or by phone".
+  const MIN_PHRASE = 5;
+  const MAX_GAP = 1; // words allowed between the two copies of the leading phrase
   for (let len = Math.floor(n / 2); len >= MIN_PHRASE; len -= 1) {
     for (let k = len; k <= len + MAX_GAP && k + len <= n; k += 1) {
       let match = true;
@@ -74,7 +77,10 @@ function dedupeSentences(text: string): string {
   const blocks = text.split(/(\n{2,})/);
   const out = blocks.map((block, idx) => {
     if (idx % 2 === 1 || !block.trim()) return block; // separator or blank, keep verbatim
-    const sentences = block.split(/(?<=[.!?])\s+/).filter((s) => s.trim());
+    // Split on sentence-ending punctuation, but only when the next chunk starts a
+    // new sentence (uppercase / digit / quote) - so "e.g. Shopify" and "i.e. the"
+    // aren't chopped into fragments.
+    const sentences = block.split(/(?<=[.!?])\s+(?=[A-Z0-9"'])/).filter((s) => s.trim());
     const survivors: string[] = [];
     for (const raw of sentences) {
       const s = collapseInternalRepeat(raw.trim());

@@ -49,10 +49,14 @@ function getToolPartName(part) {
 }
 
 export function messageText(message) {
+  // Kept identical to the FAQ widget's messageText: join distinct text parts with a
+  // space so multi-part replies never smash words together. The intake bot coalesces
+  // to a single part today, but this stays robust if that ever changes.
   return (message.parts || [])
     .filter((part) => part.type === 'text')
-    .map((part) => part.text)
-    .join('');
+    .map((part) => (part.text || '').trim())
+    .filter(Boolean)
+    .join(' ');
 }
 
 /**
