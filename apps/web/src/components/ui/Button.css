@@ -16,7 +16,9 @@
 /* Primary */
 .btn--primary {
   background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
-  color: white;
+  /* Dark ink on the bright accent: AAA on the cyan end, AA on the blue end, in all dark
+     themes (white failed at ~1.6-3.7:1). Matches the .skip-link on-accent convention. */
+  color: var(--color-bg-primary);
   border: none;
 }
 
