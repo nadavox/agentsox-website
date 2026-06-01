@@ -3,17 +3,21 @@ import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 
 const STORAGE_KEY = 'agentsox-faq-chat-v1';
-const PERSISTENCE_TTL_MS = 24 * 60 * 60 * 1000;
+// FAQ history lives in sessionStorage, not localStorage: it survives an accidental
+// same-tab reload, but a fresh visit (new tab, or a closed-and-reopened browser)
+// starts clean - so one visitor never inherits a previous visitor's conversation.
+// The TTL is a short idle backstop within a single tab session.
+const PERSISTENCE_TTL_MS = 60 * 60 * 1000; // 60 min idle
 
 function loadPersisted() {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const raw = window.sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed !== 'object') return null;
     if (typeof parsed.ts !== 'number' || Date.now() - parsed.ts > PERSISTENCE_TTL_MS) {
-      window.localStorage.removeItem(STORAGE_KEY);
+      window.sessionStorage.removeItem(STORAGE_KEY);
       return null;
     }
     return parsed;
@@ -25,7 +29,7 @@ function loadPersisted() {
 function savePersisted(payload) {
   if (typeof window === 'undefined') return;
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now(), ...payload }));
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now(), ...payload }));
   } catch {
     /* ignore */
   }
@@ -34,7 +38,7 @@ function savePersisted(payload) {
 function clearPersisted() {
   if (typeof window === 'undefined') return;
   try {
-    window.localStorage.removeItem(STORAGE_KEY);
+    window.sessionStorage.removeItem(STORAGE_KEY);
   } catch {
     /* ignore */
   }
