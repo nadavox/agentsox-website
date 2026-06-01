@@ -7,25 +7,12 @@
   padding: 0;
 }
 
-/* === CSS Variable Defaults (sleek-dark) === */
+/* === CSS Variable Defaults (sleek-dark) ===
+   Themed colours + shadows are GENERATED into ./themes/theme-fallback.css from
+   THEME_TOKENS (the runtime source), imported before this file. applyTheme()
+   overrides them at runtime. Only theme-invariant tokens live here. */
 :root {
-  --color-bg-primary: #0A0A0F;
-  --color-bg-secondary: #12121A;
-  --color-bg-tertiary: #1A1A25;
-  --color-text-primary: #EEEEF0;
-  --color-text-secondary: #A0A0B0;
-  --color-text-muted: #6B6B80;
-  --color-accent: #22D3EE;
-  --color-accent-hover: #3B82F6;
-  --color-accent-subtle: rgba(34, 211, 238, 0.12);
-  --color-accent-2: #10B981;
-  --color-accent-2-subtle: rgba(16, 185, 129, 0.10);
-  --color-border: #2A2A3A;
-  --color-border-subtle: #1E1E2A;
   --color-error: #E53E3E;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
 
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -49,6 +36,14 @@
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 400ms ease;
+
+  /* Z-index scale (semantic, low → high). Keep new layers on this scale. */
+  --z-back-to-top: 50;
+  --z-chat: 90;
+  --z-nav-overlay: 98;
+  --z-nav-drawer: 99;
+  --z-nav-bar: 100;
+  --z-skip-link: 1000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -182,7 +177,7 @@ section {
   color: var(--color-bg-primary);
   border-radius: var(--radius-md);
   font-weight: 600;
-  z-index: 9999;
+  z-index: var(--z-skip-link);
 }
 
 .skip-link:focus {

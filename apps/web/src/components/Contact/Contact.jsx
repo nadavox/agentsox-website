@@ -194,7 +194,6 @@ export default function Contact() {
   return (
     <SectionWrapper id="contact" className="contact" background="bg-secondary">
       <div className="contact__header">
-        <p className="section-label">START HERE</p>
         <h2 className="contact__heading">What should we look at first?</h2>
         <p className="contact__text">
           Describe what you want to improve or build, and we&apos;ll shape the

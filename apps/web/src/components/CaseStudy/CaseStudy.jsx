@@ -31,6 +31,8 @@ export default function CaseStudy({ study }) {
               alt={study.previewAlt}
               width="1440"
               height="900"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>

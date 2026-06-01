@@ -40,10 +40,12 @@
   cursor: pointer;
 }
 
-.testimonials__card--link:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) {
+  .testimonials__card--link:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .testimonials__card--link:active {
@@ -88,8 +90,10 @@
   transition: transform 0.3s ease-out;
 }
 
-.testimonials__card--link:hover .testimonials__preview img {
-  transform: scale(1.035);
+@media (hover: hover) {
+  .testimonials__card--link:hover .testimonials__preview img {
+    transform: scale(1.035);
+  }
 }
 
 .testimonials__tag {

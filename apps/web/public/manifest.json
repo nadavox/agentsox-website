@@ -4,8 +4,8 @@
   "description": "AgentsOX designs custom AI automation, AI agents, internal tools, reporting dashboards, lead systems, branding, SEO, and business process automation.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0F",
-  "theme_color": "#0A0A0F",
+  "background_color": "#101018",
+  "theme_color": "#3B82F6",
   "icons": [
     {
       "src": "/icon-192x192.png",

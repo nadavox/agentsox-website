@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -195,12 +196,14 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <ErrorBoundary>
-        <AppContent />
-        <Suspense fallback={null}>
-          <FaqChat />
-        </Suspense>
-      </ErrorBoundary>
+      <MotionConfig reducedMotion="user">
+        <ErrorBoundary>
+          <AppContent />
+          <Suspense fallback={null}>
+            <FaqChat />
+          </Suspense>
+        </ErrorBoundary>
+      </MotionConfig>
     </ThemeProvider>
   );
 }

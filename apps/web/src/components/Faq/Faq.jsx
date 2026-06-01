@@ -5,7 +5,6 @@ import './Faq.css';
 export default function Faq() {
   return (
     <SectionWrapper id="faq" className="faq">
-      <p className="section-label">FAQ</p>
       <h2 className="faq__heading">Questions clients usually ask</h2>
       <p className="faq__intro">
         Straight answers on how we work, what we build, and what a project looks

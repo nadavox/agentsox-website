@@ -1,7 +1,7 @@
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: var(--z-nav-bar);
   background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -140,7 +140,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 98;
+  z-index: var(--z-nav-overlay);
 }
 
 /* Mobile drawer */
@@ -156,7 +156,7 @@
   flex-direction: column;
   padding: 1.5rem 2rem 2rem;
   gap: 1.5rem;
-  z-index: 99;
+  z-index: var(--z-nav-drawer);
 }
 
 .navbar__drawer-close {

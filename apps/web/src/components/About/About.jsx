@@ -62,7 +62,6 @@ const cardVariants = {
 export default function About() {
   return (
     <SectionWrapper id="about" className="about" background="bg-secondary">
-      <p className="section-label">ABOUT US</p>
       <h2 className="about__heading">Built Around Your Real Workflow</h2>
       <p className="about__narrative">
         AgentsOX is for businesses of any size that need practical tech

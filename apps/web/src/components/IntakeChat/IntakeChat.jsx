@@ -130,7 +130,12 @@ export default function IntakeChat({
       </Card.Section>
 
       <ScrollArea.Autosize mah={420} className="contact__bot-scroll" viewportRef={viewportRef}>
-        <Stack className="contact__bot-messages" gap="sm">
+        <Stack
+          className="contact__bot-messages"
+          gap="sm"
+          aria-live="polite"
+          aria-atomic="false"
+        >
           {messages.map((message, index) => {
             const text = messageText(message);
             const isLatestAssistant = message.role === 'assistant' && index === latestAssistantIndex;

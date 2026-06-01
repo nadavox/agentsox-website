@@ -191,9 +191,11 @@
   border: 1.5px solid transparent;
 }
 
-.hero__btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
+@media (hover: hover) {
+  .hero__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
 }
 
 .hero__btn--ghost {

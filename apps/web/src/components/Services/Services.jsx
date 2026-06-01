@@ -78,7 +78,6 @@ const cardVariants = {
 export default function Services() {
   return (
     <SectionWrapper id="services" className="services">
-      <p className="section-label">WHAT WE DO</p>
       <h2 className="services__heading">Built Around One Business Workflow at a Time</h2>
       <p className="services__description">
         We start with one business problem, map the real workflow, and build the

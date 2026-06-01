@@ -24,7 +24,6 @@ const tools = [
 export default function Products() {
   return (
     <SectionWrapper id="products" className="products">
-      <p className="section-label">WORKSHOPS &amp; TRAINING</p>
       <h2 className="products__heading">Workshops for Practical AI Adoption</h2>
       <p className="products__intro">
         Hands-on training for business teams that want to use AI safely in daily

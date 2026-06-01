@@ -25,8 +25,7 @@ export default function SeoLandingPage({ page, type = 'service' }) {
 
         <section className="seo-page__section">
           <div>
-            <p className="section-label">{type === 'industry' ? 'USE CASES' : 'OUTCOMES'}</p>
-            <h2>What This Should Fix</h2>
+            <h2>{type === 'industry' ? 'Use Cases' : 'What This Should Fix'}</h2>
           </div>
           <div className="seo-page__grid">
             {page.outcomes.map((outcome) => (
@@ -43,7 +42,6 @@ export default function SeoLandingPage({ page, type = 'service' }) {
 
         <section className="seo-page__section seo-page__section--split">
           <div>
-            <p className="section-label">HOW WE BUILD</p>
             <h2>Practical, Bounded, and Easy to Hand Off</h2>
           </div>
           <div className="seo-page__copy">
@@ -62,7 +60,6 @@ export default function SeoLandingPage({ page, type = 'service' }) {
 
         <section className="seo-page__section">
           <div>
-            <p className="section-label">PROOF</p>
             <h2>Related Work</h2>
           </div>
           <div className="seo-page__case-grid">

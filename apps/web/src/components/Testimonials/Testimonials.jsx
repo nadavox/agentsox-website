@@ -15,7 +15,6 @@ const cardVariants = {
 export default function Testimonials() {
   return (
     <SectionWrapper id="testimonials" className="testimonials">
-      <p className="section-label">CLIENT WORK</p>
       <h2 className="testimonials__heading">A few things we&apos;ve built</h2>
       <p className="testimonials__intro">
         Real projects delivered across web platforms, automation, and

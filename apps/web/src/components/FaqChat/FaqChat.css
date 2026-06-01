@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  z-index: 90;
+  z-index: var(--z-chat);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,9 +18,11 @@
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.faq-chat__launcher:hover {
-  background: color-mix(in srgb, var(--color-accent) 88%, #000);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .faq-chat__launcher:hover {
+    background: color-mix(in srgb, var(--color-accent) 88%, #000);
+    transform: translateY(-2px);
+  }
 }
 
 .faq-chat__launcher:active {
@@ -37,7 +39,7 @@
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  z-index: 90;
+  z-index: var(--z-chat);
   display: flex;
   flex-direction: column;
   width: min(380px, calc(100vw - 3rem));
@@ -212,7 +214,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    width: 100vw;
+    width: auto;
     height: 78dvh;
     max-height: 78dvh;
     border-radius: 16px 16px 0 0;

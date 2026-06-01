@@ -39,6 +39,9 @@ export default function FaqChat() {
   const [input, setInput] = useState('');
   const viewportRef = useRef(null);
   const pendingRef = useRef(null);
+  const launcherRef = useRef(null);
+  const inputRef = useRef(null);
+  const hasOpenedRef = useRef(false);
 
   const { messages, sendMessage, status, error, chips, intakeCtas, reset } = useFaqChat({
     endpoint: ENDPOINT,
@@ -72,6 +75,17 @@ export default function FaqChat() {
       window.clearTimeout(timeout);
     };
   }, [messages, loading, isOpen]);
+
+  // Move focus into the dialog on open; restore it to the launcher on close.
+  useEffect(() => {
+    if (isOpen) {
+      hasOpenedRef.current = true;
+      const timer = window.setTimeout(() => inputRef.current?.focus(), 60);
+      return () => window.clearTimeout(timer);
+    }
+    if (hasOpenedRef.current) launcherRef.current?.focus();
+    return undefined;
+  }, [isOpen]);
 
   function handleSend(value) {
     const text = value.trim();
@@ -116,6 +130,7 @@ export default function FaqChat() {
         {!isOpen && (
           <motion.button
             key="faq-launcher"
+            ref={launcherRef}
             type="button"
             className="faq-chat__launcher"
             onClick={() => setIsOpen(true)}
@@ -194,7 +209,12 @@ export default function FaqChat() {
             </header>
 
             <ScrollArea.Autosize className="faq-chat__scroll" viewportRef={viewportRef}>
-              <Stack gap="sm" className="faq-chat__messages">
+              <Stack
+                gap="sm"
+                className="faq-chat__messages"
+                aria-live="polite"
+                aria-atomic="false"
+              >
                 {messages.map((message, index) => {
                   const text = messageText(message);
                   const isLatestAssistant =
@@ -262,6 +282,7 @@ export default function FaqChat() {
 
             <form className="faq-chat__input-row" onSubmit={handleSubmit}>
               <TextInput
+                ref={inputRef}
                 className="faq-chat__input"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

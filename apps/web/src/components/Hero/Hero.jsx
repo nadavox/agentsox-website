@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
 import { smoothScrollTo } from '../../utils/smoothScroll';
 import './Hero.css';
@@ -17,6 +17,9 @@ const fadeUp = {
 export default function Hero() {
   const scrollOpacity = useMotionValue(1);
   const lastOpacityRef = useRef(1);
+  // Stop looping the scroll chevron once the indicator has faded out of view.
+  const [indicatorVisible, setIndicatorVisible] = useState(true);
+  const visibleRef = useRef(true);
 
   useEffect(() => {
     function handleScroll() {
@@ -24,6 +27,11 @@ export default function Hero() {
       if (Math.abs(fade - lastOpacityRef.current) > 0.01) {
         lastOpacityRef.current = fade;
         scrollOpacity.set(fade);
+      }
+      const visible = fade > 0;
+      if (visible !== visibleRef.current) {
+        visibleRef.current = visible;
+        setIndicatorVisible(visible);
       }
     }
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -143,7 +151,7 @@ export default function Hero() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          animate={{ y: [0, 8, 0] }}
+          animate={indicatorVisible ? { y: [0, 8, 0] } : { y: 0 }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         >
           <polyline points="6 9 12 15 18 9" />
