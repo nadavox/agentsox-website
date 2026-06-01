@@ -18,13 +18,22 @@ export interface IntakeAgentOptions {
  * + the static knowledge JSON (services, process, audience, trust principles).
  */
 function buildIntakeSystem(context: Record<string, unknown>): string {
-  return `${STREAMING_SYSTEM_PROMPT}
+  const base = `${STREAMING_SYSTEM_PROMPT}
 
 Current project snapshot (private - don't quote it back to the visitor):
 ${JSON.stringify(context)}
 
 AgentsOX knowledge base (draw on it only when relevant):
 ${JSON.stringify(knowledge)}`;
+  // Deterministic send-mode directive: when the app has marked the visitor ready
+  // (the three core fields are in), enforce invite-to-send at the END of the prompt
+  // (recency aids adherence) rather than hoping the model notices the snapshot flag.
+  if (context && (context as { readyToSend?: unknown }).readyToSend) {
+    return `${base}
+
+SEND MODE IS ACTIVE - you already have challenge, businessType, and desiredOutcome. Do NOT ask another scoping question. Reflect their problem back in one sentence (never a solution) and invite them to drop their name and email in the form so Nadav follows up. Then stay available and answer anything else they ask - never re-interrogate, never shut the chat down.`;
+  }
+  return base;
 }
 
 /**

@@ -168,6 +168,17 @@ export function useIntakeChat({ endpoint, siteId, initialMessages, initialChips 
     if (nextReady === true) setReady(true);
   }, [messages]);
 
+  // Deterministic "ready to send" gate. The moment the three core fields exist we
+  // surface the send prompt and tell the model (via readyToSend in context) that it
+  // has enough - we do NOT depend on the model deciding to close, and we never stop
+  // the chat: the visitor can keep talking while the form sits ready.
+  useEffect(() => {
+    const c = context;
+    const complete = Boolean(c.challenge && c.businessType && c.desiredOutcome);
+    if (complete && !c.readyToSend) setContext((prev) => ({ ...prev, readyToSend: true }));
+    if (complete && !ready) setReady(true);
+  }, [context, ready]);
+
   // Persist on every meaningful state change (skip while streaming).
   useEffect(() => {
     if (status === 'streaming' || status === 'submitted') return;
