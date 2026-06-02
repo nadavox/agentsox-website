@@ -68,12 +68,12 @@ function renderHome() {
     <main id="main-content" class="static-page">
       <section class="static-page__hero">
         <h1>Custom tech, built around how your business actually works</h1>
-        <p>We sit with you, find what is actually slowing the business down, and build the system that fixes it - for companies of any size, in any industry.</p>
+        <p>We sit with you, find what is slowing the business down, and build the system that fixes it - for companies of any size, in any industry.</p>
         <p><strong>Built around the business problem, not a fixed product.</strong></p>
-        <p><a href="#contact">Audit My Workflow</a></p>
+        <p><a href="#contact">Book a workflow audit</a></p>
       </section>
       <section>
-        <h2>AI Systems Built Around One Business Workflow</h2>
+        <h2>Built Around One Business Workflow at a Time</h2>
         ${SERVICE_PAGES.map((page) => `
           <article>
             <h3><a href="/${page.slug}">${escapeHtml(page.shortTitle)}</a></h3>
@@ -132,7 +132,7 @@ function renderLanding(page, type) {
         <p>${escapeHtml(page.eyebrow)}</p>
         <h1>${escapeHtml(page.title)}</h1>
         <p>${escapeHtml(page.description)}</p>
-        <p><a href="/#contact">Send Your Workflow Problem</a></p>
+        <p><a href="/#contact">Book a workflow audit</a></p>
       </section>
       <section>
         <h2>${type === 'industry' ? 'Use Cases' : 'What This Should Fix'}</h2>
@@ -164,14 +164,14 @@ function renderCaseStudy(study) {
         <h1>${escapeHtml(study.title)}</h1>
         <p>${escapeHtml(study.description)}</p>
         <p><strong>Result: ${escapeHtml(study.outcome)}</strong></p>
-        <p><a href="${escapeHtml(study.url)}">View Live Work</a></p>
+        <p><a href="${escapeHtml(study.url)}">View live work</a></p>
       </section>
       <section>
-        <h2>What Needed to Change</h2>
+        <h2>What needed to change</h2>
         <p>${escapeHtml(study.problem)}</p>
       </section>
       <section>
-        <h2>How AgentsOX Thinks About This Work</h2>
+        <h2>How we approached it</h2>
         <p>The project started by clarifying the real workflow, the people using it, and the points where the system needed to be practical instead of impressive.</p>
       </section>
     </main>

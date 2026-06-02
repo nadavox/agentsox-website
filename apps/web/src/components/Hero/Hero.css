@@ -17,7 +17,7 @@
   pointer-events: none;
   background: radial-gradient(
     ellipse 70% 55% at 50% 42%,
-    color-mix(in srgb, var(--color-accent) 6%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-warm) 7%, transparent) 0%,
     transparent 100%
   );
 }
@@ -39,31 +39,8 @@
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 100%);
 }
 
-/* Warm: artisan cross-mark pattern */
-[data-aesthetic="warm"] .hero__decoration {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 14v12M14 20h12' fill='none' stroke='%23a07858' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-size: 40px 40px;
-  opacity: 0.12;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, black 20%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, black 20%, transparent 100%);
-}
-
-/* Bold: sharp diagonal stripes */
-[data-aesthetic="bold"] .hero__decoration {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 20px,
-    rgba(200, 200, 200, 0.06) 20px,
-    rgba(200, 200, 200, 0.06) 21px
-  );
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 10%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 10%, transparent 100%);
-}
-
 /* Light mode: lift pattern visibility on near-white backgrounds */
 [data-mode="light"][data-aesthetic="sleek"] .hero__decoration { opacity: 0.12; }
-[data-mode="light"][data-aesthetic="warm"] .hero__decoration { opacity: 0.10; }
 
 /* --- Content --- */
 .hero__content {
@@ -83,16 +60,6 @@
   transform-origin: center;
 }
 
-[data-aesthetic="bold"] .hero__eyeline {
-  width: 56px;
-  height: 3px;
-}
-
-[data-aesthetic="warm"] .hero__eyeline {
-  border-radius: 2px;
-  height: 2px;
-}
-
 /* --- Headline --- */
 .hero__headline {
   font-family: var(--font-heading);
@@ -105,20 +72,8 @@
   text-wrap: balance;
 }
 
-[data-aesthetic="warm"] .hero__headline {
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-}
-
-[data-aesthetic="bold"] .hero__headline {
-  letter-spacing: -0.04em;
-}
-
 .hero__headline-accent {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-accent);
 }
 
 /* --- Subheadline --- */

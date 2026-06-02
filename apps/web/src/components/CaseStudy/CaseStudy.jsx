@@ -19,9 +19,9 @@ export default function CaseStudy({ study }) {
               <strong>{study.outcome}</strong>
             </div>
             <div className="case-study__actions">
-              <Button href="/#contact">Build Something Similar</Button>
+              <Button href="/#contact">Build something similar</Button>
               <Button href={study.url} target="_blank" rel="noopener noreferrer" variant="ghost">
-                View Live Work
+                View live work
               </Button>
             </div>
           </div>
@@ -39,22 +39,19 @@ export default function CaseStudy({ study }) {
 
         <section className="case-study__details">
           <article>
-            <p className="section-label">PROBLEM</p>
-            <h2>What Needed to Change</h2>
+            <h2>What needed to change</h2>
             <p>{study.problem}</p>
           </article>
           <article>
-            <p className="section-label">APPROACH</p>
-            <h2>How AgentsOX Thinks About This Work</h2>
+            <h2>How we approached it</h2>
             <p>
-              The project started by clarifying the real workflow, the people using it,
+              We started by clarifying the real workflow, the people using it,
               and the points where the system needed to be practical instead of impressive.
               That means visible handoffs, clear user paths, and a result the business can use.
             </p>
           </article>
           <article>
-            <p className="section-label">OUTCOME</p>
-            <h2>What the Client Got</h2>
+            <h2>What the client got</h2>
             <p>{study.outcome}. The same pattern applies to AI chatbots, workflow automation,
               owner dashboards, and lead follow-up systems built around real operations.</p>
           </article>

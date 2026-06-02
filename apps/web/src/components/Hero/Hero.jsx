@@ -70,9 +70,9 @@ export default function Hero() {
           animate="visible"
           custom={0.38}
         >
-          We sit with you, find what is actually slowing the business down,
-          and build the system that fixes it - for companies of any size, in
-          any industry.
+          We sit with you, find what is slowing the business down, and build
+          the system that fixes it - for companies of any size, in any
+          industry.
         </motion.p>
 
         <motion.div
@@ -91,7 +91,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.48}
-          aria-label="AgentsOX trust promises"
+          aria-label="What we focus on"
         >
           {focusAreas.map((area) => (
             <span key={area}>{area}</span>
@@ -109,13 +109,13 @@ export default function Hero() {
             className="hero__btn hero__btn--primary"
             onClick={() => smoothScrollTo('contact')}
           >
-            Audit My Workflow
+            Book a workflow audit
           </button>
           <button
             className="hero__btn hero__btn--ghost"
             onClick={() => smoothScrollTo('testimonials')}
           >
-            See Our Work
+            See our work
           </button>
         </motion.div>
 

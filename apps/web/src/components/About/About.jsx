@@ -70,6 +70,35 @@ export default function About() {
         and trusted.
       </p>
 
+      <motion.figure
+        className="about__founder"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        <img
+          className="about__founder-photo"
+          src="/brand/founder/nadav-agentsox-founder-profile-square.webp"
+          alt="Nadav Oxenberg, founder of AgentsOX"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="about__founder-body">
+          <p className="about__founder-quote">
+            You work with me directly. I learn how your business actually
+            runs, build the system around it, and stay with you until you
+            trust it day to day.
+          </p>
+          <span className="about__founder-id">
+            <span className="about__founder-name">Nadav Oxenberg</span>
+            <span className="about__founder-role">Founder, AgentsOX</span>
+          </span>
+        </figcaption>
+      </motion.figure>
+
       <div className="about__list">
         {values.map((value, i) => (
           <motion.div

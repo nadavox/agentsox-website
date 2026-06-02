@@ -140,11 +140,9 @@
   font-family: var(--font-body);
   font-style: italic;
   font-size: clamp(0.9rem, 1.4vw, 1rem);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   line-height: 1.55;
-  margin: 0.25rem 1.5rem 0;
-  padding-left: 0.85rem;
-  border-left: 2px solid var(--color-accent);
+  margin: 0.75rem 1.5rem 0;
 }
 
 .testimonials__result {

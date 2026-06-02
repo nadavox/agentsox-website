@@ -4,6 +4,7 @@ export const SERVICE_PAGES = [
     eyebrow: 'AI CHATBOTS',
     title: 'AI Chatbots for Lead Intake, FAQs, and Client Follow-Up',
     shortTitle: 'AI Chatbots',
+    cardTitle: 'Capture every lead',
     description:
       'Website, WhatsApp, and internal chat assistants that answer questions, collect lead context, book the next step, and route work to the right person.',
     metaDescription:
@@ -21,6 +22,7 @@ export const SERVICE_PAGES = [
     eyebrow: 'WORKFLOW AUTOMATION',
     title: 'Workflow Automation for Repetitive Business Operations',
     shortTitle: 'Workflow Automation',
+    cardTitle: 'Automate the busywork',
     description:
       'Automations for scheduling, reminders, CRM updates, follow-ups, documents, notifications, and handoffs that currently depend on manual admin.',
     metaDescription:
@@ -38,6 +40,7 @@ export const SERVICE_PAGES = [
     eyebrow: 'BUSINESS ANALYTICS',
     title: 'Business Analytics Dashboards for Leads, Bookings, and Operations',
     shortTitle: 'Business Analytics',
+    cardTitle: 'See what is working',
     description:
       'Dashboards and reporting flows that help owners see leads, bookings, revenue signals, bottlenecks, and missed opportunities without digging through spreadsheets.',
     metaDescription:
@@ -55,6 +58,7 @@ export const SERVICE_PAGES = [
     eyebrow: 'AI WORKSHOPS',
     title: 'Practical AI Workshops for Owners and Operators',
     shortTitle: 'AI Workshops',
+    cardTitle: 'Train your team',
     description:
       'Hands-on workshops for teams that want to use AI safely in daily operations. Bring one real workflow and leave with a reusable process.',
     metaDescription:
@@ -72,6 +76,7 @@ export const SERVICE_PAGES = [
     eyebrow: 'BRAND & SEO',
     title: 'Branding and SEO Systems for Client Acquisition',
     shortTitle: 'Brand & SEO',
+    cardTitle: 'Get found, win clients',
     description:
       'Sharper positioning, SEO pages, lead funnels, and website improvements that help the right clients understand the offer and take action.',
     metaDescription:

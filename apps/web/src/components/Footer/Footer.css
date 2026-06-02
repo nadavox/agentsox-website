@@ -34,10 +34,7 @@
 }
 
 .footer__ox {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-accent);
 }
 
 .footer__mark {

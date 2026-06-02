@@ -61,7 +61,6 @@ const serviceIcons = [
 
 const services = SERVICE_PAGES.map((service, index) => ({
   ...service,
-  title: service.shortTitle,
   icon: serviceIcons[index]?.icon,
 }));
 
@@ -94,10 +93,10 @@ export default function Services() {
         {services.map((service) => (
           <motion.article key={service.slug} className="services__card" variants={cardVariants}>
             <div className="services__card-icon">{service.icon}</div>
-            <h3 className="services__card-title">{service.title}</h3>
+            <h3 className="services__card-title">{service.cardTitle}</h3>
             <p className="services__card-description">{service.description}</p>
             <a className="services__card-link" href={`/${service.slug}`}>
-              Explore {service.title}
+              Explore {service.shortTitle}
             </a>
           </motion.article>
         ))}

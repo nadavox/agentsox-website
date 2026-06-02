@@ -24,10 +24,10 @@ const tools = [
 export default function Products() {
   return (
     <SectionWrapper id="products" className="products">
-      <h2 className="products__heading">Workshops for Practical AI Adoption</h2>
+      <h2 className="products__heading">Hands-on workshops for your team</h2>
       <p className="products__intro">
-        Hands-on training for business teams that want to use AI safely in daily
-        operations, not watch another generic demo.
+        Practical training for teams that want to put AI to work in daily
+        operations safely, not watch another generic demo.
       </p>
 
       <motion.div
