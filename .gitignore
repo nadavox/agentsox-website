@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+# Built widget bundle served by the faq-worker (output of the apps/widget build)
+workers/faq/assets/
 *.local
 .dev.vars
 .wrangler/
