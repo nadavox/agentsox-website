@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
+import { createFaqTransport, extractToolUpdates, messageText } from '@agentsox/faq-client';
+
+// The chat wire contract (transport, tool parsing, messageText) is shared with the
+// embeddable widget via @agentsox/faq-client. This hook adds the site-only concern:
+// sessionStorage persistence within a tab.
+export { messageText };
 
 const STORAGE_KEY = 'agentsox-faq-chat-v1';
 // FAQ history lives in sessionStorage, not localStorage: it survives an accidental
@@ -44,23 +49,6 @@ function clearPersisted() {
   }
 }
 
-function getToolPartName(part) {
-  if (!part || typeof part.type !== 'string') return null;
-  return part.type.startsWith('tool-') ? part.type.slice('tool-'.length) : null;
-}
-
-export function messageText(message) {
-  // The model can emit prose across steps (e.g. an answer, then a line after a tool
-  // call), arriving as separate text parts. Joining with '' smashed them together
-  // ("take a lookHead over..."); join distinct parts with a space so sentences stay
-  // readable. Single-part replies (the common case) are unaffected.
-  return (message.parts || [])
-    .filter((part) => part.type === 'text')
-    .map((part) => (part.text || '').trim())
-    .filter(Boolean)
-    .join(' ');
-}
-
 /**
  * Sibling of useIntakeChat for the FAQ widget. Simpler state:
  *   - messages (from useChat)
@@ -88,13 +76,7 @@ export function useFaqChat({ endpoint, siteId, initialMessages }) {
   );
 
   const transport = useMemo(
-    () =>
-      new DefaultChatTransport({
-        api: endpoint,
-        prepareSendMessagesRequest: ({ messages: msgs }) => ({
-          body: { siteId, messages: msgs },
-        }),
-      }),
+    () => createFaqTransport({ endpoint, siteId }),
     [endpoint, siteId],
   );
 
@@ -105,37 +87,11 @@ export function useFaqChat({ endpoint, siteId, initialMessages }) {
   });
 
   useEffect(() => {
-    const nextChips = {};
-    const nextCtas = {};
-
-    for (const message of messages) {
-      if (message.role !== 'assistant' || !Array.isArray(message.parts)) continue;
-      for (let i = 0; i < message.parts.length; i += 1) {
-        const part = message.parts[i];
-        const toolName = getToolPartName(part);
-        if (!toolName) continue;
-        if (part.state !== 'output-available' && part.state !== 'input-available') continue;
-
-        const key = `${message.id}:${i}`;
-        if (processedToolPartsRef.current.has(key)) continue;
-        processedToolPartsRef.current.add(key);
-
-        const data =
-          part.state === 'output-available' && part.output ? part.output : part.input || {};
-
-        if (toolName === 'setChips' && Array.isArray(data.chips)) {
-          nextChips[message.id] = data.chips.filter((c) => typeof c === 'string' && c.trim());
-        } else if (toolName === 'openIntake' && typeof data.reason === 'string' && data.reason.trim()) {
-          nextCtas[message.id] = { reason: data.reason.trim() };
-        }
-      }
-    }
-
-    // Same pattern as useIntakeChat's tool-watching effect: we derive per-message
-    // state slices from the streamed UIMessage parts. Calling setState here is
-    // intentional - useIntakeChat does the identical thing and lint accepts it
-    // there but trips here, likely a quirk of the rule's flow analysis.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    const { chips: nextChips, ctas: nextCtas } = extractToolUpdates(
+      messages,
+      processedToolPartsRef.current,
+    );
+    // Derive per-message chips / CTA slices from the streamed UIMessage parts.
     if (Object.keys(nextChips).length) setChips((prev) => ({ ...prev, ...nextChips }));
     if (Object.keys(nextCtas).length) setIntakeCtas((prev) => ({ ...prev, ...nextCtas }));
   }, [messages]);
