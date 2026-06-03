@@ -16,7 +16,10 @@ products/faq/faq-worker/assets/
 .dev.vars
 .wrangler/
 
-# Local secrets / env
+# Local secrets / env. Secret-bearing env files (.env, .dev.vars, secrets.env) are
+# ignored. The two exceptions below are Vite VITE_* files that get inlined into the
+# browser bundle - they are PUBLIC by design (cannot hold secrets) and are committed
+# on purpose. Real secrets go in .dev.vars (ignored) or `wrangler secret put`.
 .env
 .env.*
 !.env.example
