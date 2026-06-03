@@ -1,0 +1,16 @@
+# TEMPLATE — deploy this on the CLIENT's Cloudflare account/zone, not AgentsOX's.
+# Copy this folder per client, set the vars + route, then `npx wrangler deploy`.
+name = "shades-of-soul-widget-inject"
+main = "src/index.ts"
+compatibility_date = "2026-05-23"
+
+[vars]
+SITE_ID = "shades-of-soul"
+WIDGET_SRC = "https://faq.agentsox.com/widget.js"
+
+# Route the Worker over the client's hostname so it can rewrite their HTML.
+# Requires the zone to be on the client's Cloudflare account.
+routes = [
+  { pattern = "theshadesofsoul.com/*", zone_name = "theshadesofsoul.com" },
+  { pattern = "www.theshadesofsoul.com/*", zone_name = "theshadesofsoul.com" },
+]

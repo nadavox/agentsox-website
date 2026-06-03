@@ -2,6 +2,16 @@ name = "agentsox-faq-worker"
 main = "src/index.ts"
 compatibility_date = "2026-05-23"
 
+# CORS origins are NOT configured here. The allowlist is derived from the client
+# registry (src/clients) - each client config lists its own origins. ENVIRONMENT
+# only gates whether localhost dev origins are accepted (see src/lib/cors.ts).
+
+# The embeddable widget bundle (built from apps/widget). Static assets are served
+# for matching paths (e.g. /widget.js); every other path runs the Worker script
+# (/api/*, /c/*). Build it before dev/deploy (see package.json predev/predeploy).
+[assets]
+directory = "./assets"
+
 [observability]
 enabled = true
 
@@ -13,15 +23,13 @@ enabled = true
 name = "agentsox-faq-worker-local"
 
 [env.local.vars]
-SITE_ID = "agentsox-main"
-ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+ENVIRONMENT = "local"
 
 [env.remote]
 name = "agentsox-faq-worker-remote"
 
 [env.remote.vars]
-SITE_ID = "agentsox-main"
-ALLOWED_ORIGINS = "http://localhost:5174,http://127.0.0.1:5174"
+ENVIRONMENT = "development"
 
 [[env.remote.ratelimits]]
 name = "API_RATE_LIMITER"
@@ -38,8 +46,7 @@ routes = [
 ]
 
 [env.production.vars]
-SITE_ID = "agentsox-main"
-ALLOWED_ORIGINS = "https://agentsox.com,https://www.agentsox.com"
+ENVIRONMENT = "production"
 
 [[env.production.ratelimits]]
 name = "API_RATE_LIMITER"

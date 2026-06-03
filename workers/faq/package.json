@@ -4,10 +4,16 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "build:widget": "npm --workspace @agentsox/faq-widget run build",
+    "predev": "npm run build:widget",
+    "predeploy": "npm run build:widget",
     "dev": "CI=true wrangler dev --env local --local --port 8789 --inspector-port 9230",
     "dev:remote-ai": "CI=true wrangler dev --env remote --remote --port 8789 --inspector-port 9230",
     "deploy": "CI=true wrangler deploy --env production",
     "typecheck": "tsc --noEmit",
+    "faq:new-client": "node scripts/new-faq-client.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
@@ -21,6 +27,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260521.0",
     "typescript": "^5.9.3",
+    "vitest": "^4.1.7",
     "wrangler": "^4.49.0"
   }
 }
