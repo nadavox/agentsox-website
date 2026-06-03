@@ -1,0 +1,5 @@
+# Served by the faq-worker static assets. The widget is public JS, safe to load
+# cross-origin from any client site.
+/widget.js
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600

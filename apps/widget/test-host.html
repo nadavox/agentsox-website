@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Widget test host</title>
+    <style>
+      /* Deliberately aggressive host styles to prove Shadow DOM isolation. */
+      * { font-family: "Comic Sans MS", cursive; }
+      button { background: hotpink !important; border: 4px dashed lime !important; }
+      body { margin: 0; padding: 40px; background: #faf5ff; }
+    </style>
+  </head>
+  <body>
+    <h1>Bare host page (no React)</h1>
+    <p>If the widget's bubble appears bottom-corner and is NOT pink/Comic-Sans, isolation works.</p>
+    <button>A host-page button (should look ugly; the widget should not)</button>
+
+    <!-- Point at the locally running faq-worker. Serve THIS page from an allowed
+         dev origin, e.g.:  npx serve apps/widget -l 5174  then open http://localhost:5174/test-host.html -->
+    <script src="http://127.0.0.1:8789/widget.js" data-site-id="shades-of-soul" async></script>
+  </body>
+</html>

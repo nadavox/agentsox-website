@@ -1,0 +1,25 @@
+{
+  "name": "@agentsox/faq-widget",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@agentsox/faq-client": "file:../../packages/faq-client",
+    "@ai-sdk/react": "^3.0.193",
+    "ai": "^6.0.191",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@agentsox/faq-agent": "file:../../packages/faq-agent",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.1"
+  }
+}
