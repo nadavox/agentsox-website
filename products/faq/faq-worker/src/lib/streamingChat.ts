@@ -11,6 +11,7 @@ import {
 import { FAQ_CLIENTS } from '../clients';
 import type { Env } from '../types';
 import { buildCorsEnv, requestOriginAllowed } from './cors';
+import { enforceQuotas } from './quota';
 import { validateChatBody } from './validateChatBody';
 
 const DEFAULT_MODEL = 'deepseek/deepseek-v4-flash';
@@ -84,12 +85,27 @@ export async function handleStreamingChat(
     return errorResponse(request, corsEnv, 'Origin is not allowed for this client', 403);
   }
 
-  // Per-client rate limit: separate bucket per client.
+  // Per-client rate limit: separate bucket per client (per-minute burst control).
   const rl = await enforceRateLimit(request, corsEnv, clientId);
   if (rl) return rl;
 
   const modelId = client.ai?.model ?? DEFAULT_MODEL;
   const startedAt = Date.now();
+
+  // Per-visitor quotas (minute + day) + a high per-client/day ceiling. Bounds model
+  // cost under sustained / IP-rotating abuse without throttling a busy site's real
+  // visitors (limits that touch a user are per-visitor). No-op until KV is bound.
+  const quota = await enforceQuotas(env, client, request, new Date());
+  if (!quota.ok) {
+    logRequest(clientId, modelId, 429, startedAt);
+    const message =
+      quota.scope === 'visitor-minute'
+        ? 'Too many messages - please slow down a moment.'
+        : quota.scope === 'visitor-day'
+          ? "You've reached today's message limit. Please try again tomorrow."
+          : 'The assistant is temporarily unavailable. Please try again later.';
+    return errorResponse(request, corsEnv, message, 429);
+  }
 
   let response: Response;
   try {

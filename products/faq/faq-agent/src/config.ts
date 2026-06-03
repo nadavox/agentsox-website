@@ -68,6 +68,23 @@ const behaviorSchema = z.object({
 });
 
 /**
+ * Per-client cost guardrails enforced by the worker. The limits that can affect a
+ * real user are PER-VISITOR, so a busy site's many visitors never compete for one
+ * shared budget. `perClientPerDay` is a HIGH catastrophe backstop (mass/distributed
+ * abuse or a runaway bug), set well above expected legit traffic - not a throttle.
+ * All optional: the worker applies safe defaults, and skips entirely if its counter
+ * store isn't provisioned.
+ */
+const limitsSchema = z.object({
+  /** Max chat turns per visitor per minute (burst). */
+  perVisitorPerMinute: z.number().int().positive().optional(),
+  /** Max chat turns per visitor per UTC day. */
+  perVisitorPerDay: z.number().int().positive().optional(),
+  /** High backstop: max chat turns for the whole client per UTC day. */
+  perClientPerDay: z.number().int().positive().optional(),
+});
+
+/**
  * Look and locale for the embeddable widget - all DATA, fetched per client by the
  * widget via /api/widget-config. Never the knowledge base. The widget is generic;
  * this is what makes it look and speak like the client.
@@ -148,6 +165,8 @@ export const faqClientSchema = z.object({
   rules: z.array(z.string().min(1)).optional(),
   handoff: handoffSchema.optional(),
   behavior: behaviorSchema.optional(),
+  /** Per-client cost guardrails (e.g. daily turn cap). Enforced server-side only. */
+  limits: limitsSchema.optional(),
   /** Look + locale for the embeddable widget. Served publicly via /api/widget-config. */
   widget: widgetSchema.optional(),
   ai: aiSchema.optional(),

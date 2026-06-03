@@ -66,6 +66,11 @@ defineFaqClient({
     actionPhrase: 'book a call',      // the visitor-facing CTA, in plain words
     ctaExample: 'Book a call about your widget order',
   },
+  limits: {                           // optional. cost guardrails; safe defaults apply
+    perVisitorPerMinute: 15,          //   per-visitor burst (defaults shown)
+    perVisitorPerDay: 100,            //   per-visitor / day - real users never compete
+    perClientPerDay: 20000,           //   HIGH backstop only; set above expected traffic
+  },
   origins: ['https://acme.com'],      // REQUIRED. PRODUCTION origins only.
                                       //   localhost is added automatically off-prod.
   ai: { model: '...', temperature: 0.5 },          // optional per-client overrides

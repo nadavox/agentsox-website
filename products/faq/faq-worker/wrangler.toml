@@ -55,3 +55,11 @@ namespace_id = "1004"
   [env.production.ratelimits.simple]
   limit = 30
   period = 60
+
+# Quota guardrails (src/lib/quota.ts) - per-visitor + per-client turn caps. ONE-TIME
+# setup, then every client gets quotas free via config. Quotas are OFF until bound.
+# To enable: `npx wrangler kv namespace create FAQ_QUOTA_KV`, then uncomment and paste
+# the printed id. The worker deploys fine while this stays commented.
+# [[env.production.kv_namespaces]]
+# binding = "FAQ_QUOTA_KV"
+# id = "<paste-kv-namespace-id>"
