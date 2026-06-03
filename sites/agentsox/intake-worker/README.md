@@ -6,7 +6,7 @@ This service owns `/api/chat`, Workers AI calls, deterministic local-preview
 chat behavior, CORS, `siteId` validation, request-size limits, rate limits, and
 chat logs.
 
-Contact email delivery has moved to `workers/mail`. This Worker keeps a
+Contact email delivery has moved to the `mail-worker`. This Worker keeps a
 temporary `/api/contact` compatibility route that forwards to `CONTACT_ENDPOINT`.
 
 ## Local Development

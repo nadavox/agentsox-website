@@ -1,6 +1,6 @@
-# Assets-only Worker for the AgentsOX marketing site (apps/web).
+# Assets-only Worker for the AgentsOX marketing site (sites/agentsox/web).
 # No `main` script — this Worker serves the prerendered Vite build in ./dist.
-# Top-level config (no [env.*]) so a plain `wrangler deploy` from apps/web is correct.
+# Top-level config (no [env.*]) so a plain `wrangler deploy` from this dir is correct.
 name = "agentsox-web"
 compatibility_date = "2026-05-23"
 

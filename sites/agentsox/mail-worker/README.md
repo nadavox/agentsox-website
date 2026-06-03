@@ -11,7 +11,7 @@ Resend delivery, CORS, `siteId` validation, rate limits, and email logs.
 npm --workspace @agentsox/mail-worker run dev
 ```
 
-Set local secrets in ignored `workers/mail/.dev.vars`:
+Set local secrets in ignored `.dev.vars` (in this folder):
 
 ```bash
 RESEND_API_KEY=re_your_local_resend_key
@@ -22,7 +22,7 @@ RESEND_API_KEY=re_your_local_resend_key
 Set the production Resend secret once:
 
 ```bash
-cd workers/mail
+cd sites/agentsox/mail-worker
 npx wrangler secret put RESEND_API_KEY --env production
 ```
 

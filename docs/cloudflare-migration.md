@@ -1,5 +1,32 @@
 # Vercel → Cloudflare migration runbook
 
+> ⚠️ **Stale paths (platform reorg).** This is a historical runbook; its `apps/web`,
+> `workers/*`, and `packages/*` paths predate the platform reorg. New locations:
+> `apps/web → sites/agentsox/web`, `workers/{intake,mail} → sites/agentsox/{intake-worker,mail-worker}`,
+> `workers/faq + apps/widget + packages/faq-* → products/faq/*`, `packages/{agent-core,worker-utils} → platform/*`.
+>
+> **Action required in the Cloudflare dashboard** (Workers Builds → each project → Settings → Build),
+> per Cloudflare's monorepo guidance ([Advanced setups](https://developers.cloudflare.com/workers/ci-cd/builds/advanced-setups/),
+> [Build watch paths](https://developers.cloudflare.com/workers/ci-cd/builds/build-watch-paths/)):
+>
+> 1. **Root directory** — Cloudflare recommends setting each Worker's *root directory to where its
+>    Wrangler config lives*. The reorg moved all of them; update per project:
+>    - `agentsox-web` → `sites/agentsox/web`
+>    - `intake` → `sites/agentsox/intake-worker`
+>    - `mail` → `sites/agentsox/mail-worker`
+>    - `faq` → `products/faq/faq-worker`
+> 2. **Build command** — must run from the new root (drop any `cd apps/web`; e.g. the web build runs
+>    from `sites/agentsox/web`, or use `npm --workspace @agentsox/web run build`).
+> 3. **Watch paths** (optional, to skip unneeded builds) — note CF's `*` matches a path segment and
+>    there is no `**`; verify against the docs. Updated mapping:
+>
+> | Project | Watch paths (new) |
+> |---|---|
+> | `agentsox-web` | `sites/agentsox/web/*` |
+> | `intake` | `sites/agentsox/intake-worker/*`, `sites/agentsox/intake-agent/*`, `sites/agentsox/contracts/*`, `platform/agent-core/*`, `platform/worker-utils/*` |
+> | `faq` | `products/faq/*`, `platform/agent-core/*`, `platform/worker-utils/*` |
+> | `mail` | `sites/agentsox/mail-worker/*`, `sites/agentsox/contracts/*`, `platform/worker-utils/*` |
+
 Consolidating the AgentsOX site off Vercel onto Cloudflare (Workers Static Assets), next to
 the 3 bot workers that already run there. The `agentsox.com` zone is already on Cloudflare.
 
