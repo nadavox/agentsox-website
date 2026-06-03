@@ -6,10 +6,10 @@ it knows nothing about any client. A client is just a **config**.
 
 ## Mental model
 
-- **Engine** (`packages/faq-agent`) = the single source of truth for *behaviour*.
+- **Engine** (`products/faq/faq-agent`) = the single source of truth for *behaviour*.
   Change it once, every client benefits. Bump its version for breaking changes and
   roll clients forward one at a time.
-- **Client config** (`workers/faq/src/clients/<slug>.ts` + `<slug>.faq.json`) = the
+- **Client config** (`products/faq/faq-worker/src/clients/<slug>.ts` + `<slug>.faq.json`) = the
   only thing that differs per client: brand, voice, rules, FAQ, origins.
 - A client's FAQ bot is **not** one of their delivery projects. Projects live in
   `clients/<email>/<project>/` (own repo + deploy). The bot is a subscription to this
@@ -101,7 +101,7 @@ clients/hi@acme.com/agents/faq.md
 ---
 FAQ bot - served by agentsox-faq-worker (shared).
 siteId:  acme
-config:  agentsox-website / workers/faq/src/clients/acme.ts
+config:  agentsox-website / products/faq/faq-worker/src/clients/acme.ts
 domain:  (where the widget is embedded)
 ```
 

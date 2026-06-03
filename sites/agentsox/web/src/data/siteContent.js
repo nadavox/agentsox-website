@@ -194,7 +194,7 @@ export const CASE_STUDIES = [
 ];
 
 // Source of truth for the website FAQ section + FAQPage structured data.
-// Mirror of workers/faq/src/clients/agentsox.faq.json (which drives the FAQ bot) -
+// Mirror of products/faq/faq-worker/src/clients/agentsox.faq.json (which drives the FAQ bot) -
 // keep the two in sync when answers change.
 export const FAQ_ITEMS = [
   {

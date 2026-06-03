@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "workspaces": [
-    "apps/*",
-    "workers/*",
-    "packages/*"
+    "platform/*",
+    "products/faq/*",
+    "sites/agentsox/*"
   ],
   "scripts": {
     "dev": "npm --workspace @agentsox/web run dev",

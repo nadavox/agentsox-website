@@ -6,7 +6,7 @@ compatibility_date = "2026-05-23"
 # registry (src/clients) - each client config lists its own origins. ENVIRONMENT
 # only gates whether localhost dev origins are accepted (see src/lib/cors.ts).
 
-# The embeddable widget bundle (built from apps/widget). Static assets are served
+# The embeddable widget bundle (built from products/faq/widget). Static assets are served
 # for matching paths (e.g. /widget.js); every other path runs the Worker script
 # (/api/*, /c/*). Build it before dev/deploy (see package.json predev/predeploy).
 [assets]

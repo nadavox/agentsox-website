@@ -9,7 +9,7 @@ export default defineConfig({
   // Force React's production build in the bundle (smaller, no dev warnings).
   define: { 'process.env.NODE_ENV': '"production"' },
   build: {
-    outDir: resolve(__dirname, '../../workers/faq/assets'),
+    outDir: resolve(__dirname, '../faq-worker/assets'),
     emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, 'src/loader.tsx'),

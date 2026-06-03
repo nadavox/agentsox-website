@@ -88,6 +88,6 @@ console.log(`       For a chat bubble: set handoff.url (e.g. https://wa.me/...) 
 console.log(`    2. Paste their Q/A into src/clients/${slug}.faq.json.`);
 console.log('    3. npm --workspace @agentsox/faq-worker run typecheck');
 console.log('    4. npm --workspace @agentsox/faq-worker run deploy');
-console.log('    5. Put it on their site (one line) - see workers/faq/INTEGRATION.md:\n');
+console.log('    5. Put it on their site (one line) - see products/faq/faq-worker/INTEGRATION.md:\n');
 console.log(`       <script src="https://faq.agentsox.com/widget.js" data-site-id="${slug}" async></script>`);
 console.log(`\n       No-access fallback: link to  https://faq.agentsox.com/c/${slug}\n`);

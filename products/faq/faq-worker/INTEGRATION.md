@@ -33,9 +33,9 @@ Anywhere that allows custom code: paste the snippet before `</body>`.
 ### Tier 2 — Cloudflare edge-inject (behind CF, no code access)
 
 When the site is behind Cloudflare and nobody can add a tag (e.g. a custom React app
-we didn't build), deploy `workers/widget-inject` on the **client's** Cloudflare zone.
+we didn't build), deploy `products/faq/widget-inject` on the **client's** Cloudflare zone.
 It injects the snippet at the edge — no change to their code. See
-`workers/widget-inject/README.md`.
+`products/faq/widget-inject/README.md`.
 
 ### Tier 3 — Hosted page (no access at all)
 
