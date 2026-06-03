@@ -10,8 +10,8 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@agentsox/contracts": "file:../../packages/contracts",
-    "@agentsox/worker-utils": "file:../../packages/worker-utils"
+    "@agentsox/contracts": "*",
+    "@agentsox/worker-utils": "*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260521.0",

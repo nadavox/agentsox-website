@@ -8,14 +8,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@agentsox/faq-client": "file:../../packages/faq-client",
+    "@agentsox/faq-client": "*",
     "@ai-sdk/react": "^3.0.193",
     "ai": "^6.0.191",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@agentsox/faq-agent": "file:../../packages/faq-agent",
+    "@agentsox/faq-agent": "*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",

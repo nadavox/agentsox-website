@@ -13,7 +13,7 @@
     "sync:brand": "node sync-brand.mjs"
   },
   "dependencies": {
-    "@agentsox/faq-client": "file:../../packages/faq-client",
+    "@agentsox/faq-client": "*",
     "@ai-sdk/react": "^3.0.193",
     "@mantine/core": "^9.2.1",
     "@mantine/hooks": "^9.2.1",

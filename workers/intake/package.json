@@ -13,9 +13,9 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@agentsox/contracts": "file:../../packages/contracts",
-    "@agentsox/intake-agent": "file:../../packages/intake-agent",
-    "@agentsox/worker-utils": "file:../../packages/worker-utils",
+    "@agentsox/contracts": "*",
+    "@agentsox/intake-agent": "*",
+    "@agentsox/worker-utils": "*",
     "@openrouter/ai-sdk-provider": "^2.9.0",
     "ai": "^6.0.0",
     "zod": "^4.4.3"

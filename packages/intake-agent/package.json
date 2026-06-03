@@ -11,7 +11,7 @@
     "./knowledge": "./src/knowledge/agentsox.json"
   },
   "dependencies": {
-    "@agentsox/agent-core": "file:../agent-core",
+    "@agentsox/agent-core": "*",
     "ai": "^6.0.0",
     "zod": "^4.4.3"
   }
