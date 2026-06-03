@@ -19,7 +19,8 @@ const CaseStudy = lazy(() => import('./components/CaseStudy'));
 const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'));
 const NotFound = lazy(() => import('./components/NotFound'));
-const FaqChat = lazy(() => import('./components/FaqChat/FaqChat'));
+// The FAQ chat is now the shared widget product, embedded via a <script> in
+// index.html (siteId=agentsox-main) - we dogfood it like any client.
 
 const ROUTE_META = new Map([
   ['/', HOME_META],
@@ -199,9 +200,6 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <ErrorBoundary>
           <AppContent />
-          <Suspense fallback={null}>
-            <FaqChat />
-          </Suspense>
         </ErrorBoundary>
       </MotionConfig>
     </ThemeProvider>

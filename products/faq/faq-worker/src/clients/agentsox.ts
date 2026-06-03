@@ -55,6 +55,17 @@ export const agentsoxFaqClient = defineFaqClient({
     scope: 'You answer questions about how AgentsOX works.',
     actionPhrase: 'send Nadav the details',
     ctaExample: 'Tell Nadav about the medspa booking flow you mentioned',
+    // agentsox.com dogfoods the widget; the CTA opens the contact section.
+    url: 'https://agentsox.com/#contact',
+  },
+  // The marketing site embeds the widget (siteId=agentsox-main) instead of a bespoke
+  // chat component. Light panel with the brand cyan accent (#22D3EE).
+  widget: {
+    title: 'AgentsOX FAQ',
+    launcherLabel: 'Open AgentsOX FAQ',
+    greeting:
+      "Questions about how we work, what we build, or what a project looks like? Ask away - and if it turns into a real project, I'll point you to where you can send Nadav the details.",
+    theme: { primary: '#22D3EE', onPrimary: '#101018' },
   },
   origins: ['https://agentsox.com', 'https://www.agentsox.com'],
 });
