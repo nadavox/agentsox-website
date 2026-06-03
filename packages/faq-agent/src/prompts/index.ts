@@ -1,1 +1,1 @@
-export { FAQ_SYSTEM_PROMPT } from './faqSystemPrompt';
+export { buildFaqSystemPrompt } from './faqSystemPrompt';

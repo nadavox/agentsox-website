@@ -1,5 +1,20 @@
 export { createFaqAgent } from './agent';
 export type { FaqAgent, FaqAgentOptions } from './agent';
-export { faqTools } from './tools';
+export { buildFaqTools } from './tools';
 export type { FaqTools } from './tools';
-export { FAQ_SYSTEM_PROMPT } from './prompts';
+export { buildFaqSystemPrompt } from './prompts';
+export {
+  defineFaqClient,
+  defineFaqClientRegistry,
+  faqClientSchema,
+  handoffActive,
+  chipsEnabled,
+  publicWidgetConfig,
+  FAQ_CONFIG_SCHEMA_VERSION,
+} from './config';
+export type {
+  FaqClientConfig,
+  FaqClientInput,
+  PublicWidgetConfig,
+  WidgetTheme,
+} from './config';

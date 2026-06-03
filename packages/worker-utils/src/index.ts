@@ -95,22 +95,26 @@ export function isValidSite(env: SiteEnv, siteId?: string): boolean {
   return Boolean(siteId) && (!env.SITE_ID || siteId === env.SITE_ID);
 }
 
-export function getRateLimitKey(request: Request): string {
+export function getRateLimitKey(request: Request, tenantId?: string): string {
   const ip =
     request.headers.get('CF-Connecting-IP') ||
     request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
     'unknown-ip';
   const origin = request.headers.get('Origin') || 'no-origin';
-  return `${origin}:${ip}`.slice(0, 256);
+  // Namespace the bucket by tenant so one tenant's traffic can't exhaust another's
+  // limit. Callers without tenants (intake, mail) omit the prefix - same key as before.
+  const prefix = tenantId ? `${tenantId}:` : '';
+  return `${prefix}${origin}:${ip}`.slice(0, 256);
 }
 
 export async function enforceRateLimit(
   request: Request,
   env: CorsEnv & RateLimitEnv,
+  tenantId?: string,
 ): Promise<Response | null> {
   if (!env.API_RATE_LIMITER) return null;
 
-  const { success } = await env.API_RATE_LIMITER.limit({ key: getRateLimitKey(request) });
+  const { success } = await env.API_RATE_LIMITER.limit({ key: getRateLimitKey(request, tenantId) });
   if (success) return null;
 
   return errorResponse(request, env, 'Too many requests. Please wait and try again.', 429);
